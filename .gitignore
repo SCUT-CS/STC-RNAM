@@ -34,17 +34,7 @@
 *.app
 
 
-*.user
-*.vcxproj
-*.filters
-*.ipch
-*.db-shm
-*.db-wal
-*.opendb
-*.json
-*.db
-*.ink
-*.pdb
+
 
 /Project1/x64
-/Project1/.vs
+/Project1/.vc
