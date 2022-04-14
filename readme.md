@@ -2,11 +2,11 @@
 
 1. 配置环境：
 
-​	升级Visual Studio到2022安装目录默认
+   升级Visual Studio到2022安装目录默认
 
-​	安装QT6.0.2 安装目录为：C/Qt
+   安装QT6.0.2 安装目录为：C/Qt
 
-​	安装opencv最新版本 安装目录为：C/opencv
+   安装opencv最新版本 安装目录为：C/opencv
 
 2. 配置系统环境变量:
    visual studio搭配qt开发
