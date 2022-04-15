@@ -1,0 +1,42 @@
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+!demo.exe
+*.out
+*.app
+*.ink
+
+/Project1withGUI/x64
+/Project1withGUI/.vs
+/Project1/Project1/x64
+/Project1/Project1/.vs
+/Project1/Project1/packages
+/Project1/Google Test/x64
