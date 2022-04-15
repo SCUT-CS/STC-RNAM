@@ -126,7 +126,7 @@ treeNode* treeIterator::operator*()
   * @return bool */
 bool treeIterator::toNwChild()
 {
-	if (p!=nullptr)
+	if (p != nullptr)
 	{
 		p = p->nwchild;
 		return true;
