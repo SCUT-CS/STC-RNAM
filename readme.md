@@ -11,7 +11,7 @@
 
 ```C++
     /**
-     * 函数描述
+     * 描述
      * @author Your name 
      * @param 参数1 （描述）
      * @param 参数2 （描述）
