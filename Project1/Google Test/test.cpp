@@ -3,6 +3,8 @@
 #include "../Project1/Tree.cpp"
 namespace test 
 {
+	/** Test tree create and add node
+	  * @author CuiYuxin */
 	TEST(TestTree, TestCase1) {
 		Tree t;
 		EXPECT_NE(t.getRoot(), nullptr);
@@ -10,6 +12,8 @@ namespace test
 		Tree::addchild(it, nw);
 		Tree::addchild(it, ne);
 	}
+	/** Test treeIterator create and move
+      * @author CuiYuxin */
 	TEST(TestTree, TestCase2) {
 		Tree t;
 		EXPECT_NE(t.getRoot(), nullptr);
