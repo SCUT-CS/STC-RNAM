@@ -29,6 +29,7 @@ namespace test
 		EXPECT_NE(*p, nullptr);
 		EXPECT_NE(*p, *it);
 	}
+
 }
 
 int main(int argc, char** argv) {

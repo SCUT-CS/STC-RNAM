@@ -12,9 +12,9 @@ private:
 	friend class Tree;
 	friend class treeIterator;
 	uchar confirm; //标识0或1
-	treeNode* parent;
-	treeNode* nwchild;
-	treeNode* nechild;
+	treeNode* parent = nullptr; //父节点
+	treeNode* nwchild = nullptr; //西北子节点
+	treeNode* nechild = nullptr; //东北子节点
 };
 
 /** Creating tree and provide method
@@ -26,8 +26,7 @@ public:
 	~Tree();
 	treeNode* getRoot();
 	//void InsertNode(treeNode*& root); //插入孩子结点
-	static void addchild(treeIterator it, Direction dir); //插入孩子结点 TODO 内存泄漏
-
+	static void addchild(treeIterator it, Direction dir); //插入孩子结点
 private:
 	treeNode* root = nullptr; //根结点地址
 

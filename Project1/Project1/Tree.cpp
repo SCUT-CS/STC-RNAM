@@ -12,7 +12,7 @@ Tree::Tree()
   * @author CuiYuxin */
 Tree::~Tree()
 {
-	if (root!=nullptr)
+	if (root != nullptr)
 	{
 		deleteTree(root);
 	}
@@ -80,12 +80,20 @@ void Tree::addchild(treeIterator it, Direction dir)
 {
 	if (dir == Direction::nw)
 	{
+		if (it->nwchild != nullptr) //·ÀÖ¹ÄÚ´æĞ¹Â©
+		{
+			delete it->nwchild;
+		}
 		it->nwchild = new treeNode;
 		InitialNode(it->nwchild);
 		it->nwchild->parent = *it;
 	}
 	else if (dir == Direction::ne)
 	{
+		if (it->nechild != nullptr)
+		{
+			delete it->nechild;
+		}
 		it->nechild = new treeNode;
 		InitialNode(it->nechild);
 		it->nechild->parent = *it;
