@@ -5,7 +5,7 @@ namespace test
 {
 	/** Test tree create and add node
 	  * @author CuiYuxin */
-	TEST(TestTree, TestCase1) {
+	TEST(TestTree, TestCreate) {
 		Tree t;
 		EXPECT_NE(t.getRoot(), nullptr);
 		treeIterator it(t.getRoot());
@@ -14,7 +14,7 @@ namespace test
 	}
 	/** Test treeIterator create and move
       * @author CuiYuxin */
-	TEST(TestTree, TestCase2) {
+	TEST(TestTree, TestIterator) {
 		Tree t;
 		EXPECT_NE(t.getRoot(), nullptr);
 		treeIterator it(t.getRoot());
