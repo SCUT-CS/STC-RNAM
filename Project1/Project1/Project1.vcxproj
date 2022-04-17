@@ -159,7 +159,6 @@
   <ItemGroup>
     <ClInclude Include="Calculate.h" />
     <ClInclude Include="Headers.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

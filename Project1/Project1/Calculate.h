@@ -1,7 +1,7 @@
 #pragma once
 #include "Headers.h"
 
-/** Calculators
+/** Calculators and other utilities
   * @author CuiYuxin */
 class Calculate
 {

@@ -5,7 +5,7 @@
   * @param Mat img1
   * @param Mat imggest
   * @return double PSNR */
-double Calculate::PSNR(Mat img, Mat imggest) // TODO 重构指针
+double Calculate::PSNR(Mat img, Mat imggest)
 {
 	int M = img.rows; //图像高度
 	int N = img.cols; //图像宽度
@@ -41,7 +41,7 @@ double Calculate::BPP(vector<colorListStandard>& P, Size imgSize, vector<char>& 
   * @param Mat img
   * @param doubleCoordinate dots
   * @return bool isSame */
-bool Calculate::JudgeSameBlock(double epsilon, Mat img, doubleCoordinate dots) // TODO 重构指针
+bool Calculate::JudgeSameBlock(double epsilon, Mat img, doubleCoordinate dots)
 {
 	int x1 = dots.dot1.first;
 	int y1 = dots.dot1.second;
