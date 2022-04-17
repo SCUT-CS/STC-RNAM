@@ -1,5 +1,10 @@
 #include "Calculate.h"
 
+/** Calculate the PSNR
+  * @author CuiYuxin
+  * @param Mat img1
+  * @param Mat imggest
+  * @return double PSNR */
 double Calculate::PSNR(Mat img1, Mat imggest)
 {
 	int M = img1.rows; //Í¼Ïñ¸ß¶È
@@ -17,4 +22,15 @@ double Calculate::PSNR(Mat img1, Mat imggest)
 	double temp1 = 0;
 	temp1 = 10 * log10(255.0 * 255 * M * N / temp);
 	return (temp1);
+}
+
+/** Calculate the BPP
+  * @author CuiYuxin
+  * @param vector<colorListStandard>& P
+  * @param MatSize imgSize
+  * @param vector<char>& Q
+  * @return double BPP */
+double Calculate::BPP(vector<colorListStandard>& P, Size imgSize, vector<char>& Q)
+{
+	return (Q.size() + 32.0 * P.size()) / (imgSize.height * imgSize.width);
 }
