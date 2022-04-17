@@ -85,8 +85,20 @@ namespace test
 		double res2 = Calculate::BPP(P, img2.size(), Q);
 		EXPECT_EQ(res2, 0.011474609375000000);
 	}
-
 	
+	/** Test Calaulate::JudgeSameBlock1
+      * @author CuiYuxin */
+	TEST(TestCalculate, TestJudgeSameBlock1)
+	{
+		// TODO
+	}
+	
+	/** Test Calaulate::JudgeSameBlock2
+      * @author CuiYuxin */
+	TEST(TestCalculate, TestJudgeSameBlock2)
+	{
+		// TODO
+	}
 }
 
 int main(int argc, char** argv) {

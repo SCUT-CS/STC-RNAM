@@ -5,15 +5,15 @@
   * @param Mat img1
   * @param Mat imggest
   * @return double PSNR */
-double Calculate::PSNR(Mat img1, Mat imggest)
+double Calculate::PSNR(Mat img, Mat imggest) // TODO 重构指针
 {
-	int M = img1.rows; //图像高度
-	int N = img1.cols; //图像宽度
+	int M = img.rows; //图像高度
+	int N = img.cols; //图像宽度
 	double temp = 0;
 	for (int y = 0; y < M; y++)
 	{
-		uchar* ptr1 = (uchar*)(img1.data + y * img1.step);
-		uchar* ptrg = (uchar*)(img1.data + y * img1.step);
+		uchar* ptr1 = (uchar*)(img.data + y * img.step);
+		uchar* ptrg = (uchar*)(img.data + y * img.step);
 		for (int x = 0; x < N; x++)
 		{
 			temp += pow((double)(ptr1[x] - ptrg[x]), 2);
@@ -27,10 +27,53 @@ double Calculate::PSNR(Mat img1, Mat imggest)
 /** Calculate the BPP
   * @author CuiYuxin
   * @param vector<colorListStandard>& P
-  * @param MatSize imgSize
+  * @param Size imgSize
   * @param vector<char>& Q
   * @return double BPP */
 double Calculate::BPP(vector<colorListStandard>& P, Size imgSize, vector<char>& Q)
 {
 	return (Q.size() + 32.0 * P.size()) / (imgSize.height * imgSize.width);
 }
+
+/** Judge if blocks are the same
+  * @author CuiYuxin
+  * @param double epsilon
+  * @param Mat img
+  * @param doubleCoordinate dots
+  * @return bool isSame */
+bool Calculate::JudgeSameBlock(double epsilon, Mat img, doubleCoordinate dots) // TODO 重构指针
+{
+	int x1 = dots.dot1.first;
+	int y1 = dots.dot1.second;
+	int x2 = dots.dot2.first;
+	int y2 = dots.dot2.second;
+	uchar* ptrtemp = (uchar*)(img.data + y1 * img.step);
+	uchar g1 = ptrtemp[x1];
+	uchar g2 = ptrtemp[x2];
+	ptrtemp = (uchar*)(img.data + y2 * img.step);
+	uchar g3 = ptrtemp[x1]; 
+	uchar g4 = ptrtemp[x2];
+	for (int y = y1; y <= y2; y++)
+	{
+		uchar* ptr = (uchar*)(img.data + y * img.step);
+		for (int x = x1; x <= x2; x++)
+		{
+			uchar g = ptr[x];
+			double i1 = (double)(y - y1) / (y2 - y1);
+			double i2 = (double)(x - x1) / (x2 - x1);
+			double g5 = g1 + (g2 - g1) * i2;
+			double g6 = g3 + (g4 - g3) * i2;
+			double gest = g5 + (g6 - g5) * i1;
+			if (g - gest >= -epsilon && g - gest <= epsilon)
+			{
+				continue;
+			}
+			else 
+			{
+				return false; 
+			}
+		}
+	}
+	return true;	
+}
+
