@@ -35,6 +35,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\opencv\build\include;C:\opencv\build\include\opencv2;C:\opencv\build\include\opencv;$(IncludePath)</IncludePath>
     <ReferencePath>C:\opencv\build\x64\vc15\lib;$(LibraryPath);$(ReferencePath)</ReferencePath>
+    <ExecutablePath>C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Project-1\Project1\Project1\gray_images;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>C:\opencv\build\include;C:\opencv\build\include\opencv2;C:\opencv\build\include\opencv;$(IncludePath)</IncludePath>
