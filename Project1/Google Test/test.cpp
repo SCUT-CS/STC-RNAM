@@ -69,6 +69,7 @@ namespace test
 		P.resize(5010);
 		Q.resize(3990);
 		double res1 = Calculate::BPP(P, img1.size(), Q);
+		//EXPECT_EQ(res1, 0.62679290771484375 , 0.0000001); //第三个参数是允许误差
 		EXPECT_EQ(res1, 0.62679290771484375);
 	}
 
@@ -86,16 +87,16 @@ namespace test
 		EXPECT_EQ(res2, 0.011474609375000000);
 	}
 	
-	/** Test Calaulate::JudgeSameBlock1
+	/** Test Algo::JudgeSameBlock1
       * @author CuiYuxin */
-	TEST(TestCalculate, TestJudgeSameBlock1)
+	TEST(TestAlgo, TestJudgeSameBlock1)
 	{
 		// TODO
 	}
 	
-	/** Test Calaulate::JudgeSameBlock2
+	/** Test Algo::JudgeSameBlock2
       * @author CuiYuxin */
-	TEST(TestCalculate, TestJudgeSameBlock2)
+	TEST(TestAlgo, TestJudgeSameBlock2)
 	{
 		// TODO
 	}

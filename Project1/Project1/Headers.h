@@ -15,6 +15,8 @@ extern double thresVar;
 struct colorListStandard //标准矩形颜色表
 {
 	uchar g1, g2, g3, g4;
+    void setFirstHalf(uchar c1, uchar c2);
+    void setLastHalf(uchar c3, uchar c4);
 };
 
 /** up left corner and down right corner coordinate
@@ -23,6 +25,9 @@ struct doubleCoordinate //左上角及右下角坐标
 {
 	pair<int, int> dot1;
 	pair<int, int> dot2;
+    doubleCoordinate(){};
+    doubleCoordinate(int x1, int y1, int x2, int y2);
+    void setCoordinate(int x1, int y1,int x2,int y2);
 };
 
 /** Inline Functions

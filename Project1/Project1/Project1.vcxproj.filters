@@ -21,10 +21,13 @@
     <ClCompile Include="Tree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="BulidTree.cpp">
+    <ClCompile Include="Calculate.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Calculate.cpp">
+    <ClCompile Include="Algo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Headers.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,6 +39,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Calculate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Algo.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
