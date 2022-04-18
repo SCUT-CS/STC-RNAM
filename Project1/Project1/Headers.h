@@ -1,9 +1,14 @@
 #pragma once
-#include "opencv.hpp"
 #include <iostream>
 #include <vector>
+#include "opencv.hpp"
 using namespace std;
 using namespace cv;
+extern int reg_num;
+extern int bitnum;
+extern int cur_block;
+extern double thresU;
+extern double thresVar;
 
 /** Standard Color List
   * @author CuiYuxin */
