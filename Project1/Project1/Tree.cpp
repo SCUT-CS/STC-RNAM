@@ -116,6 +116,17 @@ void Tree::setConfirm(treeIterator it, uchar c)
 	}
 }
 
+/** Get confirm
+  * @author CuiYuxin
+  * @param treeIterator it */
+uchar Tree::getConfirm(treeIterator it)
+{
+	if (it.p!=nullptr)
+	{
+		return (*it)->confirm;
+	}
+}
+
 /** Set child confirm
   * @author CuiYuxin
   * @param treeIterator it

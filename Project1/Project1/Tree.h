@@ -28,6 +28,7 @@ public:
 	//void InsertNode(treeNode*& root); //插入孩子结点
 	static void addchild(treeIterator it, Direction dir); //插入孩子结点
 	static void setConfirm(treeIterator it,uchar c); //设置结点确认状态
+	static uchar getConfirm(treeIterator it); //获取结点确认状态
 	static void setChildConfirm(treeIterator it, uchar c, Direction dir); //设置孩子节点确认状态
 	static void deleteChildNode(treeIterator it, Direction dir);
 private:

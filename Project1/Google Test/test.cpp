@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "../Project1/Tree.cpp"
 #include "../Project1/Calculate.cpp"
+#include "../Project1/Headers.cpp"
 namespace test 
 {
 	/** Test tree create and add node
@@ -12,6 +13,7 @@ namespace test
 		Tree::addchild(it, nw);
 		Tree::addchild(it, ne);
 	}
+	
 	/** Test treeIterator create and move
       * @author CuiYuxin */
 	TEST(TestTree, TestIterator) {
@@ -29,6 +31,28 @@ namespace test
 		EXPECT_NE(*p, nullptr);
 		EXPECT_NE(*p, *it);
 	}
+	
+	/** Test tree method
+      * @author CuiYuxin */
+	TEST(TestTree, Testmethod) {
+		Tree t;
+		treeIterator it(t);
+		t.addchild (it, nw);
+		t.addchild (it, ne);
+		Tree::setConfirm(it, '1');
+		EXPECT_EQ(Tree::getConfirm(it), '1');
+		Tree::setChildConfirm(it, 'e', ne);
+		Tree::setChildConfirm(it, 'w', nw);
+		treeIterator pNE, pNW;
+		pNE = it.getNeChild();
+		pNW = it.getNwChild();
+		EXPECT_EQ(Tree::getConfirm(pNE), 'e');
+		EXPECT_EQ(Tree::getConfirm(pNW), 'w');
+		EXPECT_EQ(*(pNE.getParent()), *it);
+		Tree::deleteChildNode(it,ne);
+		EXPECT_EQ(*(it.getNeChild()), nullptr);
+	}
+	
 	/** Test Calaulate::PSNR1
       * @author CuiYuxin */
 	TEST(TestCalculate, TestPSNR1)
@@ -86,20 +110,32 @@ namespace test
 		double res2 = Calculate::BPP(P, img2.size(), Q);
 		EXPECT_EQ(res2, 0.011474609375000000);
 	}
-	
-	/** Test Algo::JudgeSameBlock1
+
+	/** Test Headers::Struct
       * @author CuiYuxin */
-	TEST(TestAlgo, TestJudgeSameBlock1)
+	TEST(TestHeaders, Struct)
 	{
-		// TODO
+		colorListStandard c;
+		c.setFirstHalf('1', '2');
+		c.setLastHalf('3', '4');
+		EXPECT_EQ(c.g1, '1');
+		EXPECT_EQ(c.g2, '2');
+		EXPECT_EQ(c.g3, '3');
+		EXPECT_EQ(c.g4, '4');
+		doubleCoordinate d1;
+		d1.setCoordinate(1, 2, 3, 4);
+		EXPECT_EQ(d1.dot1.first, 1);
+		EXPECT_EQ(d1.dot1.second, 2);
+		EXPECT_EQ(d1.dot2.first, 3);
+		EXPECT_EQ(d1.dot2.second, 4);
+		doubleCoordinate d2(1,2,3,4);
+		EXPECT_EQ(d2.dot1.first, 1);
+		EXPECT_EQ(d2.dot1.second, 2);
+		EXPECT_EQ(d2.dot2.first, 3);
+		EXPECT_EQ(d2.dot2.second, 4);
 	}
 	
-	/** Test Algo::JudgeSameBlock2
-      * @author CuiYuxin */
-	TEST(TestAlgo, TestJudgeSameBlock2)
-	{
-		// TODO
-	}
+	
 }
 
 int main(int argc, char** argv) {

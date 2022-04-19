@@ -95,9 +95,4 @@ void Algo::BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vec
 			BuildTree(img, it.getNwChild(), P, C, num, epsilon, doubleCoordinate(x1, (y1 + y2 + 1) / 2, x2, y2));
 		}
 	}
-
-
-		
-	
-	
 }
