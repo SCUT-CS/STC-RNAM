@@ -139,7 +139,14 @@ namespace test
       * @author CuiYuxin */
 	TEST(TestAlgo, TestBTandJSB)
 	{
+		// TODO
+	}
 
+	/** Test Algo::MakeImggest
+      * @author CuiYuxin */
+	TEST(TestAlgo, TestMakeImggest)
+	{
+		// TODO
 	}
 }
 

@@ -1,5 +1,6 @@
 #include "Headers.h"
 #include "Tree.h"
+#include "Algo.h"
 
 int reg_num = 0;
 int bitnum = 0;
@@ -36,11 +37,13 @@ int main(int argc, char** argv)
 		vector<colorListStandard> P; //建立颜色表
 		vector<char> Q; //建立线性树表
 		Tree tree;
+		treeIterator it(tree);
 		thresU = atof(argv[5]);
 		thresVar = atof(argv[6]);
 		Mat sketch(img.size(), CV_8UC1);  //创建素描图像
 		start = clock(); //Start building tree
-
+		treeIterator(tree);
+		Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
 
 		
 
