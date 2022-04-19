@@ -94,5 +94,72 @@ void Algo::BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vec
 		{
 			BuildTree(img, it.getNwChild(), P, C, num, epsilon, doubleCoordinate(x1, (y1 + y2 + 1) / 2, x2, y2));
 		}
+		num = 0;
+		if (JudgeSameBlock(epsilon, img, doubleCoordinate(x1, (y1 + y2 + 1) / 2, x2, y2))) //判断下半部分:nechild
+		{
+			Tree::setChildConfirm(it, '1', ne);
+			ptr = (uchar*)(img.data + (y1 + y2 + 1) / 2 * img.step);
+			temp.setFirstHalf(ptr[x1], ptr[x2]);
+			ptr = (uchar*)(img.data + y2 * img.step);
+			temp.setLastHalf(ptr[x1], ptr[x2]);
+			P.push_back(temp);
+			tempc.setCoordinate(x1, (y1 + y2 + 1) / 2, x2, y2);
+			C.push_back(tempc);
+		}
+		else //递归调用
+		{
+			BuildTree(img, it.getNeChild(), P, C, num, epsilon, doubleCoordinate(x1, (y1 + y2 + 1) / 2, x2, y2));
+		}
 	}
+	else if (num % 2 == 0)  //num是2的整数倍，垂直分隔
+	{
+		num = 1;
+		int vx2 = 0;
+		if (x1 == x2)
+		{
+			Tree::setConfirm(it, '1');
+			Tree::deleteChildNode(it, nw);
+			Tree::deleteChildNode(it, ne);
+			ptr = (uchar*)(img.data + y1 * img.step);
+			temp.setFirstHalf(ptr[x1], ptr[x2]);
+			ptr = (uchar*)(img.data + y2 * img.step);
+			temp.setLastHalf(ptr[x1], ptr[x2]);
+			P.push_back(temp);
+			tempc.setCoordinate(x1, y1, x2, y2);
+			C.push_back(tempc);
+			return;
+		}
+		if (JudgeSameBlock(epsilon, img, doubleCoordinate(x1, y1, (x1 + x2 - 1) / 2, y2)))  //判断左半部分:nwchild
+		{
+			Tree::setChildConfirm(it, '1', nw);
+			ptr = (uchar*)(img.data + y1 * img.step);
+			temp.setFirstHalf(ptr[x1], ptr[(x1 + x2 - 1) / 2]);
+			ptr = (uchar*)(img.data + y2 * img.step);
+			temp.setLastHalf(ptr[x1], ptr[(x1 + x2 - 1) / 2]);
+			P.push_back(temp);
+			tempc.setCoordinate(x1, y1, (x1 + x2 - 1) / 2, y2);
+			C.push_back(tempc);
+		}
+		else //若非同类块则递归调用
+		{
+			BuildTree(img, it.getNwChild(), P, C, num, epsilon, doubleCoordinate(x1, y1, (x1 + x2 - 1) / 2, y2));
+		}
+		num = 1;
+		if (JudgeSameBlock(epsilon, img, doubleCoordinate((x1 + x2 + 1) / 2, y1, x2, y2))) //判断右半部分:nechild
+		{
+			Tree::setChildConfirm(it, '1', ne);
+			ptr = (uchar*)(img.data + y1 * img.step);
+			temp.setFirstHalf(ptr[(x1 + x2 + 1) / 2], ptr[x2]);
+			ptr = (uchar*)(img.data + y2 * img.step);
+			temp.setLastHalf(ptr[(x1 + x2 + 1) / 2], ptr[x2]);
+			P.push_back(temp);
+			tempc.setCoordinate((x1 + x2 + 1) / 2, y1, x2, y2);
+			C.push_back(tempc);
+		}
+		else //递归调用
+		{
+			BuildTree(img, it.getNeChild(), P, C, num, epsilon, doubleCoordinate((x1 + x2 + 1) / 2, y1, x2, y2));
+		}
+	}
+	return;
 }
