@@ -113,7 +113,7 @@ namespace test
 
 	/** Test Headers::Struct
       * @author CuiYuxin */
-	TEST(TestHeaders, Struct)
+	TEST(TestHeaders, TestStruct)
 	{
 		colorListStandard c;
 		c.setFirstHalf('1', '2');
@@ -135,7 +135,12 @@ namespace test
 		EXPECT_EQ(d2.dot2.second, 4);
 	}
 	
-	
+	/** Test Algo::bulidTree and Algo::judgeSameBlock
+      * @author CuiYuxin */
+	TEST(TestAlgo, TestBTandJSB)
+	{
+
+	}
 }
 
 int main(int argc, char** argv) {

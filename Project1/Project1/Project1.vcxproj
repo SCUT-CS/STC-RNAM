@@ -147,17 +147,25 @@
   <ItemGroup>
     <ClCompile Include="Algo.cpp" />
     <ClCompile Include="Calculate.cpp" />
+    <ClCompile Include="Corner_Vertex.cpp" />
+    <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Headers.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Region.cpp" />
+    <ClCompile Include="Segment.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algo.h" />
     <ClInclude Include="Calculate.h" />
+    <ClInclude Include="Corner_Vertex.h" />
+    <ClInclude Include="Edge.h" />
     <ClInclude Include="Headers.h" />
+    <ClInclude Include="Region.h" />
+    <ClInclude Include="Segment.h" />
     <ClInclude Include="Tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
