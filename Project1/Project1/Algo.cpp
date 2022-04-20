@@ -67,6 +67,7 @@ void Algo::BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vec
 		num = 0;
 		if (y1 == y2)
 		{
+			cout << "x1" << x1 << "y1" << y1 << "x2" << x2 << "y2" << y2 << endl;
 			Tree::setConfirm(it, '1');
 			Tree::deleteChildNode(it, nw);
 			Tree::deleteChildNode(it, ne);
@@ -117,6 +118,7 @@ void Algo::BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vec
 		int vx2 = 0;
 		if (x1 == x2)
 		{
+			cout << "x1" << x1 << "y1" << y1 << "x2" << x2 << "y2" << y2 << endl;
 			Tree::setConfirm(it, '1');
 			Tree::deleteChildNode(it, nw);
 			Tree::deleteChildNode(it, ne);

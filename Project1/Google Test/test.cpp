@@ -136,9 +136,38 @@ namespace test
 		EXPECT_EQ(d2.dot2.second, 4);
 	}
 	
-	/** Test Algo::bulidTree and Algo::judgeSameBlock
+	/** Test Algo::judgeSameBlock
       * @author CuiYuxin */
-	TEST(TestAlgo, TestBTandJSB1)
+	TEST(TestAlgo, TestJudgeSameBlock)
+	{
+		Mat img;
+		string imagePath = samples::findFile("../../gray_images/1_gray256.bmp");
+		img = imread(imagePath, 0); //将源彩色图像img转化成目标灰色图像读入
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(168, 172, 175, 175)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(180, 162, 183, 163)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(184, 164, 187, 165)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(188, 168, 191, 171)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(160, 180, 167, 183)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(160, 188, 167, 191)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(168, 188, 175, 191)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(188, 178, 191, 179)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(184, 180, 187, 181)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(212, 136, 215, 137)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(220, 136, 221, 137)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(196, 146, 199, 147)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(206, 144, 207, 145)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(202, 150, 203, 151)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(198, 152, 199, 153)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(204, 156, 207, 159)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(216, 156, 217, 157)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(244, 140, 245, 141)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(192, 164, 193, 165)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(194, 168, 195, 169)));
+	}
+	
+	/** Test Algo::bulidTree
+      * @author CuiYuxin */
+	TEST(TestAlgo, TestBuildTree1)
 	{
 		Mat img;
 		string imagePath = samples::findFile("../../gray_images/flightzyp512.bmp");
@@ -167,9 +196,9 @@ namespace test
 		ASSERT_EQ(Tree::getConfirm(it.getNwChild()), '0');
 	}
 
-	/** Test Algo::bulidTree and Algo::judgeSameBlock
+	/** Test Algo::bulidTree
       * @author CuiYuxin */
-	TEST(TestAlgo, TestBTandJSB2)
+	TEST(TestAlgo, TestBuildTree2)
 	{
 		Mat img;
 		string imagePath = samples::findFile("../../gray_images/1_gray256.bmp");
