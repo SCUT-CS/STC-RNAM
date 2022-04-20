@@ -42,7 +42,6 @@ int main(int argc, char** argv)
 		thresVar = atof(argv[6]);
 		Mat sketch(img.size(), CV_8UC1);  //´´½¨ËØÃèÍ¼Ïñ
 		start = clock(); //Start building tree
-		treeIterator(tree);
 		Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
 
 		

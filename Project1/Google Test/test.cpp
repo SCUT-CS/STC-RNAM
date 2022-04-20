@@ -2,6 +2,7 @@
 #include "../Project1/Tree.cpp"
 #include "../Project1/Calculate.cpp"
 #include "../Project1/Headers.cpp"
+#include "../Project1/Algo.cpp"
 namespace test 
 {
 	/** Test tree create and add node
@@ -137,9 +138,64 @@ namespace test
 	
 	/** Test Algo::bulidTree and Algo::judgeSameBlock
       * @author CuiYuxin */
-	TEST(TestAlgo, TestBTandJSB)
+	TEST(TestAlgo, TestBTandJSB1)
 	{
-		// TODO
+		Mat img;
+		string imagePath = samples::findFile("../../gray_images/flightzyp512.bmp");
+		img = imread(imagePath, 0); //将源彩色图像img转化成目标灰色图像读入
+		int num = 3; //test
+		int M = img.rows; //图像高度
+		int N = img.cols; //图像宽度
+		double epsilon = 10; //test
+		vector<doubleCoordinate> C; //建立坐标表
+		vector<colorListStandard> P; //建立颜色表
+		Tree tree;
+		treeIterator it(tree);
+		Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+		ASSERT_EQ(P.size(), 19718);
+		ASSERT_EQ(C.size(), 19718);
+		ASSERT_EQ((int)P[9866].g1, 116);
+		ASSERT_EQ((int)P[9866].g2, 102);
+		ASSERT_EQ((int)P[9866].g3, 126);
+		ASSERT_EQ((int)P[9866].g4, 105);
+		ASSERT_EQ(C[1025].dot1.first, 220);
+		ASSERT_EQ(C[1025].dot1.second, 70);
+		ASSERT_EQ(C[1025].dot2.first, 223);
+		ASSERT_EQ(C[1025].dot2.second, 71);
+		ASSERT_EQ(Tree::getConfirm(it), '0');
+		ASSERT_EQ(Tree::getConfirm(it.getNeChild().getNeChild()), '0');
+		ASSERT_EQ(Tree::getConfirm(it.getNwChild()), '0');
+	}
+
+	/** Test Algo::bulidTree and Algo::judgeSameBlock
+      * @author CuiYuxin */
+	TEST(TestAlgo, TestBTandJSB2)
+	{
+		Mat img;
+		string imagePath = samples::findFile("../../gray_images/1_gray256.bmp");
+		img = imread(imagePath, 0); //将源彩色图像img转化成目标灰色图像读入
+		int num = 3; //test
+		int M = img.rows; //图像高度
+		int N = img.cols; //图像宽度
+		double epsilon = 10; //test
+		vector<doubleCoordinate> C; //建立坐标表
+		vector<colorListStandard> P; //建立颜色表
+		Tree tree;
+		treeIterator it(tree);
+		Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+		ASSERT_EQ(P.size(), 6986);
+		ASSERT_EQ(C.size(), 6986);
+		ASSERT_EQ((int)P[9866].g1, 75);
+		ASSERT_EQ((int)P[9866].g2, 102);
+		ASSERT_EQ((int)P[9866].g3, 90);
+		ASSERT_EQ((int)P[9866].g4, 175);
+		ASSERT_EQ(C[1025].dot1.first, 252);
+		ASSERT_EQ(C[1025].dot1.second, 190);
+		ASSERT_EQ(C[1025].dot2.first, 255);
+		ASSERT_EQ(C[1025].dot2.second, 191);
+		ASSERT_EQ(Tree::getConfirm(it), '0');
+		ASSERT_EQ(Tree::getConfirm(it.getNeChild().getNeChild()), '0');
+		ASSERT_EQ(Tree::getConfirm(it.getNwChild()), '0');
 	}
 
 	/** Test Algo::MakeImggest
