@@ -21,47 +21,34 @@ int cur_block = -1;
   */
 int main(int argc, char** argv)
 {
-	//int nmb = 0;
-	//Mat img;
-	//string imagePath = samples::findFile(argv[1]);
-	//img = imread(imagePath, 0); //将源彩色图像img转化成目标灰色图像读入
-	//if (argc == 8 && !img.empty())
-	//{
-	//	time_t start, end, time, convergeStart, convergeEnd, convergeTime; //计时变量
-	//	Mat imggest = Mat::zeros(img.size(), img.type());
-	//	int num = atoi(argv[7]);
-	//	int M = img.rows; //图像高度
-	//	int N = img.cols; //图像宽度
-	//	double epsilon = atof(argv[4]);
-	//	vector<doubleCoordinate> C; //建立坐标表
-	//	vector<colorListStandard> P; //建立颜色表
-	//	vector<char> Q; //建立线性树表
-	//	Tree tree;
-	//	treeIterator it(tree);
-	//	thresU = atof(argv[5]);
-	//	thresVar = atof(argv[6]);
-	//	Mat sketch(img.size(), CV_8UC1);  //创建素描图像
-	//	start = clock(); //Start building tree
-	//	Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
-
-	//	
-
-	//	
-	//}
-
+	int nmb = 0;
 	Mat img;
-	string imagePath = samples::findFile("./gray_images/1_gray256.bmp");
+	string imagePath = samples::findFile(argv[1]);
 	img = imread(imagePath, 0); //将源彩色图像img转化成目标灰色图像读入
-	int num = 3; //test
-	int M = img.rows; //图像高度
-	int N = img.cols; //图像宽度
-	double epsilon = 10; //test
-	vector<doubleCoordinate> C; //建立坐标表
-	vector<colorListStandard> P; //建立颜色表
-	Tree tree;
-	treeIterator it(tree);
-	cout << M << " " << N;
-	Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+	if (argc == 8 && !img.empty())
+	{
+		time_t start, end, time, convergeStart, convergeEnd, convergeTime; //计时变量
+		Mat imggest = Mat::zeros(img.size(), img.type());
+		int num = atoi(argv[7]);
+		int M = img.rows; //图像高度
+		int N = img.cols; //图像宽度
+		double epsilon = atof(argv[4]);
+		vector<doubleCoordinate> C; //建立坐标表
+		vector<colorListStandard> P; //建立颜色表
+		vector<char> Q; //建立线性树表
+		Tree tree;
+		treeIterator it(tree);
+		thresU = atof(argv[5]);
+		thresVar = atof(argv[6]);
+		Mat sketch(img.size(), CV_8UC1);  //创建素描图像
+		start = clock(); //Start building tree
+		Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+
+		
+
+		
+	}
+
 
 	
 }
