@@ -3,8 +3,7 @@ class Edge;
 class Region
 {
 public:
-	
-private:
+	static Region* FindParent(Region* p);
 	double Mean;
 	double Var;
 	int Size; //±ß³¤

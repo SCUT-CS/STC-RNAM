@@ -32,17 +32,18 @@ void Tree::InitialNode(treeNode*& node)
 /** Level traverse the tree
   * @author CuiYuxin
   * @param vector<char>& res
-  * @param treeNode*& root */
-void Tree::LevelOrder(vector<char>& res, treeNode* root)
+  * @param treeIterator it */
+void Tree::LevelOrder(vector<char>& res, treeIterator it)
 {
-	res.push_back(root->confirm);
-	if (root->nwchild != nullptr)
+	res.push_back(getConfirm(it));
+	treeIterator nwIt{ it }, neIt{ it };
+	if (nwIt.toNeChild())
 	{
-		LevelOrder(res, root->nwchild);
+		LevelOrder(res, nwIt);
 	}
-	if (root->nechild != nullptr)
+	if (neIt.toNeChild())
 	{
-		LevelOrder(res, root->nechild);
+		LevelOrder(res, neIt);
 	}
 }
 
@@ -76,7 +77,7 @@ treeNode* Tree::getRoot()
   * @author CuiYuxin
   * @param treeIterator it
   * @param Direction dir */
-void Tree::addchild(treeIterator it, Direction dir)
+void Tree::addchild(treeIterator it,Direction dir)
 {
 	if (*it == nullptr)
 	{
@@ -224,7 +225,7 @@ treeNode* treeIterator::operator*()
   * @return bool */
 bool treeIterator::toNwChild()
 {
-	if (p != nullptr)
+	if (p != nullptr&& p->nwchild!=nullptr)
 	{
 		p = p->nwchild;
 		return true;
@@ -237,7 +238,7 @@ bool treeIterator::toNwChild()
   * @return bool */
 bool treeIterator::toNeChild()
 {
-	if (p != nullptr)
+	if (p != nullptr&& p->nechild!=nullptr)
 	{
 		p = p->nechild;
 		return true;
@@ -250,7 +251,7 @@ bool treeIterator::toNeChild()
   * @return bool */
 bool treeIterator::toParent()
 {
-	if (p != nullptr)
+	if (p != nullptr&& p->parent!=nullptr)
 	{
 		p = p->parent;
 		return true;
@@ -264,8 +265,11 @@ bool treeIterator::toParent()
 treeIterator treeIterator::getNwChild() const
 {
 	treeIterator temp = *this;
-	bool isDone = temp.toNwChild();
-	return temp;
+	if (temp.toNwChild()) 
+	{
+		return temp;
+	}
+	return treeIterator(nullptr);
 }
 
 /** Return the iterator point to the NwChild
@@ -274,8 +278,11 @@ treeIterator treeIterator::getNwChild() const
 treeIterator treeIterator::getNeChild() const
 {
 	treeIterator temp = *this;
-	temp.toNeChild();
-	return temp;
+	if(temp.toNeChild())
+	{
+		return temp;
+	}
+	return treeIterator(nullptr);
 }
 
 /** Return the iterator point to the NwChild
@@ -284,6 +291,9 @@ treeIterator treeIterator::getNeChild() const
 treeIterator treeIterator::getParent() const
 {
 	treeIterator temp = *this;
-	temp.toParent();
-	return temp;
+	if(temp.toParent())
+	{
+		return temp;
+	}
+	return treeIterator(nullptr);
 }

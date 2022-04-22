@@ -147,8 +147,6 @@
   <ItemGroup>
     <ClCompile Include="Algo.cpp" />
     <ClCompile Include="Calculate.cpp" />
-    <ClCompile Include="Corner_Vertex.cpp" />
-    <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Headers.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>

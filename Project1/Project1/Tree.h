@@ -31,11 +31,11 @@ public:
 	static uchar getConfirm(treeIterator it); //获取结点确认状态
 	static void setChildConfirm(treeIterator it, uchar c, Direction dir); //设置孩子节点确认状态
 	static void deleteChildNode(treeIterator it, Direction dir);
+	static void LevelOrder(vector<char>& Q, treeIterator it); //层次遍历
 private:
 	treeNode* root = nullptr; //根结点地址
 
 	static void InitialNode(treeNode*& node); //初始化树结点
-	void LevelOrder(vector<char>& Q, treeNode* root); //层次遍历
 	void deleteTree(treeNode* root);
 
 };

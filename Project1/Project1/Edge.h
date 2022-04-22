@@ -4,8 +4,6 @@ class Region;
 class Edge
 {
 public:
-	
-private:
 	Edge* PreLink;
 	Edge* SucLink;
 	Region* Reg;

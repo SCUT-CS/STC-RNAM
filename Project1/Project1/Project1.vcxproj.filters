@@ -33,12 +33,6 @@
     <ClCompile Include="Region.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Corner_Vertex.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Edge.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Segment.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

@@ -3,7 +3,7 @@
 #include "../Project1/Calculate.cpp"
 #include "../Project1/Headers.cpp"
 #include "../Project1/Algo.cpp"
-namespace test 
+namespace test
 {
 	/** Test tree create and add node
 	  * @author CuiYuxin */
@@ -25,12 +25,12 @@ namespace test
 		Tree::addchild(it, nw);
 		Tree::addchild(it, ne);		
 		EXPECT_TRUE(it.toNwChild());
-		EXPECT_TRUE(it.toNeChild());
-		EXPECT_FALSE(it.toParent());
-		EXPECT_EQ(*it, nullptr);
+		EXPECT_FALSE(it.toNeChild());
+		EXPECT_TRUE(it.toParent());
+		EXPECT_NE(*it, nullptr);
 		treeIterator p(t);
 		EXPECT_NE(*p, nullptr);
-		EXPECT_NE(*p, *it);
+		EXPECT_EQ(*p, *it);
 	}
 	
 	/** Test tree method
@@ -230,6 +230,48 @@ namespace test
 	/** Test Algo::MakeImggest
       * @author CuiYuxin */
 	TEST(TestAlgo, TestMakeImggest)
+	{
+		// TODO
+	}
+
+	/** Test Tree::LevelOrder
+      * @author CuiYuxin */
+	TEST(TestTree, TestLevelOrder)
+	{
+		// TODO
+	}
+
+	/** Test Segment::regionSegm
+      * @author CuiYuxin */
+	TEST(TestSegment, TestRegionSegm)
+	{
+		// TODO
+	}
+
+	/** Test Segment::spilt
+      * @author CuiYuxin */
+	TEST(TestSegment, TestSplit)
+	{
+		// TODO
+	}
+
+	/** Test Segment::leafOperation
+      * @author CuiYuxin */
+	TEST(TestSegment, TestLeafOperation)
+	{
+		// TODO
+	}
+
+	/** Test All Poject
+      * @author CuiYuxin */
+	TEST(TestPoject, TestCase1)
+	{
+		// TODO
+	}
+
+	/** Test All Poject
+      * @author CuiYuxin */
+	TEST(TestPoject, TestCase2)
 	{
 		// TODO
 	}

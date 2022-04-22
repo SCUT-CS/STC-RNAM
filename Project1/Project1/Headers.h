@@ -30,6 +30,17 @@ struct doubleCoordinate //左上角及右下角坐标
     void setCoordinate(int x1, int y1,int x2,int y2);
 };
 
+/** Segment int Params
+  * @author CuiYuxin */
+struct SegmentParamI //左上角及右下角坐标
+{
+    SegmentParamI(int x,int y,int l,int h);
+    int xLeft;
+    int yupper;
+    int len;
+    int width;
+};
+
 /** Inline Functions
   * @author ZhengYunping */
 inline double Gst(int g2, int g1, int w)
@@ -126,6 +137,10 @@ inline double Varbi(colorListStandard color, doubleCoordinate coor)
         return (c1 - 0.25) * (color.g2 - color.g1) * (color.g2 - color.g1);
     else if (x1 == x2)
         return (c2 - 0.25) * (color.g3 - color.g1) * (color.g3 - color.g1);
+}
+inline char getBit(vector<char>& Q)
+{
+    return Q[bitnum++];
 }
 
 
