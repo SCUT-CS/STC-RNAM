@@ -13,14 +13,16 @@ int cur_block = -1;
 vector<doubleCoordinate> C; //建立坐标表
 vector<colorListStandard> P; //建立颜色表
 
+//"大作业test.exe" C:\\Users\\Admin\\Desktop\\gray_images\\barbarazyp512.bmp C:\\Users\\Admin\\Desktop\\gray_images\barbarazyp512XXXgray.bmp C:\\Users\\Admin\\Desktop\gray_images\barbarazyp512XXXrnamc.bmp 20 0
+
 /** Main Function
   * @author CuiYuxin
-  * @input 1.程序地址
-  * @input 2.原彩图
-  * @input 3.转坏灰度图文件名
-  * @input 4.转换RNAMC文件名
-  * @input 5.同类快阀值
-  * @input 6.均值阀值
+  * @input 1.程序地址 程序运行的全路径名
+  * @input 2.原彩图 要被读入的文件的文件名
+  * @input 3.转坏灰度图文件名 img保存路径
+  * @input 4.转换RNAMC文件名 newimg保存路径
+  * @input 5.同类快阀值 margin的值
+  * @input 6.均值阀值 ratio的值
   * @input 7.方差阀值
   * @input 8.切法 1 水平 0垂直
   */

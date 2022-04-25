@@ -236,9 +236,53 @@ namespace test
 
 	/** Test Tree::LevelOrder
       * @author CuiYuxin */
-	TEST(TestTree, TestLevelOrder)
+	TEST(TestTree, TestLevelOrder1)
 	{
-		// TODO
+		Mat img;
+		string imagePath = samples::findFile("../../gray_images/flightzyp512.bmp");
+		img = imread(imagePath, 0); //将源彩色图像img转化成目标灰色图像读入
+		int num = 3; //test
+		int M = img.rows; //图像高度
+		int N = img.cols; //图像宽度
+		double epsilon = 10; //test
+		vector<doubleCoordinate> C; //建立坐标表
+		vector<colorListStandard> P; //建立颜色表
+		Tree tree;
+		treeIterator it(tree);
+		Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+		vector<char> Q; //建立线性树表
+		Tree::LevelOrder(Q, it); //寻找同类块，构造线性树表，颜色表,坐标表
+		ASSERT_EQ(Q.size(), 39435);
+		ASSERT_EQ(Q[0], '0');
+		ASSERT_EQ(Q[102], '1');
+		ASSERT_EQ(Q[1023], '1');
+		ASSERT_EQ(Q[10666], '0');
+		ASSERT_EQ(Q[31239], '1');
+	}
+
+	/** Test Tree::LevelOrder
+      * @author CuiYuxin */
+	TEST(TestTree, TestLevelOrder2)
+	{
+		Mat img;
+		string imagePath = samples::findFile("../../gray_images/1_gray256.bmp");
+		img = imread(imagePath, 0); //将源彩色图像img转化成目标灰色图像读入
+		int num = 3; //test
+		int M = img.rows; //图像高度
+		int N = img.cols; //图像宽度
+		double epsilon = 10; //test
+		vector<doubleCoordinate> C; //建立坐标表
+		vector<colorListStandard> P; //建立颜色表
+		Tree tree;
+		treeIterator it(tree);
+		Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+		vector<char> Q; //建立线性树表
+		Tree::LevelOrder(Q, it); //寻找同类块，构造线性树表，颜色表,坐标表
+		ASSERT_EQ(Q.size(), 13971);
+		ASSERT_EQ(Q[0], '0');
+		ASSERT_EQ(Q[102], '0');
+		ASSERT_EQ(Q[1023], '0');
+		ASSERT_EQ(Q[10666], '1');
 	}
 
 	/** Test Segment::regionSegm

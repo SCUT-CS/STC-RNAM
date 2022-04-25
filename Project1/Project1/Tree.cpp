@@ -36,8 +36,8 @@ void Tree::InitialNode(treeNode*& node)
 void Tree::LevelOrder(vector<char>& res, treeIterator it)
 {
 	res.push_back(getConfirm(it));
-	treeIterator nwIt{ it }, neIt{ it };
-	if (nwIt.toNeChild())
+	treeIterator nwIt = it, neIt = it;
+	if (nwIt.toNwChild())
 	{
 		LevelOrder(res, nwIt);
 	}
@@ -122,7 +122,7 @@ void Tree::setConfirm(treeIterator it, uchar c)
   * @param treeIterator it */
 uchar Tree::getConfirm(treeIterator it)
 {
-	if (it.p!=nullptr)
+	if (it.p != nullptr)
 	{
 		return (*it)->confirm;
 	}
@@ -238,7 +238,7 @@ bool treeIterator::toNwChild()
   * @return bool */
 bool treeIterator::toNeChild()
 {
-	if (p != nullptr&& p->nechild!=nullptr)
+	if (p != nullptr && p->nechild != nullptr)
 	{
 		p = p->nechild;
 		return true;
