@@ -15,8 +15,61 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="源.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Calculate.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Algo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Headers.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Region.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Segment.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Run.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Tree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Calculate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Algo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Region.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Corner_Vertex.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Edge.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Segment.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="interface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Run.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
