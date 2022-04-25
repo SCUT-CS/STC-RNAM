@@ -262,16 +262,16 @@ namespace test
 		// TODO
 	}
 
-	/** Test All Poject
+	/** Test Memory Leak
       * @author CuiYuxin */
-	TEST(TestPoject, TestCase1)
+	TEST(TestPoject, TestMemory)
 	{
 		// TODO
 	}
 
 	/** Test All Poject
       * @author CuiYuxin */
-	TEST(TestPoject, TestCase2)
+	TEST(TestPoject, TestCase1)
 	{
 		// TODO
 	}
