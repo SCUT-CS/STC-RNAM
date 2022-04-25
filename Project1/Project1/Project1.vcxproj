@@ -163,7 +163,6 @@
     <ClInclude Include="Corner_Vertex.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Headers.h" />
-    <ClInclude Include="interface.h" />
     <ClInclude Include="Region.h" />
     <ClInclude Include="Run.h" />
     <ClInclude Include="Segment.h" />

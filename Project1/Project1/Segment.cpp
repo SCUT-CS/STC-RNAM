@@ -33,11 +33,9 @@ void Segment::split(Segment* upperLeft, int size, int direction)
   * @param Segment*& PreLowerLeft
   * @param SegmentParamI spi
   * @param Region** all_region
-  * @param vector<colorListStandard>& P
-  * @param vector<doubleCoordinate>& C
   * @param vector<char> Q
   * @param int& num */
-void Segment::regionSegm(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLowerLeft, SegmentParamI spi, Region** all_region, vector<colorListStandard>& P, vector<doubleCoordinate>& C, vector<char> Q, int& num)
+void Segment::regionSegm(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLowerLeft, SegmentParamI spi, Region** all_region, vector<char> Q, int& num)
 {
 	int Xleft = spi.xLeft;
 	int Yupper = spi.yupper;
@@ -61,16 +59,16 @@ void Segment::regionSegm(Segment* UpperLeft, Segment*& UpperRight, Segment*& Pre
 		if (num % 2 == 0) //´¹Ö±
 		{
 			num = 1;
-			regionSegm(UpperLeft, UR, PreLowerLeft, SegmentParamI (Xleft, Yupper, Length / 2, Width), all_region, P, C, Q, num);
+			regionSegm(UpperLeft, UR, PreLowerLeft, SegmentParamI (Xleft, Yupper, Length / 2, Width), all_region, Q, num);
 			num = 1;
-			regionSegm(UR, UpperRight, DUMMY, SegmentParamI(Xleft + Length / 2, Yupper, Length - Length / 2, Width), all_region, P, C, Q, num);
+			regionSegm(UR, UpperRight, DUMMY, SegmentParamI(Xleft + Length / 2, Yupper, Length - Length / 2, Width), all_region, Q, num);
 		}
 		else //Ë®Æ½
 		{
 			num = 0;
-			regionSegm(UpperLeft, UpperRight, PLL, SegmentParamI(Xleft, Yupper, Length, Width / 2), all_region, P, C, Q, num);
+			regionSegm(UpperLeft, UpperRight, PLL, SegmentParamI(Xleft, Yupper, Length, Width / 2), all_region, Q, num);
 			num = 0;
-			regionSegm(PLL, UR, PreLowerLeft, SegmentParamI(Xleft, Yupper + Width / 2, Length, Width - Width / 2), all_region, P, C, Q, num);
+			regionSegm(PLL, UR, PreLowerLeft, SegmentParamI(Xleft, Yupper + Width / 2, Length, Width - Width / 2), all_region, Q, num);
 		}
 	}
 	else
@@ -83,7 +81,7 @@ void Segment::regionSegm(Segment* UpperLeft, Segment*& UpperRight, Segment*& Pre
 				cout << cur_block << endl;
 			}
 		}
-		leafOperation(UpperLeft, UpperRight, PreLowerLeft, SegmentParamI(Xleft, Yupper, Length, Width), P, C, all_region);
+		leafOperation(UpperLeft, UpperRight, PreLowerLeft, SegmentParamI(Xleft, Yupper, Length, Width), all_region);
 	}
 }
 
@@ -93,10 +91,8 @@ void Segment::regionSegm(Segment* UpperLeft, Segment*& UpperRight, Segment*& Pre
   * @param Segment*& UpperRight
   * @param Segment*& PreLowerLeft
   * @param SegmentParamI spi
-  * @param vector<colorListStandard>& P
-  * @param vector<doubleCoordinate>& C 
   * @param Region** all_region */
-void Segment::leafOperation(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLowerLeft, SegmentParamI spi, vector<colorListStandard>& P, vector<doubleCoordinate>& C, Region** all_region)
+void Segment::leafOperation(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLowerLeft, SegmentParamI spi, Region** all_region)
 {
 	int Xleft = spi.xLeft;
 	int Yupper = spi.yupper;

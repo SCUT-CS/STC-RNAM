@@ -10,6 +10,8 @@ int bitnum = 0;
 double thresU = 0;
 double thresVar = 0;
 int cur_block = -1;
+vector<doubleCoordinate> C; //建立坐标表
+vector<colorListStandard> P; //建立颜色表
 
 /** Main Function
   * @author CuiYuxin
@@ -36,8 +38,8 @@ int main(int argc, char** argv)
 		int M = img.rows; //图像高度
 		int N = img.cols; //图像宽度
 		double epsilon = atof(argv[4]);
-		vector<doubleCoordinate> C; //建立坐标表
-		vector<colorListStandard> P; //建立颜色表
+		C.clear();
+		P.clear();
 		vector<char> Q; //建立线性树表
 		Tree tree;
 		treeIterator it(tree);
@@ -73,7 +75,7 @@ int main(int argc, char** argv)
 		Segment* UpperRight = nullptr;
 		Segment* PreLowerLeft = nullptr;
 		num = atoi(argv[7]);
-		Segment::regionSegm(UpperLeft, UpperRight, PreLowerLeft, SegmentParamI( 0, 0, M, N), all_region, P, C, Q, num);
+		Segment::regionSegm(UpperLeft, UpperRight, PreLowerLeft, SegmentParamI( 0, 0, M, N), all_region, Q, num);
 		convergeEnd = clock();
 		convergeTime = convergeEnd - convergeStart;
 		cout << "converge_time of QSC:  " << convergeTime << "  ms" << endl << endl;

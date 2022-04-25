@@ -9,6 +9,10 @@ extern int bitnum;
 extern int cur_block;
 extern double thresU;
 extern double thresVar;
+struct doubleCoordinate;
+struct colorListStandard;
+extern vector<doubleCoordinate> C; //建立坐标表
+extern vector<colorListStandard> P; //建立颜色表
 
 /** Standard Color List
   * @author CuiYuxin */

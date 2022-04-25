@@ -65,9 +65,6 @@
     <ClInclude Include="Segment.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="interface.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Run.h">
       <Filter>头文件</Filter>
     </ClInclude>
