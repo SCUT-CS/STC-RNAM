@@ -114,6 +114,7 @@ int main(int argc, char** argv)
 			}
 		}
 
+		
 		//cvShowImage("区域合并示意图1", seg);
 		//cvShowImage("区域合并示意图2", seg_line);
 
