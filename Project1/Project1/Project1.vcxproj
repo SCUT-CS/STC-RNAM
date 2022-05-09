@@ -148,12 +148,12 @@
     <ClCompile Include="Algo.cpp" />
     <ClCompile Include="Calculate.cpp" />
     <ClCompile Include="Headers.cpp" />
+    <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Region.cpp" />
-    <ClCompile Include="Run.cpp" />
     <ClCompile Include="Segment.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
@@ -163,10 +163,11 @@
     <ClInclude Include="Corner_Vertex.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Headers.h" />
+    <ClInclude Include="Interface.h" />
     <ClInclude Include="Region.h" />
-    <ClInclude Include="Run.h" />
     <ClInclude Include="Segment.h" />
     <ClInclude Include="Tree.h" />
+    <ClInclude Include="Variables.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

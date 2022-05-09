@@ -36,7 +36,7 @@
     <ClCompile Include="Segment.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Run.cpp">
+    <ClCompile Include="Interface.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,7 +65,10 @@
     <ClInclude Include="Segment.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Run.h">
+    <ClInclude Include="Variables.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

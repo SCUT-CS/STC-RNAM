@@ -35,7 +35,7 @@ void Segment::split(Segment* upperLeft, int size, int direction)
   * @param Region** all_region
   * @param vector<char> Q
   * @param int& num */
-void Segment::regionSegm(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLowerLeft, SegmentParamI spi, Region** all_region, vector<char> Q, int& num)
+void Segment::regionSegm(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLowerLeft, SegmentParamI spi, Region** all_region, vector<char> Q, int& num, Varialbes& vars)
 {
 	int Xleft = spi.xLeft;
 	int Yupper = spi.yupper;
@@ -53,35 +53,35 @@ void Segment::regionSegm(Segment* UpperLeft, Segment*& UpperRight, Segment*& Pre
 	{
 		split(UpperLeft->SucLink, Length, 1);
 	}
-	bit = getBit(Q);
+	bit = vars.getBit(Q);
 	if (bit == '0')
 	{
 		if (num % 2 == 0) //垂直
 		{
 			num = 1;
-			regionSegm(UpperLeft, UR, PreLowerLeft, SegmentParamI (Xleft, Yupper, Length / 2, Width), all_region, Q, num);
+			regionSegm(UpperLeft, UR, PreLowerLeft, SegmentParamI (Xleft, Yupper, Length / 2, Width), all_region, Q, num, vars);
 			num = 1;
-			regionSegm(UR, UpperRight, DUMMY, SegmentParamI(Xleft + Length / 2, Yupper, Length - Length / 2, Width), all_region, Q, num);
+			regionSegm(UR, UpperRight, DUMMY, SegmentParamI(Xleft + Length / 2, Yupper, Length - Length / 2, Width), all_region, Q, num, vars);
 		}
 		else //水平
 		{
 			num = 0;
-			regionSegm(UpperLeft, UpperRight, PLL, SegmentParamI(Xleft, Yupper, Length, Width / 2), all_region, Q, num);
+			regionSegm(UpperLeft, UpperRight, PLL, SegmentParamI(Xleft, Yupper, Length, Width / 2), all_region, Q, num, vars);
 			num = 0;
-			regionSegm(PLL, UR, PreLowerLeft, SegmentParamI(Xleft, Yupper + Width / 2, Length, Width - Width / 2), all_region, Q, num);
+			regionSegm(PLL, UR, PreLowerLeft, SegmentParamI(Xleft, Yupper + Width / 2, Length, Width - Width / 2), all_region, Q, num, vars);
 		}
 	}
 	else
 	{
-		cur_block++;
-		if (Xleft == C[cur_block].dot1.first && Yupper == C[cur_block].dot1.first)
+		vars.cur_block++;
+		if (Xleft == vars.C[vars.cur_block].dot1.first && Yupper == vars.C[vars.cur_block].dot1.second)
 		{
-			if ((Xleft + Length - 1) != C[cur_block].dot2.first && (Yupper + Width - 1) != C[cur_block].dot2.first)
+			if ((Xleft + Length - 1) != vars.C[vars.cur_block].dot2.first && (Yupper + Width - 1) != vars.C[vars.cur_block].dot2.second)
 			{
-				cout << cur_block << endl;
+				cout << vars.cur_block << endl;
 			}
 		}
-		leafOperation(UpperLeft, UpperRight, PreLowerLeft, SegmentParamI(Xleft, Yupper, Length, Width), all_region);
+		leafOperation(UpperLeft, UpperRight, PreLowerLeft, SegmentParamI(Xleft, Yupper, Length, Width), all_region, vars);
 	}
 }
 
@@ -92,7 +92,7 @@ void Segment::regionSegm(Segment* UpperLeft, Segment*& UpperRight, Segment*& Pre
   * @param Segment*& PreLowerLeft
   * @param SegmentParamI spi
   * @param Region** all_region */
-void Segment::leafOperation(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLowerLeft, SegmentParamI spi, Region** all_region)
+void Segment::leafOperation(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLowerLeft, SegmentParamI spi, Region** all_region, Varialbes& vars)
 {
 	int Xleft = spi.xLeft;
 	int Yupper = spi.yupper;
@@ -109,7 +109,7 @@ void Segment::leafOperation(Segment* UpperLeft, Segment*& UpperRight, Segment*& 
 	side_length = 0;
 	//allocate new region,allocate new edge
 	Region* cur_region = new Region;
-	all_region[cur_block] = cur_region;
+	all_region[vars.cur_block] = cur_region;
 	Edge* active_right = new Edge;
 	Edge* inactive = new Edge;
 	Edge* active_down = new Edge;
@@ -125,11 +125,11 @@ void Segment::leafOperation(Segment* UpperLeft, Segment*& UpperRight, Segment*& 
 	cur_region->Father = nullptr;
 	cur_region->Count = 0;
 	cur_region->EdgeLink = inactive;
-	cur_region->Mean = Ubi(P[cur_block], C[cur_block]);
-	cur_region->Var = Varbi(P[cur_block], C[cur_block]);
+	cur_region->Mean = vars.Ubi();
+	cur_region->Var = vars.Varbi();
 	cur_region->Size = Length * Width;
 	cur_region->SegmentCount = 2;
-	reg_num++;
+	vars.reg_num++;
 	//遍历每个SEGMENT
 	while (true)
 	{
@@ -145,13 +145,13 @@ void Segment::leafOperation(Segment* UpperLeft, Segment*& UpperRight, Segment*& 
 			{
 				double varnew = Varc(cur_father->Size, neighbour_father->Size, cur_father->Var, neighbour_father->Var, cur_father->Mean, neighbour_father->Mean);
 				//可以合并
-				if (neighbour_father->Mean - cur_father->Mean >= -thresU && neighbour_father->Mean - cur_father->Mean <= thresU && varnew <= thresVar)
+				if (neighbour_father->Mean - cur_father->Mean >= -vars.thresU && neighbour_father->Mean - cur_father->Mean <= vars.thresU && varnew <= vars.thresVar)
 				{
 					neighbour_father->Mean = Uc(cur_father->Size, neighbour_father->Size, cur_father->Mean, neighbour_father->Mean);
 					neighbour_father->Size += cur_father->Size;
 					neighbour_father->Var = varnew;
 					cur_father->Father = neighbour_father;
-					reg_num--;
+					vars.reg_num--;
 				}
 			}
 		}

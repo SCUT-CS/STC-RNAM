@@ -5,7 +5,7 @@
 #include "../Project1/Algo.cpp"
 #include "../Project1/Segment.cpp"
 #include "../Project1/Region.cpp"
-//#include "../Project1/main.cpp"
+#include "../Project1/Variables.h"
 namespace test
 {
 	/** Test tree create and add node
@@ -230,13 +230,6 @@ namespace test
 		ASSERT_EQ(Tree::getConfirm(it.getNwChild()), '0');
 	}
 
-	/** Test Algo::MakeImggest
-      * @author CuiYuxin */
-	TEST(TestAlgo, TestMakeImggest)
-	{
-		// TODO
-	}
-
 	/** Test Tree::LevelOrder
       * @author CuiYuxin */
 	TEST(TestTree, TestLevelOrder1)
@@ -292,6 +285,7 @@ namespace test
       * @author CuiYuxin */
 	TEST(TestSegment, TestRegionSegm1)
 	{
+		Varialbes vars;
 		Mat img;
 		string imagePath = samples::findFile("../../gray_images/flightzyp512.bmp");
 		img = imread(imagePath, 0); //将源彩色图像img转化成目标灰色图像读入
@@ -299,14 +293,11 @@ namespace test
 		int M = img.rows; //图像高度
 		int N = img.cols; //图像宽度
 		double epsilon = 10; //test
-		vector<doubleCoordinate> C; //建立坐标表
-		vector<colorListStandard> P; //建立颜色表
 		Tree tree;
 		treeIterator it(tree);
-		Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
-		vector<char> Q; //建立线性树表
-		Tree::LevelOrder(Q, it); //寻找同类块，构造线性树表，颜色表,坐标表
-		Region** all_region = new Region * [P.size()];
+		Algo::BuildTree(img, it, vars.P, vars.C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+		Tree::LevelOrder(vars.Q, it); //寻找同类块，构造线性树表，颜色表,坐标表
+		Region** all_region = new Region * [vars.P.size()];
 		Segment* UpperLeft = new Segment;
 		Segment* Upper = new Segment;
 		UpperLeft->Length = M;
@@ -320,13 +311,13 @@ namespace test
 		Segment* UpperRight = nullptr;
 		Segment* PreLowerLeft = nullptr;
 		num = 1; //test
-		Segment::regionSegm(UpperLeft, UpperRight, PreLowerLeft, SegmentParamI(0, 0, M, N), all_region, Q, num);
+		Segment::regionSegm(UpperLeft, UpperRight, PreLowerLeft, SegmentParamI(0, 0, M, N), all_region, vars.Q, num, vars);
 		Region** pixel_region = new Region * [M * N];
 		Mat seg = Mat::zeros(img.size(), img.type());
-		for (unsigned int i = 0; i < P.size(); i++)
+		for (unsigned int i = 0; i < vars.P.size(); i++)
 		{
-			int x1 = C[i].dot1.first, x2 = C[i].dot2.first;
-			int y1 = C[i].dot1.second, y2 = C[i].dot2.second;
+			int x1 = vars.C[i].dot1.first, x2 = vars.C[i].dot2.first;
+			int y1 = vars.C[i].dot1.second, y2 = vars.C[i].dot2.second;
 			for (int y = y1; y <= y2; y++)
 			{
 				uchar* ptrsketch = (uchar*)(seg.data + y * seg.step);
@@ -362,6 +353,7 @@ namespace test
 					ptrsketch[x] = 0;
 			}
 		}
+		
 		ASSERT_EQ((int)seg.at<uchar>(256, 256), 106);
 		ASSERT_EQ((int)seg.at<uchar>(84, 413), -53);
 		ASSERT_EQ((int)seg.at<uchar>(467, 89), -47);
@@ -397,30 +389,16 @@ namespace test
 
 	}
 
-	/** Test Segment::spilt
+	/** Test Algo::MakeImggest
       * @author CuiYuxin */
-	TEST(TestSegment, TestSplit)
+	TEST(TestAlgo, TestMakeImggest)
 	{
 		// TODO
 	}
 
-	/** Test Segment::leafOperation
+	/** Integration test
       * @author CuiYuxin */
-	TEST(TestSegment, TestLeafOperation)
-	{
-		// TODO
-	}
-
-	/** Test Memory Leak
-      * @author CuiYuxin */
-	TEST(TestPoject, TestMemory)
-	{
-		// TODO
-	}
-
-	/** Test All Poject
-      * @author CuiYuxin */
-	TEST(TestPoject, TestCase1)
+	TEST(TestPoject, IntegrationTest)
 	{
 		// TODO
 	}
