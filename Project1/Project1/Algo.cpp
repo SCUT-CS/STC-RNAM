@@ -1,6 +1,6 @@
 #include "Algo.h"
 
-/** Judge if blocks are the same
+/** Judge if blocks are the same for STC algorithm
   * @author CuiYuxin
   * @param double epsilon
   * @param Mat img
@@ -42,7 +42,7 @@ bool Algo::JudgeSameBlock(double epsilon, Mat img, doubleCoordinate dots)
 	return true;
 }
 
-/** Bulid tree
+/** Bulid tree for STC algorithm
   * @author CuiYuxin
   * @param Mat img
   * @param treeIterator it
@@ -164,7 +164,7 @@ void Algo::BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vec
 	return;
 }
 
-/** Make Imggest
+/** Make Imggest for STC algorithm
   * @author CuiYuxin
   * @param Mat imggest
   * @param vector<colorListStandard>& P
@@ -215,6 +215,240 @@ void Algo::MakeImggest(Mat imggest, vector<colorListStandard>& P, vector<doubleC
 					ptr[x] = g5 + (g6 - g5) * i1;
 				}
 			}
+		}
+	}
+}
+
+/** Encode matrix for DP algorithm
+  * @author CuiYuxin
+  * @param Mat* R
+  * @param Size s
+  * @param vector<char>& Q */
+void Algo::EnCode(Mat R,Size s, vector<char>& Q)
+{
+	int c = 0;
+	int offsetValue = 0;
+	int count = 0;
+	int height = s.height;
+	int width = s.width;
+	for (int i = 0; i < height; i++)
+	{
+		c = 0;
+		offsetValue = 0;
+		count = 0;
+		for (int j = 0; j < width; j++)
+		{
+			int value = R.at<uchar>(i, j);
+			if (0 == value)
+			{
+				if (j == width - 1)
+				{
+					Q.push_back('0');
+				}
+			}
+			else
+			{
+				if (1 == value)
+				{
+					Q.push_back('1');
+					Q.push_back('1');
+				}
+				else if (2 == value)
+				{
+					Q.push_back('1');
+					Q.push_back('0');
+					Q.push_back('1');
+				}
+				else if (3 == value)
+				{
+					Q.push_back('1');
+					Q.push_back('0');
+					Q.push_back('0');
+				}
+				//位置从1开始 不是从0开始 所以多减去1
+				int b = ceil(log((double)(width - c - count)) / log(2.0f));
+				if (0 == count)
+				{
+					offsetValue = j;
+				}
+				else
+				{
+					offsetValue = j - c - 1;
+				}
+				b = (b == 0) ? 1 : b;
+				count = 1;
+				c = j;
+				for (int v = b - 1; v >= 0; v--)
+				{
+					if ((offsetValue & (1 << v)) == 0)
+					{
+						Q.push_back('0');
+					}
+					else
+					{
+						Q.push_back('1');
+					}
+				}
+			}
+		}
+	}
+	
+	
+}
+
+/** Judge if blocks are the same for DP algorithm
+  * @author CuiYuxin
+  * @param double epsilon
+  * @param Mat img
+  * @param doubleCoordinate dots
+  * @return bool isSame */
+bool Algo::IsSameBlock(const Mat img, doubleCoordinate dots, int margin)
+{
+	int x1 = dots.dot1.first;
+	int y1 = dots.dot1.second;
+	int x2 = dots.dot2.first;
+	int y2 = dots.dot2.second;
+	uchar* gy1 = (uchar*)img.data + y1 * img.step;
+	uchar* g1 = gy1 + x1;
+	uchar* g2 = gy1 + x2;
+	uchar* gy2 = (uchar*)img.data + y2 * img.step;
+	uchar* g3 = gy2 + x1;
+	uchar* g4 = gy2 + x2;
+	bool returnValue = true;
+
+	if (x1 == x2 && y1 == y2)
+	{
+		returnValue = true;
+	}
+	else if (y1 == y2)
+	{
+		for (int x = x1 + 1; x < x2; x++)
+		{
+			double i2 = (double)(x - x1) / (double)(x2 - x1);
+			double g = *g1 + (*g4 - *g1) * i2;
+			uchar* gValue = gy1 + x;
+			if (abs(*gValue - g) > margin)
+			{
+				returnValue = false;
+				break;
+			}
+
+		}
+	}
+	else if (x1 == x2)
+	{
+		for (int y = y1 + 1; y < y2; y++)
+		{
+			double i1 = (double)(y - y1) / (double)(y2 - y1);
+			double g = *g1 + (*g4 - *g1) * i1;
+			uchar* gy = (uchar*)img.data + y * img.step;
+			uchar* gValue = gy + x1;
+			if (abs(*gValue - g) > margin)
+			{
+				returnValue = false;
+				break;
+			}
+		}
+	}
+	else
+	{
+		for (int x = x1; x <= x2; x++)
+		{
+			for (int y = y1; y <= y2; y++)
+			{
+				double i1 = (double)(y - y1) / (double)(y2 - y1);
+				double i2 = (double)(x - x1) / (double)(x2 - x1);
+				double g5 = *g1 + (*g2 - *g1) * i2;
+				double g6 = *g3 + (*g4 - *g3) * i2;
+				double g = g5 + (g6 - g5) * i1;
+				uchar* gy = (uchar*)img.data + y * img.step;
+				uchar* gValue = gy + x;
+				if (abs(*gValue - g) > margin)
+				{
+					returnValue = false;
+					break;
+				}
+			}
+		}
+	}
+
+	return returnValue;
+}
+
+/** Decode matrix for DP algorithm
+  * @author CuiYuxin
+  * @param Mat* R
+  * @param Size s
+  * @param const vector<char>& Q */
+void Algo::Decode(Mat R, Size s, const vector<char>& Q)
+{
+	int n = 0;
+	int count = 0;
+	//上个非零元素的位置
+	int c = 0;
+	int row = 0;
+	int num = 0;
+	int height = s.height;
+	int width = s.width;
+	for (int pos = 0; pos < Q.size(); pos++)
+	{
+		if ('1' == Q[pos])
+		{
+			pos++;
+			if ('1' == Q[pos])
+			{
+				n = 1;
+
+			}
+			else
+			{
+				pos++;
+				if ('1' == Q[pos])
+				{
+					n = 2;
+				}
+				else
+				{
+					n = 3;
+				}
+			}
+		}
+		else
+		{
+			row++;
+			count = 0;
+			c = 0;
+			num = 0;
+			continue;
+		}
+		int b = ceil(log((double)(width - c - count)) / log(2.0f));
+		b = b == 0 ? 1 : b;
+		count = 1;
+		int value = 0;
+		for (int i = b - 1; i >= 0; i--)
+		{
+			pos++;
+			if ('1' == Q[pos])
+			{
+				value += 1 << i;
+			}
+		}
+		if (num == 0)
+		{
+			c = c + value;
+		}
+		else
+		{
+			c = c + value + 1;
+		}
+		num++;
+		R.at<uchar>(row, c) = n;
+		if (c == (width - 1))
+		{
+			row++;
+			count = 0;
+			c = 0;
+			num = 0;
 		}
 	}
 }

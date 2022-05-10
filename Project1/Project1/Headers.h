@@ -38,6 +38,15 @@ struct SegmentParamI //左上角及右下角坐标
     int width;
 };
 
+/** Color Node
+  * @author CuiYuxin */
+struct ColorNode
+{
+    //0普通矩阵，1宽为1矩阵，2长为1矩阵，3孤立点
+    int kind, g1, g2, g3, g4;
+    ColorNode(int k, int gg1, int gg2 = -1, int gg3 = -1, int gg4 = -1) :kind(k), g1(gg1), g2(gg2), g3(gg3), g4(gg4) {};
+};
+
 /** Inline Functions
   * @author ZhengYunping */
 inline double Gst(int g2, int g1, int w)

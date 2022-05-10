@@ -39,6 +39,9 @@
     <ClCompile Include="STCInterface.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="DPInterface.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tree.h">
@@ -63,6 +66,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="STCInterface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DPInterface.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

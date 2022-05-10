@@ -6,7 +6,7 @@
 class Calculate
 {
 public:
-	static double PSNR(Mat img, Mat imggest);
 	static double BPP(vector<colorListStandard>& P, Size imgSize, vector<char>& Q);
+	static double BPP(vector<ColorNode>& cn, int xn, int yn, vector<char>& Q);
 };
 

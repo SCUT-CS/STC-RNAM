@@ -1,29 +1,5 @@
 #include "Calculate.h"
 
-/** Calculate the PSNR
-  * @author CuiYuxin
-  * @param Mat img1
-  * @param Mat imggest
-  * @return double PSNR */
-double Calculate::PSNR(Mat img, Mat imggest)
-{
-	int M = img.rows; //Í¼Ïñ¸ß¶È
-	int N = img.cols; //Í¼Ïñ¿í¶È
-	double temp = 0;
-	for (int y = 0; y < M; y++)
-	{
-		uchar* ptr1 = (uchar*)(img.data + y * img.step);
-		uchar* ptrg = (uchar*)(img.data + y * img.step);
-		for (int x = 0; x < N; x++)
-		{
-			temp += pow((double)(ptr1[x] - ptrg[x]), 2);
-		}
-	}
-	double temp1 = 0;
-	temp1 = 10 * log10(255.0 * 255 * M * N / temp);
-	return (temp1);
-}
-
 /** Calculate the BPP
   * @author CuiYuxin
   * @param vector<colorListStandard>& P
@@ -35,5 +11,22 @@ double Calculate::BPP(vector<colorListStandard>& P, Size imgSize, vector<char>& 
 	return (Q.size() + 32.0 * P.size()) / (imgSize.height * imgSize.width);
 }
 
-
+/** Calculate the BPP
+  * @author CuiYuxin
+  * @param vector<ColorNode>& cn
+  * @param int xn
+  * @param int yn
+  * @param vector<char>& Q
+  * @return double BPP */
+double Calculate::BPP(vector<ColorNode>& cn, int xn, int yn, vector<char>& Q)
+{
+	int a1 = 0, a2 = 0, a3 = 0;
+	for (int i = 0; i < cn.size(); i++) {
+		if (cn[i].g1 != -1 && cn[i].g4 != -1) a1++;
+		else if (cn[i].g2 == -1 && cn[i].g3 == -1) a3++;
+		else  a2++;
+	}
+	double BPPValue = (Q.size() + 16 * a1 + 8 * a2 + 4.0 * a3) / (xn * yn);
+	return BPPValue;
+}
 

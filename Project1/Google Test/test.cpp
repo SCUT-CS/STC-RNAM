@@ -453,6 +453,27 @@ namespace test
 		Algo::MakeImggest(imggest, vars.P, vars.C);
 		ASSERT_EQ((int)imggest.at<uchar>(55, 258), 256 - 60);
 	}
+
+	/** Test Algo::Encode
+      * @author CuiYuxin */
+	TEST(TestAlgo, TestEncode)
+	{
+		// TODO
+	}
+	
+	/** Test Algo::Decode
+      * @author CuiYuxin */
+	TEST(TestAlgo, TestDecode)
+	{
+		// TODO
+	}
+
+	/** Test Algo::IsSameBlock
+      * @author CuiYuxin */
+	TEST(TestAlgo, TestIsSameBlock)
+	{
+		// TODO
+	}
 }
 
 int main(int argc, char** argv) {
