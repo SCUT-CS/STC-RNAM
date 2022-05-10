@@ -24,6 +24,7 @@
     <ProjectGuid>{7f43940f-a6b9-4a45-88ad-c2a5b35a78dc}</ProjectGuid>
     <RootNamespace>Project1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>STC</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -148,7 +149,7 @@
     <ClCompile Include="Algo.cpp" />
     <ClCompile Include="Calculate.cpp" />
     <ClCompile Include="Headers.cpp" />
-    <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="STCInterface.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -163,7 +164,7 @@
     <ClInclude Include="Corner_Vertex.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Headers.h" />
-    <ClInclude Include="Interface.h" />
+    <ClInclude Include="STCInterface.h" />
     <ClInclude Include="Region.h" />
     <ClInclude Include="Segment.h" />
     <ClInclude Include="Tree.h" />

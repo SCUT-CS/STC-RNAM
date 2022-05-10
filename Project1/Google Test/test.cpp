@@ -283,7 +283,7 @@ namespace test
 
 	/** Test Segment::regionSegm
       * @author CuiYuxin */
-	TEST(TestSegment, TestRegionSegm1)
+	TEST(TestSegment, TestRegionSegm)
 	{
 		Varialbes vars;
 		Mat img;
@@ -381,14 +381,77 @@ namespace test
       * @author CuiYuxin */
 	TEST(TestAlgo, TestMakeImggest)
 	{
-		// TODO
-	}
-
-	/** Integration test
-      * @author CuiYuxin */
-	TEST(TestPoject, IntegrationTest)
-	{
-		// TODO
+		Varialbes vars;
+		Mat img;
+		string imagePath = samples::findFile("../../gray_images/flightzyp512.bmp");
+		img = imread(imagePath, 0); //将源彩色图像img转化成目标灰色图像读入
+		int num = 3; //test
+		int M = img.rows; //图像高度
+		int N = img.cols; //图像宽度
+		double epsilon = 10; //test
+		Tree tree;
+		treeIterator it(tree);
+		Algo::BuildTree(img, it, vars.P, vars.C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+		Tree::LevelOrder(vars.Q, it); //寻找同类块，构造线性树表，颜色表,坐标表
+		Region** all_region = new Region * [vars.P.size()];
+		Segment* UpperLeft = new Segment;
+		Segment* Upper = new Segment;
+		UpperLeft->Length = M;
+		UpperLeft->ActiveELink = nullptr;
+		UpperLeft->PreLink = nullptr;
+		UpperLeft->SucLink = Upper;
+		Upper->Length = M;
+		Upper->ActiveELink = nullptr;
+		Upper->PreLink = UpperLeft;
+		Upper->SucLink = nullptr;
+		Segment* UpperRight = nullptr;
+		Segment* PreLowerLeft = nullptr;
+		num = 1; //test
+		Segment::regionSegm(UpperLeft, UpperRight, PreLowerLeft, SegmentParamI(0, 0, M, N), all_region, vars.Q, num, vars);
+		Region** pixel_region = new Region * [M * N];
+		Mat seg = Mat::zeros(img.size(), img.type());
+		for (unsigned int i = 0; i < vars.P.size(); i++)
+		{
+			int x1 = vars.C[i].dot1.first, x2 = vars.C[i].dot2.first;
+			int y1 = vars.C[i].dot1.second, y2 = vars.C[i].dot2.second;
+			for (int y = y1; y <= y2; y++)
+			{
+				uchar* ptrsketch = (uchar*)(seg.data + y * seg.step);
+				for (int x = x1; x <= x2; x++)
+				{
+					ptrsketch[x] = Region::FindParent(all_region[i])->Mean;
+					pixel_region[y * N + x] = Region::FindParent(all_region[i]);
+				}
+			}
+		}
+		Mat segLine = Mat::zeros(img.size(), img.type());
+		for (int y = 0; y < M; y++)
+		{
+			uchar* ptrsketch = (uchar*)(segLine.data + y * segLine.step);
+			for (int x = 0; x < N; x++)
+			{
+				if (x == N - 1 || y == M - 1)
+				{
+					ptrsketch[x] = 0;
+					break;
+				}
+				ptrsketch[x] = (pixel_region[y * N + x] != pixel_region[y * N + x + 1] || pixel_region[y * N + x] != pixel_region[(y + 1) * N + x]) ? 0 : 255;
+			}
+		}
+		for (int y = 0; y < M; y++)
+		{
+			uchar* ptrsketch = (uchar*)(segLine.data + y * segLine.step);
+			for (int x = 0; x < N; x++)
+			{
+				if ((y == 0) || (y == M - 1))
+					ptrsketch[x] = 0;
+				else if ((x == 0))
+					ptrsketch[x] = 0;
+			}
+		}
+		Mat imggest = Mat::zeros(img.size(), img.type());
+		Algo::MakeImggest(imggest, vars.P, vars.C);
+		ASSERT_EQ((int)imggest.at<uchar>(55, 258), 256 - 60);
 	}
 }
 

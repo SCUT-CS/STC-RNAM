@@ -36,7 +36,7 @@
     <ClCompile Include="Segment.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Interface.cpp">
+    <ClCompile Include="STCInterface.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,7 +68,7 @@
     <ClInclude Include="Variables.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Interface.h">
+    <ClInclude Include="STCInterface.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
