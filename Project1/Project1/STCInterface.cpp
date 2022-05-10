@@ -94,11 +94,12 @@ bool STCAlgo::STC(String fileDir, String grayDir, String imgDir, int margin, int
 		}
 		Algo::MakeImggest(imggest, vars.P, vars.C);
 		psnr = PSNR(img, imggest);
-		//保存图片
-		//cvShowImage("区域合并示意图1", seg);
-	    //cvShowImage("区域合并示意图2", seg_line);
-		//cvSaveImage(grayDir, img, 0);//显示原始灰度图像
-		//cvSaveImage(imgDir, imggest, 0); //区域分割后的图像
+		
+		//保存图像
+		imwrite(grayDir + "原始灰度图像.bmp", img);
+		imwrite(imgDir+"区域分割后的图像.bmp", imggest);
+		imwrite("区域合并示意图1.bmp", seg);
+		imwrite("区域合并示意图2.bmp", segLine);
 
 		//画示意图
 		if (N >= 256 || M >= 256)
@@ -116,54 +117,65 @@ bool STCAlgo::STC(String fileDir, String grayDir, String imgDir, int margin, int
 			}
 			//素描图像初始化完成
 			//向原始图像中加矩形时，只需将cvRectangle和cvShowImage("分割示意图",sketch512或sketch);中的sketch或sketch512换为img1即可，共有两处修改！
-			/*for (int i = 0; i < C.size(); i++)
+			for (int i = 0; i < vars.C.size(); i++)
 			{
-				if (C[i].x1 == 0 && C[i].y1 == 0)
-					cvRectangle(img1, cvPoint(C[i].x1, C[i].y1), cvPoint(C[i].x2, C[i].y2), cvScalar(0x00, 0x00, 0x00));
-				else   if (C[i].x1 == 0 && C[i].y1 != 0)
-					cvRectangle(img1, cvPoint(C[i].x1, C[i].y1 - 1), cvPoint(C[i].x2, C[i].y2), cvScalar(0x00, 0x00, 0x00));
-				else   if (C[i].x1 != 0 && C[i].y1 == 0)
-					cvRectangle(img1, cvPoint(C[i].x1 - 1, C[i].y1), cvPoint(C[i].x2, C[i].y2), cvScalar(0x00, 0x00, 0x00));
-				else   if (C[i].x1 != 0 && C[i].y1 != 0)
-					cvRectangle(img1, cvPoint(C[i].x1 - 1, C[i].y1 - 1), cvPoint(C[i].x2, C[i].y2), cvScalar(0x00, 0x00, 0x00));
-
-			}*/
+				if (vars.C[i].dot1.first == 0 && vars.C[i].dot1.second == 0)
+				{
+					rectangle(img, Point(vars.C[i].dot1.first, vars.C[i].dot1.second), Point(vars.C[i].dot2.first, vars.C[i].dot2.second), Scalar(0x00, 0x00, 0x00));
+				}
+				else if (vars.C[i].dot1.first == 0 && vars.C[i].dot1.second != 0)
+				{
+					rectangle(img, Point(vars.C[i].dot1.first, vars.C[i].dot1.second - 1), Point(vars.C[i].dot2.first, vars.C[i].dot2.second), Scalar(0x00, 0x00, 0x00));
+				}
+				else if (vars.C[i].dot1.first != 0 && vars.C[i].dot1.second == 0) {
+					rectangle(img, Point(vars.C[i].dot1.first - 1, vars.C[i].dot1.second), Point(vars.C[i].dot2.first, vars.C[i].dot2.second), Scalar(0x00, 0x00, 0x00));
+				}
+				else if (vars.C[i].dot1.first != 0 && vars.C[i].dot1.second != 0) {
+					rectangle(img, Point(vars.C[i].dot1.first - 1, vars.C[i].dot1.second - 1), Point(vars.C[i].dot2.first, vars.C[i].dot2.second), Scalar(0x00, 0x00, 0x00));
+				}
+			}
 		}
 		else
 		{
-			////创建素描图像
-			//IplImage* sketch512 = cvCreateImage(cvSize(512, 512), IPL_DEPTH_8U, 1);
-			//int xr = 511 / (N - 1);
-			//int yr = 511 / (M - 1);
-			//for (int y = 0; y < 512; y++)
-			//{
-			//	uchar* ptrsketch = (uchar*)(sketch512->imageData + y * sketch512->widthStep);
+			//创建素描图像
+			Mat sketch512 = Mat::zeros(Size(512, 512), img.type());
+			int xr = 511 / (N - 1);
+			int yr = 511 / (M - 1);
+			for (int y = 0; y < 512; y++)
+			{
+				uchar* ptrsketch = (uchar*)(sketch512.data + y * sketch512.step);
 
-			//	for (int x = 0; x < 512; x++)
-			//	{
-			//		ptrsketch[x] = 255;
-			//	}
-			//}
-			////素描图像初始化完成
-			//for (int i = 0; i < C.size(); i++)
-			//{
-			//	if (C[i].x1 == 0 && C[i].y1 == 0)
-			//		cvRectangle(img1, cvPoint(C[i].x1 * xr, C[i].y1 * yr), cvPoint(C[i].x2 * xr, C[i].y2 * yr), cvScalar(0x00, 0x00, 0x00));
-			//	else   if (C[i].x1 == 0 && C[i].y1 != 0)
-			//		cvRectangle(img1, cvPoint(C[i].x1 * xr, (C[i].y1 - 1) * yr), cvPoint(C[i].x2 * xr, C[i].y2 * yr), cvScalar(0x00, 0x00, 0x00));
-			//	else   if (C[i].x1 != 0 && C[i].y1 == 0)
-			//		cvRectangle(img1, cvPoint((C[i].x1 - 1) * xr, C[i].y1 * yr), cvPoint(C[i].x2 * xr, C[i].y2 * yr), cvScalar(0x00, 0x00, 0x00));
-			//	else   if (C[i].x1 != 0 && C[i].y1 != 0)
-			//		cvRectangle(img1, cvPoint((C[i].x1 - 1) * xr, (C[i].y1 - 1) * yr), cvPoint(C[i].x2 * xr, C[i].y2 * yr), cvScalar(0x00, 0x00, 0x00));
-
-			//}
+				for (int x = 0; x < 512; x++)
+				{
+					ptrsketch[x] = 255;
+				}
+			}
+			//素描图像初始化完成
+			for (int i = 0; i < vars.C.size(); i++)
+			{
+				if (vars.C[i].dot1.first == 0 && vars.C[i].dot1.second == 0)
+				{
+					rectangle(img, Point(vars.C[i].dot1.first * xr, vars.C[i].dot1.second * yr), Point(vars.C[i].dot2.first * xr, vars.C[i].dot2.second * yr), Scalar(0x00, 0x00, 0x00));
+				}
+				else if (vars.C[i].dot1.first == 0 && vars.C[i].dot1.second != 0)
+				{
+					rectangle(img, Point(vars.C[i].dot1.first * xr, (vars.C[i].dot1.second - 1) * yr), Point(vars.C[i].dot2.first * xr, vars.C[i].dot2.second * yr), Scalar(0x00, 0x00, 0x00));
+				}
+				else if (vars.C[i].dot1.first != 0 && vars.C[i].dot1.second == 0)
+				{
+					rectangle(img, Point((vars.C[i].dot1.first - 1) * xr, vars.C[i].dot1.second * yr), Point(vars.C[i].dot2.first * xr, vars.C[i].dot2.second * yr), Scalar(0x00, 0x00, 0x00));
+				}
+				else if (vars.C[i].dot1.first != 0 && vars.C[i].dot1.second != 0)
+				{
+					rectangle(img, Point((vars.C[i].dot1.first - 1) * xr, (vars.C[i].dot1.second - 1) * yr), Point(vars.C[i].dot2.first * xr, vars.C[i].dot2.second * yr), Scalar(0x00, 0x00, 0x00));
+				}
+			}
 		}
-
 		//保存图像
-		//cvSaveImage("二元树分割示意图.bmp", img1, 0);
-		//cvSaveImage("二元树区域分割后的图像.bmp", imggest, 0);//重建后的图像
-		//cvSaveImage("二元树区域合并示意图1.bmp", seg, 0);//区域合并后用均值填充后的图像
-		//cvSaveImage("二元树区域合并示意图2.bmp", seg_line, 0);
+		imwrite("二元树分割示意图.bmp",img);
+		imwrite("二元树区域分割后的图像.bmp", imggest);
+		imwrite("二元树区域合并示意图1.bmp", seg);
+		imwrite("二元树区域合并示意图2.bmp", segLine);
 		for (int i = 0; i < vars.C.size(); i++)
 		{
 			if (vars.C[i].dot2.first - vars.C[i].dot1.first == 1)
@@ -171,8 +183,6 @@ bool STCAlgo::STC(String fileDir, String grayDir, String imgDir, int margin, int
 		}
 		blockNum_2 = nmb ;
 		areaNum = vars.reg_num ;
-		//cvReleaseImage(&img1);
-		//cvReleaseImage(&imggest);
 		return true;
 	}
 	else

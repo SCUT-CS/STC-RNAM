@@ -1,5 +1,22 @@
 #pragma once
-class Edge;
+class Corner_Vertex
+{
+public:
+	int x;
+	int y;
+	Corner_Vertex* Next;
+};
+
+class Region;
+class Edge
+{
+public:
+	Edge* PreLink;
+	Edge* SucLink;
+	Region* Reg;
+	Corner_Vertex* First;
+	Corner_Vertex* Last;
+};
 class Region
 {
 public:

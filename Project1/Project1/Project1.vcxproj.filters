@@ -56,12 +56,6 @@
     <ClInclude Include="Region.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Corner_Vertex.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Edge.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Segment.h">
       <Filter>头文件</Filter>
     </ClInclude>

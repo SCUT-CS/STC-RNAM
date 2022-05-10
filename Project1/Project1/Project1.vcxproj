@@ -161,8 +161,6 @@
   <ItemGroup>
     <ClInclude Include="Algo.h" />
     <ClInclude Include="Calculate.h" />
-    <ClInclude Include="Corner_Vertex.h" />
-    <ClInclude Include="Edge.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="STCInterface.h" />
     <ClInclude Include="Region.h" />

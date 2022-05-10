@@ -1,6 +1,5 @@
 #pragma once
 #include "Headers.h"
-#include "Edge.h"
 #include "Region.h"
 #include "Variables.h"
 class Segment
