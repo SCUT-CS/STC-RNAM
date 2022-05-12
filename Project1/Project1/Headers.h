@@ -4,7 +4,7 @@
 #include "opencv.hpp"
 using namespace std;
 using namespace cv;
-struct doubleCoordinate;
+struct doubleDots;
 struct colorListStandard;
 
 /** Standard Color List
@@ -18,12 +18,12 @@ struct colorListStandard //标准矩形颜色表
 
 /** up left corner and down right corner coordinate
   * @author CuiYuxin */
-struct doubleCoordinate //左上角及右下角坐标
+struct doubleDots //左上角及右下角坐标
 {
 	pair<int, int> dot1;
 	pair<int, int> dot2;
-    doubleCoordinate(){};
-    doubleCoordinate(int x1, int y1, int x2, int y2);
+    doubleDots(){};
+    doubleDots(int x1, int y1, int x2, int y2);
     void setCoordinate(int x1, int y1,int x2,int y2);
 };
 
@@ -88,7 +88,7 @@ inline double Varc(int na, int nb, double vara, double varb, double ua, double u
 
 /** Inline Functions
   * @author CuiYuxin */
-inline double Squaresumbi(colorListStandard color, doubleCoordinate coor)
+inline double Squaresumbi(colorListStandard color, doubleDots coor)
 {
     int x1 = coor.dot1.first;
     int y1 = coor.dot1.second;

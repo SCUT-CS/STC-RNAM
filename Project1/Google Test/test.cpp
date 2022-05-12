@@ -126,13 +126,13 @@ namespace test
 		EXPECT_EQ(c.g2, '2');
 		EXPECT_EQ(c.g3, '3');
 		EXPECT_EQ(c.g4, '4');
-		doubleCoordinate d1;
+		DoubleDots d1;
 		d1.setCoordinate(1, 2, 3, 4);
 		EXPECT_EQ(d1.dot1.first, 1);
 		EXPECT_EQ(d1.dot1.second, 2);
 		EXPECT_EQ(d1.dot2.first, 3);
 		EXPECT_EQ(d1.dot2.second, 4);
-		doubleCoordinate d2(1,2,3,4);
+		DoubleDots d2(1,2,3,4);
 		EXPECT_EQ(d2.dot1.first, 1);
 		EXPECT_EQ(d2.dot1.second, 2);
 		EXPECT_EQ(d2.dot2.first, 3);
@@ -146,26 +146,26 @@ namespace test
 		Mat img;
 		string imagePath = samples::findFile("../../gray_images/1_gray256.bmp");
 		img = imread(imagePath, 0); //将源彩色图像img转化成目标灰色图像读入
-		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(168, 172, 175, 175)));
-		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(180, 162, 183, 163)));
-		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(184, 164, 187, 165)));
-		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(188, 168, 191, 171)));
-		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(160, 180, 167, 183)));
-		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(160, 188, 167, 191)));
-		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(168, 188, 175, 191)));
-		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(188, 178, 191, 179)));
-		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(184, 180, 187, 181)));
-		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, doubleCoordinate(212, 136, 215, 137)));
-		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(220, 136, 221, 137)));
-		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(196, 146, 199, 147)));
-		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(206, 144, 207, 145)));
-		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(202, 150, 203, 151)));
-		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(198, 152, 199, 153)));
-		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(204, 156, 207, 159)));
-		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(216, 156, 217, 157)));
-		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(244, 140, 245, 141)));
-		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(192, 164, 193, 165)));
-		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, doubleCoordinate(194, 168, 195, 169)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, DoubleDots(168, 172, 175, 175)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, DoubleDots(180, 162, 183, 163)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, DoubleDots(184, 164, 187, 165)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, DoubleDots(188, 168, 191, 171)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, DoubleDots(160, 180, 167, 183)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, DoubleDots(160, 188, 167, 191)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, DoubleDots(168, 188, 175, 191)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, DoubleDots(188, 178, 191, 179)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, DoubleDots(184, 180, 187, 181)));
+		EXPECT_FALSE(Algo::JudgeSameBlock(10, img, DoubleDots(212, 136, 215, 137)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, DoubleDots(220, 136, 221, 137)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, DoubleDots(196, 146, 199, 147)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, DoubleDots(206, 144, 207, 145)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, DoubleDots(202, 150, 203, 151)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, DoubleDots(198, 152, 199, 153)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, DoubleDots(204, 156, 207, 159)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, DoubleDots(216, 156, 217, 157)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, DoubleDots(244, 140, 245, 141)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, DoubleDots(192, 164, 193, 165)));
+		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, DoubleDots(194, 168, 195, 169)));
 	}
 	
 	/** Test Algo::bulidTree
@@ -179,11 +179,11 @@ namespace test
 		int M = img.rows; //图像高度
 		int N = img.cols; //图像宽度
 		double epsilon = 10; //test
-		vector<doubleCoordinate> C; //建立坐标表
+		vector<DoubleDots> C; //建立坐标表
 		vector<colorListStandard> P; //建立颜色表
 		Tree tree;
 		treeIterator it(tree);
-		Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+		Algo::BuildTree(img, it, P, C, num, epsilon, DoubleDots(0, 0, M - 1, N - 1));
 		ASSERT_EQ(P.size(), 19718);
 		ASSERT_EQ(C.size(), 19718);
 		ASSERT_EQ((int)P[9866].g1, 116);
@@ -210,11 +210,11 @@ namespace test
 		int M = img.rows; //图像高度
 		int N = img.cols; //图像宽度
 		double epsilon = 10; //test
-		vector<doubleCoordinate> C; //建立坐标表
+		vector<DoubleDots> C; //建立坐标表
 		vector<colorListStandard> P; //建立颜色表
 		Tree tree;
 		treeIterator it(tree);
-		Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+		Algo::BuildTree(img, it, P, C, num, epsilon, DoubleDots(0, 0, M - 1, N - 1));
 		ASSERT_EQ(P.size(), 6986);
 		ASSERT_EQ(C.size(), 6986);
 		ASSERT_EQ((int)P[2578].g1, 75);
@@ -241,11 +241,11 @@ namespace test
 		int M = img.rows; //图像高度
 		int N = img.cols; //图像宽度
 		double epsilon = 10; //test
-		vector<doubleCoordinate> C; //建立坐标表
+		vector<DoubleDots> C; //建立坐标表
 		vector<colorListStandard> P; //建立颜色表
 		Tree tree;
 		treeIterator it(tree);
-		Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+		Algo::BuildTree(img, it, P, C, num, epsilon, DoubleDots(0, 0, M - 1, N - 1));
 		vector<char> Q; //建立线性树表
 		Tree::LevelOrder(Q, it); //寻找同类块，构造线性树表，颜色表,坐标表
 		ASSERT_EQ(Q.size(), 39435);
@@ -267,11 +267,11 @@ namespace test
 		int M = img.rows; //图像高度
 		int N = img.cols; //图像宽度
 		double epsilon = 10; //test
-		vector<doubleCoordinate> C; //建立坐标表
+		vector<DoubleDots> C; //建立坐标表
 		vector<colorListStandard> P; //建立颜色表
 		Tree tree;
 		treeIterator it(tree);
-		Algo::BuildTree(img, it, P, C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+		Algo::BuildTree(img, it, P, C, num, epsilon, DoubleDots(0, 0, M - 1, N - 1));
 		vector<char> Q; //建立线性树表
 		Tree::LevelOrder(Q, it); //寻找同类块，构造线性树表，颜色表,坐标表
 		ASSERT_EQ(Q.size(), 13971);
@@ -295,7 +295,7 @@ namespace test
 		double epsilon = 10; //test
 		Tree tree;
 		treeIterator it(tree);
-		Algo::BuildTree(img, it, vars.P, vars.C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+		Algo::BuildTree(img, it, vars.P, vars.C, num, epsilon, DoubleDots(0, 0, M - 1, N - 1));
 		Tree::LevelOrder(vars.Q, it); //寻找同类块，构造线性树表，颜色表,坐标表
 		Region** all_region = new Region * [vars.P.size()];
 		Segment* UpperLeft = new Segment;
@@ -391,7 +391,7 @@ namespace test
 		double epsilon = 10; //test
 		Tree tree;
 		treeIterator it(tree);
-		Algo::BuildTree(img, it, vars.P, vars.C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+		Algo::BuildTree(img, it, vars.P, vars.C, num, epsilon, DoubleDots(0, 0, M - 1, N - 1));
 		Tree::LevelOrder(vars.Q, it); //寻找同类块，构造线性树表，颜色表,坐标表
 		Region** all_region = new Region * [vars.P.size()];
 		Segment* UpperLeft = new Segment;
@@ -474,6 +474,35 @@ namespace test
 	{
 		// TODO
 	}
+
+	/** Test Algo::FindSameBlockk
+	  * @author CuiYuxin */
+	TEST(TestAlgo, TestFindSameBlock)
+	{
+		// TODO
+	}
+
+	/** Test Algo::RestoreImage
+      * @author CuiYuxin */
+	TEST(TestAlgo, TestRestoreImage)
+	{
+		// TODO
+	}
+
+	/** Test Algo::RestoreImageValue
+	  * @author CuiYuxin */
+	TEST(TestAlgo, TestRestoreImageValue)
+	{
+		// TODO
+	}
+	
+	/** Test Algo::StartNamCut
+	  * @author CuiYuxin */
+	TEST(TestAlgo, TestStartNamCut)
+	{
+		// TODO
+	}
+	
 }
 
 int main(int argc, char** argv) {

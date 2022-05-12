@@ -8,7 +8,7 @@ public:
 	double thresU = 0;
 	double thresVar = 0;
 	int cur_block = -1;
-	vector<doubleCoordinate> C; //建立坐标表
+	vector<doubleDots> C; //建立坐标表
 	vector<colorListStandard> P; //建立颜色表
 	vector<char> Q; //建立线性树表
 	/** Inline functions
@@ -20,7 +20,7 @@ public:
 	inline double Ubi()
 	{
 		colorListStandard color = P[cur_block];
-		doubleCoordinate coor = C[cur_block];
+		doubleDots coor = C[cur_block];
 		int x1 = coor.dot1.first;
 		int y1 = coor.dot1.second;
 		int x2 = coor.dot2.first;
@@ -37,7 +37,7 @@ public:
 	inline double Varbi()
 	{
 		colorListStandard color = P[cur_block];
-		doubleCoordinate coor = C[cur_block];
+		doubleDots coor = C[cur_block];
 		int x1 = coor.dot1.first;
 		int y1 = coor.dot1.second;
 		int x2 = coor.dot2.first;
