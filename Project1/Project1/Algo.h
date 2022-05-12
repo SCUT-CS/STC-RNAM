@@ -16,8 +16,8 @@ public:
 	static bool IsSameBlock(const Mat img, DoubleDots dots, int margin);
 	static DoubleDots FindSameBlock(const Mat img, Mat markMatrix, Mat R, int x1, int y1, double margin, double ratio);
 	static void RestoreImage(Mat img, Mat markMatrix, Mat R, vector<ColorNode> cn, Size s);
-	void RestoreImageValue(Mat img, ColorNode node, DoubleDots dots);
-	void SetMarkMatrix(Mat markMatrix, DoubleDots dots, int value);
-	void StartNamCut(const Mat img, Mat markMatrix, Mat R, vector<ColorNode>& ColorList, vector<DoubleDots>& LocList, Size size, double margin, int& num, double ratio);
+	static void RestoreImageValue(Mat img, ColorNode node, DoubleDots dots);
+	static void SetMarkMatrix(Mat markMatrix, DoubleDots dots, int value);
+	static void StartNamCut(const Mat img, Mat markMatrix, Mat R, vector<ColorNode>& ColorList, vector<DoubleDots>& LocList, Size size, double margin, int& num, double ratio);
 };
 

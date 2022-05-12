@@ -2,7 +2,7 @@
 
 /** STC algorithm
   * @author CuiYuxin */
-bool STCAlgo::STC(String fileDir, String grayDir, String imgDir, int margin, int ratio, int variance, int cutMethod)
+bool STCAlgo::STC(String fileDir, String imgDir, int margin, int ratio, int variance, int cutMethod)
 {
 	Varialbes vars;
 	int nmb = 0;
@@ -24,7 +24,7 @@ bool STCAlgo::STC(String fileDir, String grayDir, String imgDir, int margin, int
 		Mat sketch(img.size(), CV_8UC1);  //创建素描图像
 		
 		start = clock(); //Start building tree
-		Algo::BuildTree(img, it, vars.P, vars.C, num, epsilon, doubleCoordinate(0, 0, M - 1, N - 1));
+		Algo::BuildTree(img, it, vars.P, vars.C, num, epsilon, DoubleDots(0, 0, M - 1, N - 1));
 		Tree::LevelOrder(Q, it); //寻找同类块，构造线性树表，颜色表,坐标表
 		end = clock();
 		codeTime = end - start;
@@ -96,10 +96,10 @@ bool STCAlgo::STC(String fileDir, String grayDir, String imgDir, int margin, int
 		psnr = PSNR(img, imggest);
 		
 		//保存图像
-		imwrite(grayDir + "原始灰度图像.bmp", img);
-		imwrite(imgDir+"区域分割后的图像.bmp", imggest);
-		imwrite("区域合并示意图1.bmp", seg);
-		imwrite("区域合并示意图2.bmp", segLine);
+		imwrite(imgDir + "原始灰度图像.bmp", img);
+		//imwrite(imgDir + "区域分割后的图像.bmp", imggest);
+		imwrite(imgDir + "区域合并示意图1.bmp", seg);
+		imwrite(imgDir + "区域合并示意图2.bmp", segLine);
 
 		//画示意图
 		if (N >= 256 || M >= 256)
@@ -172,10 +172,10 @@ bool STCAlgo::STC(String fileDir, String grayDir, String imgDir, int margin, int
 			}
 		}
 		//保存图像
-		imwrite("二元树分割示意图.bmp",img);
-		imwrite("二元树区域分割后的图像.bmp", imggest);
-		imwrite("二元树区域合并示意图1.bmp", seg);
-		imwrite("二元树区域合并示意图2.bmp", segLine);
+		imwrite(imgDir + "二元树分割示意图.bmp",img);
+		//imwrite(imgDir + "二元树区域分割后的图像.bmp", imggest);
+		//imwrite(imgDir + "二元树区域合并示意图1.bmp", seg);
+		//imwrite(imgDir + "二元树区域合并示意图2.bmp", segLine);
 		for (int i = 0; i < vars.C.size(); i++)
 		{
 			if (vars.C[i].dot2.first - vars.C[i].dot1.first == 1)

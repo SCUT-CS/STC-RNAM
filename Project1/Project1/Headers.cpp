@@ -23,7 +23,7 @@ void colorListStandard::setLastHalf(uchar c3, uchar c4)
 /** Constructor: Set Dots Coordinate
   * @author CuiYuxin
   * @param int x1, y1, x2, y2 */
-doubleCoordinate::doubleCoordinate(int x1, int y1, int x2, int y2)
+DoubleDots::DoubleDots(int x1, int y1, int x2, int y2)
 {
 	dot1 = make_pair(x1, y1);
 	dot2 = make_pair(x2, y2);
@@ -32,7 +32,7 @@ doubleCoordinate::doubleCoordinate(int x1, int y1, int x2, int y2)
 /** Set Dots Coordinate
   * @author CuiYuxin
   * @param int x1, y1, x2, y2 */
-void doubleCoordinate::setCoordinate(int x1, int y1, int x2, int y2)
+void DoubleDots::setCoordinate(int x1, int y1, int x2, int y2)
 {
 	dot1 = make_pair(x1, y1);
 	dot2 = make_pair(x2, y2);

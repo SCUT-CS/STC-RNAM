@@ -8,8 +8,8 @@
 class STCAlgo
 {
 public:
-    bool STC(String fileDir, String grayDir, String imgDir, int margin, int ratio, int variance, int cutMethod);
-private:
+    bool STC(String fileDir, String imgDir, int margin, int ratio, int variance, int cutMethod);
+
     //输入信息
     //1.原彩图 要被读入的文件的文件名
     String fileDir;
