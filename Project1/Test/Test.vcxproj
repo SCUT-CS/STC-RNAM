@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{d2d31c4a-9beb-42fc-9bfb-28921bd9d38c}</ProjectGuid>
+    <ProjectGuid>{119484ec-65f0-4b09-811c-6f15c696e6b4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
     <ConfigurationType>Application</ConfigurationType>
@@ -33,11 +33,6 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\opencv\build\include;C:\opencv\build\include\opencv2;C:\opencv\build\include\opencv;$(IncludePath)</IncludePath>
-    <ReferencePath>C:\opencv\build\x64\vc15\lib;$(LibraryPath);$(ReferencePath)</ReferencePath>
-    <ExecutablePath>C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Project-1\Project1\Project1\gray_images;$(ExecutablePath)</ExecutablePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>C:\opencv\build\include;C:\opencv\build\include\opencv2;C:\opencv\build\include\opencv;$(IncludePath)</IncludePath>
     <ReferencePath>C:\opencv\build\x64\vc15\lib;$(LibraryPath);$(ReferencePath)</ReferencePath>
   </PropertyGroup>
@@ -127,7 +122,6 @@
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalDependencies>C:\opencv\build\x64\vc15\lib\opencv_world455.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

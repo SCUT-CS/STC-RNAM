@@ -6,6 +6,7 @@
 #include "../Project1/Segment.cpp"
 #include "../Project1/Region.cpp"
 #include "../Project1/Variables.h"
+
 namespace test
 {
 	/** Test tree create and add node
@@ -17,16 +18,16 @@ namespace test
 		Tree::addchild(it, nw);
 		Tree::addchild(it, ne);
 	}
-	
+
 	/** Test treeIterator create and move
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestTree, TestIterator) {
 		Tree t;
 		EXPECT_NE(t.getRoot(), nullptr);
 		treeIterator it(t.getRoot());
 		EXPECT_NE(*it, nullptr);
 		Tree::addchild(it, nw);
-		Tree::addchild(it, ne);		
+		Tree::addchild(it, ne);
 		EXPECT_TRUE(it.toNwChild());
 		EXPECT_FALSE(it.toNeChild());
 		EXPECT_TRUE(it.toParent());
@@ -35,14 +36,14 @@ namespace test
 		EXPECT_NE(*p, nullptr);
 		EXPECT_EQ(*p, *it);
 	}
-	
+
 	/** Test tree method
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestTree, Testmethod) {
 		Tree t;
 		treeIterator it(t);
-		t.addchild (it, nw);
-		t.addchild (it, ne);
+		t.addchild(it, nw);
+		t.addchild(it, ne);
 		Tree::setConfirm(it, '1');
 		EXPECT_EQ(Tree::getConfirm(it), '1');
 		Tree::setChildConfirm(it, 'e', ne);
@@ -53,12 +54,12 @@ namespace test
 		EXPECT_EQ(Tree::getConfirm(pNE), 'e');
 		EXPECT_EQ(Tree::getConfirm(pNW), 'w');
 		EXPECT_EQ(*(pNE.getParent()), *it);
-		Tree::deleteChildNode(it,ne);
+		Tree::deleteChildNode(it, ne);
 		EXPECT_EQ(*(it.getNeChild()), nullptr);
 	}
-	
+
 	/** Test Calaulate::PSNR1
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestCalculate, TestPSNR1)
 	{
 		//include <windows.h>
@@ -67,7 +68,7 @@ namespace test
 		//TCHAR* dir = new TCHAR[bufferSize];
 		//GetCurrentDirectory(bufferSize, dir);
 		//CurrentDirectory:"C:\Users\L-kanshan\OneDrive - arocyx\ÎÄµµ\GitHub\Project-1\Project1\Project1\x64\Debug"
-		
+
 		string image_path1 = samples::findFile("../../gray_images/1_gray256.bmp");
 		Mat img1 = imread(image_path1, 0);
 		Mat imggest1 = Mat::zeros(img1.size(), img1.type());
@@ -76,7 +77,7 @@ namespace test
 	}
 
 	/** Test Calaulate::PSNR1
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestCalculate, TestPSNR2)
 	{
 		string image_path2 = samples::findFile("../../gray_images/bigbuildingzyp256.bmp");
@@ -87,7 +88,7 @@ namespace test
 	}
 
 	/** Test Calaulate::BPP1
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestCalculate, TestBPP1)
 	{
 		string image_path1 = samples::findFile("../../gray_images/flightzyp512.bmp");
@@ -102,7 +103,7 @@ namespace test
 	}
 
 	/** Test Calaulate::BPP2
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestCalculate, TestBPP2)
 	{
 		string image_path2 = samples::findFile("../../gray_images/bigbuildingzyp256.bmp");
@@ -116,7 +117,7 @@ namespace test
 	}
 
 	/** Test Headers::Struct
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestHeaders, TestStruct)
 	{
 		colorListStandard c;
@@ -132,15 +133,15 @@ namespace test
 		EXPECT_EQ(d1.dot1.second, 2);
 		EXPECT_EQ(d1.dot2.first, 3);
 		EXPECT_EQ(d1.dot2.second, 4);
-		DoubleDots d2(1,2,3,4);
+		DoubleDots d2(1, 2, 3, 4);
 		EXPECT_EQ(d2.dot1.first, 1);
 		EXPECT_EQ(d2.dot1.second, 2);
 		EXPECT_EQ(d2.dot2.first, 3);
 		EXPECT_EQ(d2.dot2.second, 4);
 	}
-	
+
 	/** Test Algo::judgeSameBlock
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestAlgo, TestJudgeSameBlock)
 	{
 		Mat img;
@@ -167,9 +168,9 @@ namespace test
 		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, DoubleDots(192, 164, 193, 165)));
 		EXPECT_TRUE(Algo::JudgeSameBlock(10, img, DoubleDots(194, 168, 195, 169)));
 	}
-	
+
 	/** Test Algo::bulidTree
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestAlgo, TestBuildTree1)
 	{
 		Mat img;
@@ -200,7 +201,7 @@ namespace test
 	}
 
 	/** Test Algo::bulidTree
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestAlgo, TestBuildTree2)
 	{
 		Mat img;
@@ -231,7 +232,7 @@ namespace test
 	}
 
 	/** Test Tree::LevelOrder
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestTree, TestLevelOrder1)
 	{
 		Mat img;
@@ -257,7 +258,7 @@ namespace test
 	}
 
 	/** Test Tree::LevelOrder
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestTree, TestLevelOrder2)
 	{
 		Mat img;
@@ -282,7 +283,7 @@ namespace test
 	}
 
 	/** Test Segment::regionSegm
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestSegment, TestRegionSegm)
 	{
 		Varialbes vars;
@@ -376,9 +377,9 @@ namespace test
 		ASSERT_EQ((int)segLine.at<uchar>(425, 426), 256 - 1);
 		ASSERT_EQ((int)segLine.at<uchar>(0, 0), 0);
 	}
-	
+
 	/** Test Algo::MakeImggest
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestAlgo, TestMakeImggest)
 	{
 		Varialbes vars;
@@ -455,21 +456,21 @@ namespace test
 	}
 
 	/** Test Algo::Encode
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestAlgo, TestEncode)
 	{
 		// TODO
 	}
-	
+
 	/** Test Algo::Decode
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestAlgo, TestDecode)
 	{
 		// TODO
 	}
 
 	/** Test Algo::IsSameBlock
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestAlgo, TestIsSameBlock)
 	{
 		// TODO
@@ -483,7 +484,7 @@ namespace test
 	}
 
 	/** Test Algo::RestoreImage
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	TEST(TestAlgo, TestRestoreImage)
 	{
 		// TODO
@@ -495,14 +496,14 @@ namespace test
 	{
 		// TODO
 	}
-	
+
 	/** Test Algo::StartNamCut
 	  * @author CuiYuxin */
 	TEST(TestAlgo, TestStartNamCut)
 	{
 		// TODO
 	}
-	
+
 }
 
 int main(int argc, char** argv) {
