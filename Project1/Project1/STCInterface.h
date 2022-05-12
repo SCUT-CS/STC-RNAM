@@ -8,22 +8,26 @@
 class STCAlgo
 {
 public:
-    bool STC(String fileDir, String imgDir, int margin, int ratio, int variance, int cutMethod);
+    STCAlgo() {}
+    STCAlgo(String fDir, String iDir, double m, double r, double v, int c) :fileDir(fDir), imgDir(iDir), margin(m), ratio(r), variance(v), cutMethod(c) {}
+    bool STC(String fileDir, String imgDir, double margin, double ratio, double variance, int cutMethod);
+    bool STC()
+    {
+        return STC(fileDir, imgDir, margin, ratio, variance, cutMethod);
+    }
 
     //输入信息
-    //1.原彩图 要被读入的文件的文件名
+    //1.原彩图 要被读入的文件路径
     String fileDir;
-    //2.转换灰度图文件名 img保存路径
-    String grayDir;
-    //3.转换RNAMC文件名 newimg保存路径
+    //2.newimg保存路径
     String imgDir;
-    //4.同类快阀值 margin的值
-    int margin;
-    //5.均值阀值 ratio的值
-    int ratio;
-    //6.方差阀值
-    int variance;
-    //7.切法 1 水平 0垂直
+    //3.同类快阀值 margin的值
+    double margin;
+    //4.均值阀值 ratio的值
+    double ratio;
+    //5.方差阀值
+    double variance;
+    //6.切法 1 水平 0垂直
     int cutMethod;
 	
 	//输出信息+代码中保存图像部分
@@ -34,9 +38,9 @@ public:
 	//块数
     int blockNum;
 	//BPP
-    int bpp;
+    double bpp;
 	//CR
-    int cr;
+    double cr;
 	//Converage time of QSC
     time_t cverTime;
 	//2*2块数量

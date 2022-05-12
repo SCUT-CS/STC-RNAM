@@ -1,8 +1,15 @@
 #include "STCInterface.h"
 
 /** STC algorithm
-  * @author CuiYuxin */
-bool STCAlgo::STC(String fileDir, String imgDir, int margin, int ratio, int variance, int cutMethod)
+  * @author CuiYuxin 
+  * @param String fileDir
+  * @param String imgDir
+  * @param double margin
+  * @param double ratio
+  * @param double variance
+  * @param int cutMethod
+  * @return if success */
+bool STCAlgo::STC(String fileDir, String imgDir, double margin, double ratio, double variance, int cutMethod)
 {
 	Varialbes vars;
 	int nmb = 0;
@@ -185,8 +192,5 @@ bool STCAlgo::STC(String fileDir, String imgDir, int margin, int ratio, int vari
 		areaNum = vars.reg_num ;
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	return false;
 }
