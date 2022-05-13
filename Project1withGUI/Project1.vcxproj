@@ -102,8 +102,30 @@
     <QtRcc Include="Project1.qrc" />
     <QtUic Include="Project1.ui" />
     <QtMoc Include="Project1.h" />
+    <ClCompile Include="..\Project1\Project1\Algo.cpp" />
+    <ClCompile Include="..\Project1\Project1\Calculate.cpp" />
+    <ClCompile Include="..\Project1\Project1\demo.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\Project1\Project1\DPInterface.cpp" />
+    <ClCompile Include="..\Project1\Project1\Headers.cpp" />
+    <ClCompile Include="..\Project1\Project1\Region.cpp" />
+    <ClCompile Include="..\Project1\Project1\Segment.cpp" />
+    <ClCompile Include="..\Project1\Project1\STCInterface.cpp" />
+    <ClCompile Include="..\Project1\Project1\Tree.cpp" />
     <ClCompile Include="Project1.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Project1\Project1\Algo.h" />
+    <ClInclude Include="..\Project1\Project1\Calculate.h" />
+    <ClInclude Include="..\Project1\Project1\DPInterface.h" />
+    <ClInclude Include="..\Project1\Project1\Headers.h" />
+    <ClInclude Include="..\Project1\Project1\Region.h" />
+    <ClInclude Include="..\Project1\Project1\Segment.h" />
+    <ClInclude Include="..\Project1\Project1\STCInterface.h" />
+    <ClInclude Include="..\Project1\Project1\Tree.h" />
+    <ClInclude Include="..\Project1\Project1\Variables.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
