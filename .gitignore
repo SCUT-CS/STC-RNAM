@@ -35,7 +35,5 @@
 *.ink
 
 /Project1withGUI/x64
-/Project1withGUI/.vs
 /Project1/Project1/x64
-/Project1/Project1/.vs
-/Project1/Test/x64
+/Project1/Google Test/x64
