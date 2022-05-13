@@ -8,7 +8,7 @@ public:
 	DPAlgo() {}
 	DPAlgo(String fDir, String iDir, double m, double r) :fileDir(fDir), imgDir(iDir), margin(m), ratio(r) {}
 	bool DP(String fileDir, String imgDir, double margin, double ratio);
-	bool DP() 
+	bool DP()
 	{
 		return DP(fileDir, imgDir, margin, ratio);
 	}

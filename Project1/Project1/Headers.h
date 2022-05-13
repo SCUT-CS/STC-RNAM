@@ -11,7 +11,7 @@ struct colorListStandard;
   * @author CuiYuxin */
 struct colorListStandard //标准矩形颜色表
 {
-	uchar g1, g2, g3, g4;
+    uchar g1, g2, g3, g4;
     void setFirstHalf(uchar c1, uchar c2);
     void setLastHalf(uchar c3, uchar c4);
 };
@@ -20,18 +20,18 @@ struct colorListStandard //标准矩形颜色表
   * @author CuiYuxin */
 struct DoubleDots //左上角及右下角坐标
 {
-	pair<int, int> dot1;
-	pair<int, int> dot2;
-    DoubleDots(){};
+    pair<int, int> dot1;
+    pair<int, int> dot2;
+    DoubleDots() {};
     DoubleDots(int x1, int y1, int x2, int y2);
-    void setCoordinate(int x1, int y1,int x2,int y2);
+    void setCoordinate(int x1, int y1, int x2, int y2);
 };
 
 /** Segment int Params
   * @author CuiYuxin */
 struct SegmentParamI //左上角及右下角坐标
 {
-    SegmentParamI(int x,int y,int l,int h);
+    SegmentParamI(int x, int y, int l, int h);
     int xLeft;
     int yupper;
     int len;

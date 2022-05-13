@@ -176,7 +176,7 @@ void Algo::MakeImggest(Mat imggest, vector<colorListStandard>& P, vector<DoubleD
 	{
 		g1 = P[i].g1; g2 = P[i].g2;
 		g3 = P[i].g3; g4 = P[i].g4;
-		int x1 = C[i].dot1.first; 
+		int x1 = C[i].dot1.first;
 		int y1 = C[i].dot1.second;
 		int x2 = C[i].dot2.first;
 		int y2 = C[i].dot2.second;
@@ -224,7 +224,7 @@ void Algo::MakeImggest(Mat imggest, vector<colorListStandard>& P, vector<DoubleD
   * @param Mat* R
   * @param Size s
   * @param vector<char>& Q */
-void Algo::EnCode(Mat R,Size s, vector<char>& Q)
+void Algo::EnCode(Mat R, Size s, vector<char>& Q)
 {
 	int c = 0;
 	int offsetValue = 0;
@@ -292,8 +292,8 @@ void Algo::EnCode(Mat R,Size s, vector<char>& Q)
 			}
 		}
 	}
-	
-	
+
+
 }
 
 /** Judge if blocks are the same for DP algorithm
@@ -388,7 +388,7 @@ DoubleDots Algo::FindSameBlock(const Mat img, Mat markMatrix, Mat R, int x1, int
 	int x2(x1), y2(y1);
 	while (x2 < img.size().width && y2 < img.size().height && (markMatrix.data + y1 * markMatrix.step)[x2] == 0 && (markMatrix.data + y2 * markMatrix.step)[x1] == 0)
 	{
-		if (!IsSameBlock(img, DoubleDots( x1, y1, x2, y2), margin))
+		if (!IsSameBlock(img, DoubleDots(x1, y1, x2, y2), margin))
 			break;
 		x2++;
 		y2++;
@@ -425,7 +425,7 @@ DoubleDots Algo::FindSameBlock(const Mat img, Mat markMatrix, Mat R, int x1, int
 		x2 = tempX;
 		y2 = tempY;
 	}
-	return DoubleDots (x1, y1, x2, y2);
+	return DoubleDots(x1, y1, x2, y2);
 }
 
 /** Restore Image
@@ -557,7 +557,7 @@ void Algo::RestoreImageValue(Mat img, ColorNode node, DoubleDots dots)
 /** Set Mark Matrix
   * @author CuiYuxin
   * @param Mat markMatrix
-  * @param doubleDots 
+  * @param doubleDots
   * @param int value */
 void Algo::SetMarkMatrix(Mat markMatrix, DoubleDots dots, int value)
 {

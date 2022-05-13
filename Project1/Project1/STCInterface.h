@@ -29,25 +29,25 @@ public:
     double variance;
     //6.切法 1 水平 0垂直
     int cutMethod;
-	
-	//输出信息+代码中保存图像部分
-	//编码所用时间
+
+    //输出信息+代码中保存图像部分
+    //编码所用时间
     time_t codeTime;
     //解码所用时间
     //time_t decodeTime;
-	//块数
+    //块数
     int blockNum;
-	//BPP
+    //BPP
     double bpp;
-	//CR
+    //CR
     double cr;
-	//Converage time of QSC
+    //Converage time of QSC
     time_t cverTime;
-	//2*2块数量
+    //2*2块数量
     int blockNum_2;
-	//PSNR
+    //PSNR
     double psnr;
-	//区域数量
+    //区域数量
     int areaNum;
 };
 

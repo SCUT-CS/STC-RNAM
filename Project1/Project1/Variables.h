@@ -12,7 +12,7 @@ public:
 	vector<colorListStandard> P; //建立颜色表
 	vector<char> Q; //建立线性树表
 	/** Inline functions
-      * @author CuiYuxin */
+	  * @author CuiYuxin */
 	inline char getBit(vector<char>& Q)
 	{
 		return Q[bitnum++];

@@ -59,7 +59,7 @@ void Segment::regionSegm(Segment* UpperLeft, Segment*& UpperRight, Segment*& Pre
 		if (num % 2 == 0) //垂直
 		{
 			num = 1;
-			regionSegm(UpperLeft, UR, PreLowerLeft, SegmentParamI (Xleft, Yupper, Length / 2, Width), all_region, Q, num, vars);
+			regionSegm(UpperLeft, UR, PreLowerLeft, SegmentParamI(Xleft, Yupper, Length / 2, Width), all_region, Q, num, vars);
 			num = 1;
 			regionSegm(UR, UpperRight, DUMMY, SegmentParamI(Xleft + Length / 2, Yupper, Length - Length / 2, Width), all_region, Q, num, vars);
 		}
@@ -139,7 +139,7 @@ void Segment::leafOperation(Segment* UpperLeft, Segment*& UpperRight, Segment*& 
 			Region* neighbour_father = Region::FindParent(neighbour_region);
 			Region* cur_father = Region::FindParent(cur_region);
 			//同一区域
-			if (neighbour_father == cur_father){}
+			if (neighbour_father == cur_father) {}
 			//不同区域
 			else
 			{

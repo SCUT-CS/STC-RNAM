@@ -1,7 +1,7 @@
 #include "STCInterface.h"
 
 /** STC algorithm
-  * @author CuiYuxin 
+  * @author CuiYuxin
   * @param String fileDir
   * @param String imgDir
   * @param double margin
@@ -26,19 +26,19 @@ bool STCAlgo::STC(String fileDir, String imgDir, double margin, double ratio, do
 		vector<char> Q; //建立线性树表
 		Tree tree;
 		treeIterator it(tree);
-		vars.thresU =ratio;
+		vars.thresU = ratio;
 		vars.thresVar = variance;
 		Mat sketch(img.size(), CV_8UC1);  //创建素描图像
-		
+
 		start = clock(); //Start building tree
 		Algo::BuildTree(img, it, vars.P, vars.C, num, epsilon, DoubleDots(0, 0, M - 1, N - 1));
 		Tree::LevelOrder(Q, it); //寻找同类块，构造线性树表，颜色表,坐标表
 		end = clock();
 		codeTime = end - start;
 		blockNum = vars.P.size();
-		bpp = Calculate::BPP(vars.P, img.size(), Q) ;
-		cr =  8.0 / bpp;
-		
+		bpp = Calculate::BPP(vars.P, img.size(), Q);
+		cr = 8.0 / bpp;
+
 		convergeStart = clock();
 		Region** all_region = new Region * [vars.P.size()];
 		Segment* UpperLeft = new Segment;
@@ -57,7 +57,7 @@ bool STCAlgo::STC(String fileDir, String imgDir, double margin, double ratio, do
 		Segment::regionSegm(UpperLeft, UpperRight, PreLowerLeft, SegmentParamI(0, 0, M, N), all_region, Q, num, vars);
 		convergeEnd = clock();
 		cverTime = convergeEnd - convergeStart;
-		
+
 		Region** pixel_region = new Region * [M * N];
 		Mat seg = Mat::zeros(img.size(), img.type());
 		for (unsigned int i = 0; i < vars.P.size(); i++)
@@ -101,7 +101,7 @@ bool STCAlgo::STC(String fileDir, String imgDir, double margin, double ratio, do
 		}
 		Algo::MakeImggest(imggest, vars.P, vars.C);
 		psnr = PSNR(img, imggest);
-		
+
 		//保存图像
 		imwrite(imgDir + "原始灰度图像.bmp", img);
 		//imwrite(imgDir + "区域分割后的图像.bmp", imggest);
@@ -179,7 +179,7 @@ bool STCAlgo::STC(String fileDir, String imgDir, double margin, double ratio, do
 			}
 		}
 		//保存图像
-		imwrite(imgDir + "二元树分割示意图.bmp",img);
+		imwrite(imgDir + "二元树分割示意图.bmp", img);
 		//imwrite(imgDir + "二元树区域分割后的图像.bmp", imggest);
 		//imwrite(imgDir + "二元树区域合并示意图1.bmp", seg);
 		//imwrite(imgDir + "二元树区域合并示意图2.bmp", segLine);
@@ -188,8 +188,8 @@ bool STCAlgo::STC(String fileDir, String imgDir, double margin, double ratio, do
 			if (vars.C[i].dot2.first - vars.C[i].dot1.first == 1)
 				nmb++;
 		}
-		blockNum_2 = nmb ;
-		areaNum = vars.reg_num ;
+		blockNum_2 = nmb;
+		areaNum = vars.reg_num;
 		return true;
 	}
 	return false;

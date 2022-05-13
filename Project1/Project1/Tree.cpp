@@ -19,7 +19,7 @@ Tree::~Tree()
 }
 
 /** Initialize the node
-  * @author CuiYuxin 
+  * @author CuiYuxin
   * @param treeNode*& node */
 void Tree::InitialNode(treeNode*& node)
 {
@@ -55,11 +55,11 @@ void Tree::deleteTree(treeNode* root)
 	treeNode* right = root->nechild;
 	treeNode* left = root->nwchild;
 	delete root;
-	if (right!=nullptr)
+	if (right != nullptr)
 	{
 		deleteTree(right);
 	}
-	if (left!=nullptr)
+	if (left != nullptr)
 	{
 		deleteTree(left);
 	}
@@ -77,7 +77,7 @@ treeNode* Tree::getRoot()
   * @author CuiYuxin
   * @param treeIterator it
   * @param Direction dir */
-void Tree::addchild(treeIterator it,Direction dir)
+void Tree::addchild(treeIterator it, Direction dir)
 {
 	if (*it == nullptr)
 	{
@@ -225,7 +225,7 @@ treeNode* treeIterator::operator*()
   * @return bool */
 bool treeIterator::toNwChild()
 {
-	if (p != nullptr&& p->nwchild!=nullptr)
+	if (p != nullptr && p->nwchild != nullptr)
 	{
 		p = p->nwchild;
 		return true;
@@ -251,11 +251,11 @@ bool treeIterator::toNeChild()
   * @return bool */
 bool treeIterator::toParent()
 {
-	if (p != nullptr&& p->parent!=nullptr)
+	if (p != nullptr && p->parent != nullptr)
 	{
 		p = p->parent;
 		return true;
-	}	
+	}
 	return false;
 }
 
@@ -265,7 +265,7 @@ bool treeIterator::toParent()
 treeIterator treeIterator::getNwChild() const
 {
 	treeIterator temp = *this;
-	if (temp.toNwChild()) 
+	if (temp.toNwChild())
 	{
 		return temp;
 	}
@@ -278,7 +278,7 @@ treeIterator treeIterator::getNwChild() const
 treeIterator treeIterator::getNeChild() const
 {
 	treeIterator temp = *this;
-	if(temp.toNeChild())
+	if (temp.toNeChild())
 	{
 		return temp;
 	}
@@ -291,7 +291,7 @@ treeIterator treeIterator::getNeChild() const
 treeIterator treeIterator::getParent() const
 {
 	treeIterator temp = *this;
-	if(temp.toParent())
+	if (temp.toParent())
 	{
 		return temp;
 	}

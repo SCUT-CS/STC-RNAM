@@ -63,7 +63,7 @@ bool DPAlgo::DP(String fileDir, String imgDir, double margin, double ratio)
 			xr = 511 / (height - 1);
 			yr = 511 / (width - 1);
 			sketchXn = 512, sketchYn = 512;
-			sketch = Mat::zeros(Size(512,512), img.type());
+			sketch = Mat::zeros(Size(512, 512), img.type());
 		}
 		for (int i = 0; i < sketchYn; i++)
 		{

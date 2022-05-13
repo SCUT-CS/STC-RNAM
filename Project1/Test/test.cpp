@@ -564,7 +564,7 @@ namespace test
 
 		ASSERT_EQ(colorList.size(), 14114);
 		ASSERT_EQ(locList.size(), 14114);
-		ASSERT_EQ((int)markMatrix.at<uchar>(184,357), 1);
+		ASSERT_EQ((int)markMatrix.at<uchar>(184, 357), 1);
 		ASSERT_EQ((int)R.at<uchar>(184, 359), 0);
 	}
 

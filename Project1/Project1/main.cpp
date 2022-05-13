@@ -15,7 +15,7 @@ int main(int argc, char** argv)
 void demoSTC()
 {
 	STCAlgo demo;
-	demo.STC("D:/gray_images/lena512.bmp",  "D:/out/", 10, 30, 225, 1); // TODO 保证输出文件夹存在&输入文件名
+	demo.STC("D:/gray_images/lena512.bmp", "D:/out/", 10, 30, 225, 1); // TODO 保证输出文件夹存在&输入文件名
 	cout << "编码所用时间" << demo.codeTime;
 	cout << "块数" << demo.blockNum;
 	cout << "BPP" << demo.bpp;
