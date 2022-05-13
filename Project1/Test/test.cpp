@@ -459,49 +459,113 @@ namespace test
 	  * @author CuiYuxin */
 	TEST(TestAlgo, TestEncode)
 	{
-		// TODO
+		Mat img;
+		img = imread("../../gray_images/flightzyp512.bmp", 0); //将源彩色图像img转化成目标灰色图像读入
+		/*一，分割同类块及编码*/
+		Size size = img.size();
+		int height = size.height;
+		int width = size.width;
+		Mat markMatrix = Mat::zeros(size, img.type());
+		Mat R = Mat::zeros(size, img.type());
+		int num = 0;
+		vector<ColorNode> colorList;
+		vector<DoubleDots> locList;
+		int margin = 10;
+		int	ratio = 0;
+		/*分块*/
+		Algo::StartNamCut(img, markMatrix, R, colorList, locList, size, margin, num, ratio);
+		vector<char> Q;
+		Algo::EnCode(R, size, Q);
+
+		ASSERT_EQ(Q.size(), 303927);
 	}
 
 	/** Test Algo::Decode
 	  * @author CuiYuxin */
 	TEST(TestAlgo, TestDecode)
 	{
-		// TODO
-	}
+		Mat img;
+		img = imread("../../gray_images/flightzyp512.bmp", 0); //将源彩色图像img转化成目标灰色图像读入
+		/*一，分割同类块及编码*/
+		Size size = img.size();
+		int height = size.height;
+		int width = size.width;
+		Mat markMatrix = Mat::zeros(size, img.type());
+		Mat R = Mat::zeros(size, img.type());
+		int num = 0;
+		vector<ColorNode> colorList;
+		vector<DoubleDots> locList;
+		int margin = 10;
+		int	ratio = 0;
+		/*分块*/
+		Algo::StartNamCut(img, markMatrix, R, colorList, locList, size, margin, num, ratio);
+		vector<char> Q;
+		Algo::EnCode(R, size, Q);
+		Mat T = Mat::zeros(img.size(), img.type());
+		Algo::Decode(T, size, Q);
 
-	/** Test Algo::IsSameBlock
-	  * @author CuiYuxin */
-	TEST(TestAlgo, TestIsSameBlock)
-	{
-		// TODO
-	}
-
-	/** Test Algo::FindSameBlockk
-	  * @author CuiYuxin */
-	TEST(TestAlgo, TestFindSameBlock)
-	{
-		// TODO
+		ASSERT_EQ((int)T.at<uchar>(184, 357), 0);
+		ASSERT_EQ((int)T.at<uchar>(0, 0), 1);
+		ASSERT_EQ((int)T.at<uchar>(268, 490), 0);
 	}
 
 	/** Test Algo::RestoreImage
 	  * @author CuiYuxin */
 	TEST(TestAlgo, TestRestoreImage)
 	{
-		// TODO
-	}
+		Mat img;
+		img = imread("../../gray_images/flightzyp512.bmp", 0); //将源彩色图像img转化成目标灰色图像读入
+		/*一，分割同类块及编码*/
+		Size size = img.size();
+		int height = size.height;
+		int width = size.width;
+		Mat markMatrix = Mat::zeros(size, img.type());
+		Mat R = Mat::zeros(size, img.type());
+		int num = 0;
+		vector<ColorNode> colorList;
+		vector<DoubleDots> locList;
+		int margin = 10;
+		int	ratio = 0;
+		/*分块*/
+		Algo::StartNamCut(img, markMatrix, R, colorList, locList, size, margin, num, ratio);
+		vector<char> Q;
+		Algo::EnCode(R, size, Q);
+		Mat T = Mat::zeros(img.size(), img.type());
+		Algo::Decode(T, size, Q);
+		Mat newImg = Mat::zeros(img.size(), img.type());
+		Algo::RestoreImage(newImg, markMatrix, T, colorList, size);
 
-	/** Test Algo::RestoreImageValue
-	  * @author CuiYuxin */
-	TEST(TestAlgo, TestRestoreImageValue)
-	{
-		// TODO
+		ASSERT_EQ((int)newImg.at<uchar>(184, 357), 256 - 45);
+		ASSERT_EQ((int)newImg.at<uchar>(0, 0), 77);
+		ASSERT_EQ((int)newImg.at<uchar>(268, 490), 256 - 34);
 	}
 
 	/** Test Algo::StartNamCut
 	  * @author CuiYuxin */
 	TEST(TestAlgo, TestStartNamCut)
 	{
-		// TODO
+		Mat img;
+		img = imread("../../gray_images/flightzyp512.bmp", 0); //将源彩色图像img转化成目标灰色图像读入
+		/*一，分割同类块及编码*/
+		Size size = img.size();
+		int height = size.height;
+		int width = size.width;
+		Mat markMatrix = Mat::zeros(size, img.type());
+		Mat R = Mat::zeros(size, img.type());
+		int num = 0;
+		vector<ColorNode> colorList;
+		vector<DoubleDots> locList;
+		time_t begin, end;
+		begin = clock();
+		int margin = 10;
+		int	ratio = 0;
+		/*分块*/
+		Algo::StartNamCut(img, markMatrix, R, colorList, locList, size, margin, num, ratio);
+
+		ASSERT_EQ(colorList.size(), 14114);
+		ASSERT_EQ(locList.size(), 14114);
+		ASSERT_EQ((int)markMatrix.at<uchar>(184,357), 1);
+		ASSERT_EQ((int)R.at<uchar>(184, 359), 0);
 	}
 
 }

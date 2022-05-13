@@ -48,7 +48,7 @@ bool DPAlgo::DP(String fileDir, String imgDir, double margin, double ratio)
 		cr = 8.0 / bpp;
 		//±£´æÍ¼Æ¬
 		imwrite(imgDir + "Ñ¹ËõÍ¼»Ò¶ÈÍ¼ÏñnewImg.bmp", newImg);
-		imwrite(imgDir + "Ñ¹ËõÍ¼»Ò¶ÈÍ¼Ïñimg.bmp", img);
+		//imwrite(imgDir + "Ñ¹ËõÍ¼»Ò¶ÈÍ¼Ïñimg.bmp", img);
 		/*Èı£¬»­·Ö¸îÍ¼*/
 		Mat sketch;
 		int xr, yr;

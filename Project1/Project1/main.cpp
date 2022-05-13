@@ -6,7 +6,8 @@ void demoDP();
 
 int main(int argc, char** argv)
 {
-	demoSTC();
+	//demoSTC();
+	//demoDP();
 }
 
 /** STC Algorithm demo
@@ -29,5 +30,18 @@ void demoSTC()
   * @author CuiYuxin */
 void demoDP()
 {
-
+	DPAlgo demo;
+	demo.DP("D:/gray_images/lena512.bmp", "D:/out/", 10, 0);
+	cout << "编码所用时间"
+		<< demo.encodeTime
+		<< "解码所用时间"
+		<< demo.decodeTime
+		<< "块数"
+		<< demo.blockNum
+		<< "PSNR"
+		<< demo.psnr
+		<< "BPP"
+		<< demo.bpp
+		<< "CR"
+		<< demo.cr;
 }
