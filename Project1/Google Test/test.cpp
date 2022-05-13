@@ -7,6 +7,8 @@
 #include "../Project1/Region.cpp"
 #include "../Project1/Variables.h"
 
+//NuGet程序包安装：Microsoft.googletest.v140.windesktop.msvcstl.static.rt - dyn
+
 namespace test
 {
 	/** Test tree create and add node
