@@ -12,14 +12,14 @@ Tree::Tree()
   * @author CuiYuxin */
 Tree::~Tree()
 {
-	if (root!=nullptr)
+	if (root != nullptr)
 	{
 		deleteTree(root);
 	}
 }
 
 /** Initialize the node
-  * @author CuiYuxin 
+  * @author CuiYuxin
   * @param treeNode*& node */
 void Tree::InitialNode(treeNode*& node)
 {
@@ -32,17 +32,18 @@ void Tree::InitialNode(treeNode*& node)
 /** Level traverse the tree
   * @author CuiYuxin
   * @param vector<char>& res
-  * @param treeNode*& root */
-void Tree::LevelOrder(vector<char>& res, treeNode* root)
+  * @param treeIterator it */
+void Tree::LevelOrder(vector<char>& res, treeIterator it)
 {
-	res.push_back(root->confirm);
-	if (root->nwchild != nullptr)
+	res.push_back(getConfirm(it));
+	treeIterator nwIt = it, neIt = it;
+	if (nwIt.toNwChild())
 	{
-		LevelOrder(res, root->nwchild);
+		LevelOrder(res, nwIt);
 	}
-	if (root->nechild != nullptr)
+	if (neIt.toNeChild())
 	{
-		LevelOrder(res, root->nechild);
+		LevelOrder(res, neIt);
 	}
 }
 
@@ -54,11 +55,11 @@ void Tree::deleteTree(treeNode* root)
 	treeNode* right = root->nechild;
 	treeNode* left = root->nwchild;
 	delete root;
-	if (right!=nullptr)
+	if (right != nullptr)
 	{
 		deleteTree(right);
 	}
-	if (left!=nullptr)
+	if (left != nullptr)
 	{
 		deleteTree(left);
 	}
@@ -78,17 +79,115 @@ treeNode* Tree::getRoot()
   * @param Direction dir */
 void Tree::addchild(treeIterator it, Direction dir)
 {
+	if (*it == nullptr)
+	{
+		return;
+	}
 	if (dir == Direction::nw)
 	{
+		if (it->nwchild != nullptr) //·ÀÖ¹ÄÚ´æÐ¹Â©
+		{
+			delete it->nwchild;
+		}
 		it->nwchild = new treeNode;
 		InitialNode(it->nwchild);
 		it->nwchild->parent = *it;
 	}
 	else if (dir == Direction::ne)
 	{
+		if (it->nechild != nullptr)
+		{
+			delete it->nechild;
+		}
 		it->nechild = new treeNode;
 		InitialNode(it->nechild);
 		it->nechild->parent = *it;
+	}
+}
+
+/** Set confirm
+  * @author CuiYuxin
+  * @param treeIterator it
+  * @param uchar c */
+void Tree::setConfirm(treeIterator it, uchar c)
+{
+	if (*it != nullptr)
+	{
+		it->confirm = c;
+	}
+}
+
+/** Get confirm
+  * @author CuiYuxin
+  * @param treeIterator it */
+uchar Tree::getConfirm(treeIterator it)
+{
+	if (it.p != nullptr)
+	{
+		return (*it)->confirm;
+	}
+}
+
+/** Set child confirm
+  * @author CuiYuxin
+  * @param treeIterator it
+  * @param uchar c
+  * @param Direction dir */
+void Tree::setChildConfirm(treeIterator it, uchar c, Direction dir)
+{
+	if (*it == nullptr)
+	{
+		return;
+	}
+	if (dir == Direction::nw)
+	{
+		it.toNwChild();
+		if (*it == nullptr)
+		{
+			return;
+		}
+		it->confirm = c;
+	}
+	else if (dir == Direction::ne)
+	{
+		it.toNeChild();
+		if (*it == nullptr)
+		{
+			return;
+		}
+		it->confirm = c;
+	}
+}
+
+/** Delete child node
+  * @author CuiYuxin
+  * @param treeIterator it
+  * @param Direction dir */
+void Tree::deleteChildNode(treeIterator it, Direction dir)
+{
+	if (*it == nullptr)
+	{
+		return;
+	}
+	if (dir == Direction::nw)
+	{
+		auto temp = it.getNwChild();
+		if (*temp == nullptr)
+		{
+			return;
+		}
+		delete (*temp);
+		it.p->nwchild = nullptr;
+	}
+	else if (dir == Direction::ne)
+	{
+		auto temp = it.getNeChild();
+		if (*temp == nullptr)
+		{
+			return;
+		}
+		delete (*temp);
+		it.p->nechild = nullptr;
 	}
 }
 
@@ -126,7 +225,7 @@ treeNode* treeIterator::operator*()
   * @return bool */
 bool treeIterator::toNwChild()
 {
-	if (p != nullptr)
+	if (p != nullptr && p->nwchild != nullptr)
 	{
 		p = p->nwchild;
 		return true;
@@ -139,7 +238,7 @@ bool treeIterator::toNwChild()
   * @return bool */
 bool treeIterator::toNeChild()
 {
-	if (p != nullptr)
+	if (p != nullptr && p->nechild != nullptr)
 	{
 		p = p->nechild;
 		return true;
@@ -152,10 +251,49 @@ bool treeIterator::toNeChild()
   * @return bool */
 bool treeIterator::toParent()
 {
-	if (p != nullptr)
+	if (p != nullptr && p->parent != nullptr)
 	{
 		p = p->parent;
 		return true;
-	}	
+	}
 	return false;
+}
+
+/** Return the iterator point to the NwChild
+  * @author CuiYuxin
+  * @return treeIterator */
+treeIterator treeIterator::getNwChild() const
+{
+	treeIterator temp = *this;
+	if (temp.toNwChild())
+	{
+		return temp;
+	}
+	return treeIterator(nullptr);
+}
+
+/** Return the iterator point to the NwChild
+  * @author CuiYuxin
+  * @return treeIterator */
+treeIterator treeIterator::getNeChild() const
+{
+	treeIterator temp = *this;
+	if (temp.toNeChild())
+	{
+		return temp;
+	}
+	return treeIterator(nullptr);
+}
+
+/** Return the iterator point to the NwChild
+  * @author CuiYuxin
+  * @return treeIterator */
+treeIterator treeIterator::getParent() const
+{
+	treeIterator temp = *this;
+	if (temp.toParent())
+	{
+		return temp;
+	}
+	return treeIterator(nullptr);
 }
