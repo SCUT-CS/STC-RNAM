@@ -56,14 +56,14 @@ void Segment::regionSegm(Segment* UpperLeft, Segment*& UpperRight, Segment*& Pre
 	bit = vars.getBit(Q);
 	if (bit == '0')
 	{
-		if (num % 2 == 0) //垂直
+		if (num % 2 == 0) //鍨傜洿
 		{
 			num = 1;
 			regionSegm(UpperLeft, UR, PreLowerLeft, SegmentParamI(Xleft, Yupper, Length / 2, Width), all_region, Q, num, vars);
 			num = 1;
 			regionSegm(UR, UpperRight, DUMMY, SegmentParamI(Xleft + Length / 2, Yupper, Length - Length / 2, Width), all_region, Q, num, vars);
 		}
-		else //水平
+		else //姘村钩
 		{
 			num = 0;
 			regionSegm(UpperLeft, UpperRight, PLL, SegmentParamI(Xleft, Yupper, Length, Width / 2), all_region, Q, num, vars);
@@ -130,7 +130,7 @@ void Segment::leafOperation(Segment* UpperLeft, Segment*& UpperRight, Segment*& 
 	cur_region->Size = Length * Width;
 	cur_region->SegmentCount = 2;
 	vars.reg_num++;
-	//遍历每个SEGMENT
+	//閬嶅巻姣忎釜SEGMENT
 	while (true)
 	{
 		if (start_segment->ActiveELink != nullptr && start_segment->ActiveELink->Reg != nullptr)
@@ -138,13 +138,13 @@ void Segment::leafOperation(Segment* UpperLeft, Segment*& UpperRight, Segment*& 
 			Region* neighbour_region = start_segment->ActiveELink->Reg;
 			Region* neighbour_father = Region::FindParent(neighbour_region);
 			Region* cur_father = Region::FindParent(cur_region);
-			//同一区域
+			//鍚屼竴鍖哄煙
 			if (neighbour_father == cur_father) {}
-			//不同区域
+			//涓嶅悓鍖哄煙
 			else
 			{
 				double varnew = Varc(cur_father->Size, neighbour_father->Size, cur_father->Var, neighbour_father->Var, cur_father->Mean, neighbour_father->Mean);
-				//可以合并
+				//鍙互鍚堝苟
 				if (neighbour_father->Mean - cur_father->Mean >= -vars.thresU && neighbour_father->Mean - cur_father->Mean <= vars.thresU && varnew <= vars.thresVar)
 				{
 					neighbour_father->Mean = Uc(cur_father->Size, neighbour_father->Size, cur_father->Mean, neighbour_father->Mean);
@@ -164,7 +164,7 @@ void Segment::leafOperation(Segment* UpperLeft, Segment*& UpperRight, Segment*& 
 			start_segment = start_segment->SucLink;
 		}
 	}
-	//此块遍历完成,重新构造waveform,Upperright
+	//姝ゅ潡閬嶅巻瀹屾垚,閲嶆柊鏋勯�爓aveform,Upperright
 	if (start_segment != nullptr && start_segment->SucLink != nullptr)
 	{
 		start_segment = start_segment->SucLink;

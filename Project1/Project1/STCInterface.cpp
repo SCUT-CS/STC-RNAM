@@ -14,25 +14,25 @@ bool STCAlgo::STC(String fileDir, String imgDir, double margin, double ratio, do
 	Varialbes vars;
 	int nmb = 0;
 	Mat img;
-	img = imread(fileDir, 0); //½«Ô´²ÊÉ«Í¼Ïñimg×ª»¯³ÉÄ¿±ê»ÒÉ«Í¼Ïñ¶ÁÈë
+	img = imread(fileDir, 0); //å°†æºå½©è‰²å›¾åƒimgè½¬åŒ–æˆç›®æ ‡ç°è‰²å›¾åƒè¯»å…¥
 	if (!img.empty())
 	{
-		time_t start, end, time, convergeStart, convergeEnd; //¼ÆÊ±±äÁ¿
+		time_t start, end, time, convergeStart, convergeEnd; //è®¡æ—¶å˜é‡
 		Mat imggest = Mat::zeros(img.size(), img.type());
 		int num = cutMethod;
-		int M = img.rows; //Í¼Ïñ¸ß¶È
-		int N = img.cols; //Í¼Ïñ¿í¶È
+		int M = img.rows; //å›¾åƒé«˜åº¦
+		int N = img.cols; //å›¾åƒå®½åº¦
 		double epsilon = margin;
-		vector<char> Q; //½¨Á¢ÏßĞÔÊ÷±í
+		vector<char> Q; //å»ºç«‹çº¿æ€§æ ‘è¡¨
 		Tree tree;
 		treeIterator it(tree);
 		vars.thresU = ratio;
 		vars.thresVar = variance;
-		Mat sketch(img.size(), CV_8UC1);  //´´½¨ËØÃèÍ¼Ïñ
+		Mat sketch(img.size(), CV_8UC1);  //åˆ›å»ºç´ æå›¾åƒ
 
 		start = clock(); //Start building tree
 		Algo::BuildTree(img, it, vars.P, vars.C, num, epsilon, DoubleDots(0, 0, M - 1, N - 1));
-		Tree::LevelOrder(Q, it); //Ñ°ÕÒÍ¬Àà¿é£¬¹¹ÔìÏßĞÔÊ÷±í£¬ÑÕÉ«±í,×ø±ê±í
+		Tree::LevelOrder(Q, it); //å¯»æ‰¾åŒç±»å—ï¼Œæ„é€ çº¿æ€§æ ‘è¡¨ï¼Œé¢œè‰²è¡¨,åæ ‡è¡¨
 		end = clock();
 		codeTime = end - start;
 		blockNum = vars.P.size();
@@ -102,16 +102,16 @@ bool STCAlgo::STC(String fileDir, String imgDir, double margin, double ratio, do
 		Algo::MakeImggest(imggest, vars.P, vars.C);
 		psnr = PSNR(img, imggest);
 
-		//±£´æÍ¼Ïñ
-		imwrite(imgDir + "Ô­Ê¼»Ò¶ÈÍ¼Ïñ.bmp", img);
-		//imwrite(imgDir + "ÇøÓò·Ö¸îºóµÄÍ¼Ïñ.bmp", imggest);
-		imwrite(imgDir + "ÇøÓòºÏ²¢Ê¾ÒâÍ¼1.bmp", seg);
-		imwrite(imgDir + "ÇøÓòºÏ²¢Ê¾ÒâÍ¼2.bmp", segLine);
+		//ä¿å­˜å›¾åƒ
+		imwrite(imgDir + "åŸå§‹ç°åº¦å›¾åƒ.bmp", img);
+		//imwrite(imgDir + "åŒºåŸŸåˆ†å‰²åçš„å›¾åƒ.bmp", imggest);
+		imwrite(imgDir + "åŒºåŸŸåˆå¹¶ç¤ºæ„å›¾1.bmp", seg);
+		imwrite(imgDir + "åŒºåŸŸåˆå¹¶ç¤ºæ„å›¾2.bmp", segLine);
 
-		//»­Ê¾ÒâÍ¼
+		//ç”»ç¤ºæ„å›¾
 		if (N >= 256 || M >= 256)
 		{
-			//´´½¨ËØÃèÍ¼Ïñ
+			//åˆ›å»ºç´ æå›¾åƒ
 			Mat sketch = Mat::zeros(img.size(), img.type());
 			for (int y = 0; y < M; y++)
 			{
@@ -122,8 +122,8 @@ bool STCAlgo::STC(String fileDir, String imgDir, double margin, double ratio, do
 					ptrsketch[x] = 255;
 				}
 			}
-			//ËØÃèÍ¼Ïñ³õÊ¼»¯Íê³É
-			//ÏòÔ­Ê¼Í¼ÏñÖĞ¼Ó¾ØĞÎÊ±£¬Ö»Ğè½«cvRectangleºÍcvShowImage("·Ö¸îÊ¾ÒâÍ¼",sketch512»òsketch);ÖĞµÄsketch»òsketch512»»Îªimg1¼´¿É£¬¹²ÓĞÁ½´¦ĞŞ¸Ä£¡
+			//ç´ æå›¾åƒåˆå§‹åŒ–å®Œæˆ
+			//å‘åŸå§‹å›¾åƒä¸­åŠ çŸ©å½¢æ—¶ï¼Œåªéœ€å°†cvRectangleå’ŒcvShowImage("åˆ†å‰²ç¤ºæ„å›¾",sketch512æˆ–sketch);ä¸­çš„sketchæˆ–sketch512æ¢ä¸ºimg1å³å¯ï¼Œå…±æœ‰ä¸¤å¤„ä¿®æ”¹ï¼
 			for (int i = 0; i < vars.C.size(); i++)
 			{
 				if (vars.C[i].dot1.first == 0 && vars.C[i].dot1.second == 0)
@@ -144,7 +144,7 @@ bool STCAlgo::STC(String fileDir, String imgDir, double margin, double ratio, do
 		}
 		else
 		{
-			//´´½¨ËØÃèÍ¼Ïñ
+			//åˆ›å»ºç´ æå›¾åƒ
 			Mat sketch512 = Mat::zeros(Size(512, 512), img.type());
 			int xr = 511 / (N - 1);
 			int yr = 511 / (M - 1);
@@ -157,7 +157,7 @@ bool STCAlgo::STC(String fileDir, String imgDir, double margin, double ratio, do
 					ptrsketch[x] = 255;
 				}
 			}
-			//ËØÃèÍ¼Ïñ³õÊ¼»¯Íê³É
+			//ç´ æå›¾åƒåˆå§‹åŒ–å®Œæˆ
 			for (int i = 0; i < vars.C.size(); i++)
 			{
 				if (vars.C[i].dot1.first == 0 && vars.C[i].dot1.second == 0)
@@ -178,11 +178,11 @@ bool STCAlgo::STC(String fileDir, String imgDir, double margin, double ratio, do
 				}
 			}
 		}
-		//±£´æÍ¼Ïñ
-		imwrite(imgDir + "¶şÔªÊ÷·Ö¸îÊ¾ÒâÍ¼.bmp", img);
-		//imwrite(imgDir + "¶şÔªÊ÷ÇøÓò·Ö¸îºóµÄÍ¼Ïñ.bmp", imggest);
-		//imwrite(imgDir + "¶şÔªÊ÷ÇøÓòºÏ²¢Ê¾ÒâÍ¼1.bmp", seg);
-		//imwrite(imgDir + "¶şÔªÊ÷ÇøÓòºÏ²¢Ê¾ÒâÍ¼2.bmp", segLine);
+		//ä¿å­˜å›¾åƒ
+		imwrite(imgDir + "äºŒå…ƒæ ‘åˆ†å‰²ç¤ºæ„å›¾.bmp", img);
+		//imwrite(imgDir + "äºŒå…ƒæ ‘åŒºåŸŸåˆ†å‰²åçš„å›¾åƒ.bmp", imggest);
+		//imwrite(imgDir + "äºŒå…ƒæ ‘åŒºåŸŸåˆå¹¶ç¤ºæ„å›¾1.bmp", seg);
+		//imwrite(imgDir + "äºŒå…ƒæ ‘åŒºåŸŸåˆå¹¶ç¤ºæ„å›¾2.bmp", segLine);
 		for (int i = 0; i < vars.C.size(); i++)
 		{
 			if (vars.C[i].dot2.first - vars.C[i].dot1.first == 1)

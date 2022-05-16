@@ -62,7 +62,7 @@ void Algo::BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vec
 	DoubleDots tempc;
 	Tree::addchild(it, nw);
 	Tree::addchild(it, ne);
-	if (num % 2 == 1) //num²»Îª2µÄÕûÊı±¶£¬Ë®Æ½·Ö¸ô
+	if (num % 2 == 1) //numä¸ä¸º2çš„æ•´æ•°å€ï¼Œæ°´å¹³åˆ†éš”
 	{
 		num = 0;
 		if (y1 == y2)
@@ -90,12 +90,12 @@ void Algo::BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vec
 			tempc.setCoordinate(x1, y1, x2, (y1 + y2 - 1) / 2);
 			C.push_back(tempc);
 		}
-		else //Èô·ÇÍ¬Àà¿éÔòµİ¹éµ÷ÓÃ
+		else //è‹¥éåŒç±»å—åˆ™é€’å½’è°ƒç”¨
 		{
 			BuildTree(img, it.getNwChild(), P, C, num, epsilon, DoubleDots(x1, y1, x2, (y1 + y2 - 1) / 2));
 		}
 		num = 0;
-		if (JudgeSameBlock(epsilon, img, DoubleDots(x1, (y1 + y2 + 1) / 2, x2, y2))) //ÅĞ¶ÏÏÂ°ë²¿·Ö:nechild
+		if (JudgeSameBlock(epsilon, img, DoubleDots(x1, (y1 + y2 + 1) / 2, x2, y2))) //åˆ¤æ–­ä¸‹åŠéƒ¨åˆ†:nechild
 		{
 			Tree::setChildConfirm(it, '1', ne);
 			ptr = (uchar*)(img.data + (y1 + y2 + 1) / 2 * img.step);
@@ -106,12 +106,12 @@ void Algo::BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vec
 			tempc.setCoordinate(x1, (y1 + y2 + 1) / 2, x2, y2);
 			C.push_back(tempc);
 		}
-		else //µİ¹éµ÷ÓÃ
+		else //é€’å½’è°ƒç”¨
 		{
 			BuildTree(img, it.getNeChild(), P, C, num, epsilon, DoubleDots(x1, (y1 + y2 + 1) / 2, x2, y2));
 		}
 	}
-	else if (num % 2 == 0)  //numÊÇ2µÄÕûÊı±¶£¬´¹Ö±·Ö¸ô
+	else if (num % 2 == 0)  //numæ˜¯2çš„æ•´æ•°å€ï¼Œå‚ç›´åˆ†éš”
 	{
 		num = 1;
 		int vx2 = 0;
@@ -129,7 +129,7 @@ void Algo::BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vec
 			C.push_back(tempc);
 			return;
 		}
-		if (JudgeSameBlock(epsilon, img, DoubleDots(x1, y1, (x1 + x2 - 1) / 2, y2)))  //ÅĞ¶Ï×ó°ë²¿·Ö:nwchild
+		if (JudgeSameBlock(epsilon, img, DoubleDots(x1, y1, (x1 + x2 - 1) / 2, y2)))  //åˆ¤æ–­å·¦åŠéƒ¨åˆ†:nwchild
 		{
 			Tree::setChildConfirm(it, '1', nw);
 			ptr = (uchar*)(img.data + y1 * img.step);
@@ -140,12 +140,12 @@ void Algo::BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vec
 			tempc.setCoordinate(x1, y1, (x1 + x2 - 1) / 2, y2);
 			C.push_back(tempc);
 		}
-		else //Èô·ÇÍ¬Àà¿éÔòµİ¹éµ÷ÓÃ
+		else //è‹¥éåŒç±»å—åˆ™é€’å½’è°ƒç”¨
 		{
 			BuildTree(img, it.getNwChild(), P, C, num, epsilon, DoubleDots(x1, y1, (x1 + x2 - 1) / 2, y2));
 		}
 		num = 1;
-		if (JudgeSameBlock(epsilon, img, DoubleDots((x1 + x2 + 1) / 2, y1, x2, y2))) //ÅĞ¶ÏÓÒ°ë²¿·Ö:nechild
+		if (JudgeSameBlock(epsilon, img, DoubleDots((x1 + x2 + 1) / 2, y1, x2, y2))) //åˆ¤æ–­å³åŠéƒ¨åˆ†:nechild
 		{
 			Tree::setChildConfirm(it, '1', ne);
 			ptr = (uchar*)(img.data + y1 * img.step);
@@ -156,7 +156,7 @@ void Algo::BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vec
 			tempc.setCoordinate((x1 + x2 + 1) / 2, y1, x2, y2);
 			C.push_back(tempc);
 		}
-		else //µİ¹éµ÷ÓÃ
+		else //é€’å½’è°ƒç”¨
 		{
 			BuildTree(img, it.getNeChild(), P, C, num, epsilon, DoubleDots((x1 + x2 + 1) / 2, y1, x2, y2));
 		}
@@ -265,7 +265,7 @@ void Algo::EnCode(Mat R, Size s, vector<char>& Q)
 					Q.push_back('0');
 					Q.push_back('0');
 				}
-				//Î»ÖÃ´Ó1¿ªÊ¼ ²»ÊÇ´Ó0¿ªÊ¼ ËùÒÔ¶à¼õÈ¥1
+				//ä½ç½®ä»1å¼€å§‹ ä¸æ˜¯ä»0å¼€å§‹ æ‰€ä»¥å¤šå‡å»1
 				int b = ceil(log((double)(width - c - count)) / log(2.0f));
 				if (0 == count)
 				{
@@ -443,7 +443,7 @@ void Algo::RestoreImage(Mat img, Mat markMatrix, Mat R, vector<ColorNode> cn, Si
 	for (vector<ColorNode>::iterator it = cn.begin(); it != cn.end(); it++)
 	{
 		int i = 0;
-		//ÏÈ²éÕÒÏÂÒ»¸öÎ´¼ÆËãµÄ·Ö¿é Æğµã×ø±ê
+		//å…ˆæŸ¥æ‰¾ä¸‹ä¸€ä¸ªæœªè®¡ç®—çš„åˆ†å— èµ·ç‚¹åæ ‡
 		while (x2 < width)
 		{
 			if ((markMatrix.data + markMatrix.step * y2)[x2++] == 1)
@@ -455,12 +455,12 @@ void Algo::RestoreImage(Mat img, Mat markMatrix, Mat R, vector<ColorNode> cn, Si
 			}
 		}
 		x1 = --x2;
-		//ÔÙ²éÕÒ³öÕâ¸ö¿éµÄ (x1,y1) (x2,y2)
+		//å†æŸ¥æ‰¾å‡ºè¿™ä¸ªå—çš„ (x1,y1) (x2,y2)
 		if (0 == (*it).kind)
 		{
 			while (x2 < width)
 			{
-				//x2ÒªÏÈ×ßÒ»²½
+				//x2è¦å…ˆèµ°ä¸€æ­¥
 				if ((R.data + R.step * y2)[++x2] != 0 || (markMatrix.data + markMatrix.step * y2)[x2] == 0)
 					break;
 			}
@@ -657,7 +657,7 @@ void Algo::Decode(Mat R, Size s, const vector<char>& Q)
 {
 	int n = 0;
 	int count = 0;
-	//ÉÏ¸ö·ÇÁãÔªËØµÄÎ»ÖÃ
+	//ä¸Šä¸ªéé›¶å…ƒç´ çš„ä½ç½®
 	int c = 0;
 	int row = 0;
 	int num = 0;

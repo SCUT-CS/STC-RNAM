@@ -13,22 +13,22 @@ public:
 		return DP(fileDir, imgDir, margin, ratio);
 	}
 
-	//ÊäÈëĞÅÏ¢
-	//1.Ô­²ÊÍ¼ Òª±»¶ÁÈëµÄÎÄ¼şÂ·¾¶
+	//è¾“å…¥ä¿¡æ¯
+	//1.åŸå½©å›¾ è¦è¢«è¯»å…¥çš„æ–‡ä»¶è·¯å¾„
 	String fileDir;
-	//2.newimg±£´æÂ·¾¶
+	//2.newimgä¿å­˜è·¯å¾„
 	String imgDir;
-	//3.Í¬Àà¿ì·§Öµ marginµÄÖµ
+	//3.åŒç±»å¿«é˜€å€¼ marginçš„å€¼
 	double margin;
-	//4.¾ùÖµ·§Öµ ratioµÄÖµ
+	//4.å‡å€¼é˜€å€¼ ratioçš„å€¼
 	double ratio;
 
-	//Êä³öĞÅÏ¢
-	//±àÂëËùÓÃÊ±¼ä
+	//è¾“å‡ºä¿¡æ¯
+	//ç¼–ç æ‰€ç”¨æ—¶é—´
 	time_t encodeTime;
-	//½âÂëËùÓÃÊ±¼ä
+	//è§£ç æ‰€ç”¨æ—¶é—´
 	time_t decodeTime;
-	//¿éÊı
+	//å—æ•°
 	int blockNum;
 	//PSNR
 	double psnr;

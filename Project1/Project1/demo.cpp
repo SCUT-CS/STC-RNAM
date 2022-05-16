@@ -15,15 +15,15 @@ int main(int argc, char** argv)
 void demoSTC()
 {
 	STCAlgo demo;
-	demo.STC("D:/gray_images/lena512.bmp", "D:/out/", 10, 30, 225, 1); // TODO ±£Ö¤Êä³öÎÄ¼ş¼Ğ´æÔÚ&ÊäÈëÎÄ¼şÃû
-	cout << "±àÂëËùÓÃÊ±¼ä" << demo.codeTime;
-	cout << "¿éÊı" << demo.blockNum;
+	demo.STC("D:/gray_images/lena512.bmp", "D:/out/", 10, 30, 225, 1); // TODO ä¿è¯è¾“å‡ºæ–‡ä»¶å¤¹å­˜åœ¨&è¾“å…¥æ–‡ä»¶å
+	cout << "ç¼–ç æ‰€ç”¨æ—¶é—´" << demo.codeTime;
+	cout << "å—æ•°" << demo.blockNum;
 	cout << "BPP" << demo.bpp;
 	cout << "CR" << demo.cr;
 	cout << "Converage time of QSC" << demo.cverTime;
-	cout << "2*2¿éÊıÁ¿" << demo.blockNum_2;
+	cout << "2*2å—æ•°é‡" << demo.blockNum_2;
 	cout << "PSNR"; demo.psnr;
-	cout << "ÇøÓòÊıÁ¿" << demo.areaNum;
+	cout << "åŒºåŸŸæ•°é‡" << demo.areaNum;
 }
 
 /** DP Algorithm demo
@@ -32,11 +32,11 @@ void demoDP()
 {
 	DPAlgo demo;
 	demo.DP("D:/gray_images/lena512.bmp", "D:/out/", 10, 0);
-	cout << "±àÂëËùÓÃÊ±¼ä"
+	cout << "ç¼–ç æ‰€ç”¨æ—¶é—´"
 		<< demo.encodeTime
-		<< "½âÂëËùÓÃÊ±¼ä"
+		<< "è§£ç æ‰€ç”¨æ—¶é—´"
 		<< demo.decodeTime
-		<< "¿éÊı"
+		<< "å—æ•°"
 		<< demo.blockNum
 		<< "PSNR"
 		<< demo.psnr

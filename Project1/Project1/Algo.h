@@ -8,8 +8,8 @@ class Algo
 public:
 	//STC
 	static bool JudgeSameBlock(double epsilon, Mat img, DoubleDots dots);
-	static void BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vector<DoubleDots>& C, int& num, double epsilon, DoubleDots dots); //分割原图.建立矩阵R.颜色表P
-	static void MakeImggest(Mat imggest, vector<colorListStandard>& P, vector<DoubleDots> C); //建立gest图像
+	static void BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vector<DoubleDots>& C, int& num, double epsilon, DoubleDots dots); //鍒嗗壊鍘熷浘.寤虹珛鐭╅樀R.棰滆壊琛≒
+	static void MakeImggest(Mat imggest, vector<colorListStandard>& P, vector<DoubleDots> C); //寤虹珛gest鍥惧儚
 	//DP
 	static void EnCode(Mat R, Size s, vector<char>& Q);
 	static void Decode(Mat R, Size s, const vector<char>& Q);

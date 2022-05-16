@@ -8,9 +8,9 @@ public:
 	double thresU = 0;
 	double thresVar = 0;
 	int cur_block = -1;
-	vector<DoubleDots> C; //½¨Á¢×ø±ê±í
-	vector<colorListStandard> P; //½¨Á¢ÑÕÉ«±í
-	vector<char> Q; //½¨Á¢ÏßĞÔÊ÷±í
+	vector<DoubleDots> C; //å»ºç«‹åæ ‡è¡¨
+	vector<colorListStandard> P; //å»ºç«‹é¢œè‰²è¡¨
+	vector<char> Q; //å»ºç«‹çº¿æ€§æ ‘è¡¨
 	/** Inline functions
 	  * @author CuiYuxin */
 	inline char getBit(vector<char>& Q)

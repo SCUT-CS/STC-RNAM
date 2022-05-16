@@ -23,9 +23,9 @@ public:
 	static Region* FindParent(Region* p);
 	double Mean;
 	double Var;
-	int Size; //边长
+	int Size; //杈归暱
 	Region* Father;
-	int Count; //子孙区域数量
+	int Count; //瀛愬瓩鍖哄煙鏁伴噺
 	int SegmentCount; //number of edges shared by the waveform
 	Edge* EdgeLink;
 };

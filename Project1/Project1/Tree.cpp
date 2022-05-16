@@ -4,7 +4,7 @@
   * @author CuiYuxin */
 Tree::Tree()
 {
-	root = new treeNode; //½¨Á¢¸ù½áµã
+	root = new treeNode; //å»ºç«‹æ ¹ç»“ç‚¹
 	InitialNode(root);
 }
 
@@ -85,7 +85,7 @@ void Tree::addchild(treeIterator it, Direction dir)
 	}
 	if (dir == Direction::nw)
 	{
-		if (it->nwchild != nullptr) //·ÀÖ¹ÄÚ´æÐ¹Â©
+		if (it->nwchild != nullptr) //é˜²æ­¢å†…å­˜æ³„æ¼
 		{
 			delete it->nwchild;
 		}

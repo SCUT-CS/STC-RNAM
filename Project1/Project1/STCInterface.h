@@ -16,26 +16,26 @@ public:
         return STC(fileDir, imgDir, margin, ratio, variance, cutMethod);
     }
 
-    //ÊäÈëĞÅÏ¢
-    //1.Ô­²ÊÍ¼ Òª±»¶ÁÈëµÄÎÄ¼şÂ·¾¶
+    //è¾“å…¥ä¿¡æ¯
+    //1.åŸå½©å›¾ è¦è¢«è¯»å…¥çš„æ–‡ä»¶è·¯å¾„
     String fileDir;
-    //2.newimg±£´æÂ·¾¶
+    //2.newimgä¿å­˜è·¯å¾„
     String imgDir;
-    //3.Í¬Àà¿ì·§Öµ marginµÄÖµ
+    //3.åŒç±»å¿«é˜€å€¼ marginçš„å€¼
     double margin;
-    //4.¾ùÖµ·§Öµ ratioµÄÖµ
+    //4.å‡å€¼é˜€å€¼ ratioçš„å€¼
     double ratio;
-    //5.·½²î·§Öµ
+    //5.æ–¹å·®é˜€å€¼
     double variance;
-    //6.ÇĞ·¨ 1 Ë®Æ½ 0´¹Ö±
+    //6.åˆ‡æ³• 1 æ°´å¹³ 0å‚ç›´
     int cutMethod;
 
-    //Êä³öĞÅÏ¢+´úÂëÖĞ±£´æÍ¼Ïñ²¿·Ö
-    //±àÂëËùÓÃÊ±¼ä
+    //è¾“å‡ºä¿¡æ¯+ä»£ç ä¸­ä¿å­˜å›¾åƒéƒ¨åˆ†
+    //ç¼–ç æ‰€ç”¨æ—¶é—´
     time_t codeTime;
-    //½âÂëËùÓÃÊ±¼ä
+    //è§£ç æ‰€ç”¨æ—¶é—´
     //time_t decodeTime;
-    //¿éÊı
+    //å—æ•°
     int blockNum;
     //BPP
     double bpp;
@@ -43,11 +43,11 @@ public:
     double cr;
     //Converage time of QSC
     time_t cverTime;
-    //2*2¿éÊıÁ¿
+    //2*2å—æ•°é‡
     int blockNum_2;
     //PSNR
     double psnr;
-    //ÇøÓòÊıÁ¿
+    //åŒºåŸŸæ•°é‡
     int areaNum;
 };
 

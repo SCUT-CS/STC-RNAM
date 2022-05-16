@@ -1,7 +1,7 @@
 #pragma once
 #include "Headers.h"
 
-enum Direction { nw, ne }; //Ã¶¾ÙÉú³É×Ó½ÚµãµÄ·½Ïò
+enum Direction { nw, ne }; //æšä¸¾ç”Ÿæˆå­èŠ‚ç‚¹çš„æ–¹å‘
 class treeIterator;
 
 /** Data Structure of tree
@@ -11,10 +11,10 @@ class treeNode
 private:
 	friend class Tree;
 	friend class treeIterator;
-	uchar confirm; //±êÊ¶0»ò1
-	treeNode* parent = nullptr; //¸¸½Úµã
-	treeNode* nwchild = nullptr; //Î÷±±×Ó½Úµã
-	treeNode* nechild = nullptr; //¶«±±×Ó½Úµã
+	uchar confirm; //æ ‡è¯†0æˆ–1
+	treeNode* parent = nullptr; //çˆ¶èŠ‚ç‚¹
+	treeNode* nwchild = nullptr; //è¥¿åŒ—å­èŠ‚ç‚¹
+	treeNode* nechild = nullptr; //ä¸œåŒ—å­èŠ‚ç‚¹
 };
 
 /** Creating tree and provide method
@@ -25,17 +25,17 @@ public:
 	Tree();
 	~Tree();
 	treeNode* getRoot();
-	//void InsertNode(treeNode*& root); //²åÈëº¢×Ó½áµã
-	static void addchild(treeIterator it, Direction dir); //²åÈëº¢×Ó½áµã
-	static void setConfirm(treeIterator it, uchar c); //ÉèÖÃ½áµãÈ·ÈÏ×´Ì¬
-	static uchar getConfirm(treeIterator it); //»ñÈ¡½áµãÈ·ÈÏ×´Ì¬
-	static void setChildConfirm(treeIterator it, uchar c, Direction dir); //ÉèÖÃº¢×Ó½ÚµãÈ·ÈÏ×´Ì¬
+	//void InsertNode(treeNode*& root); //æ’å…¥å­©å­ç»“ç‚¹
+	static void addchild(treeIterator it, Direction dir); //æ’å…¥å­©å­ç»“ç‚¹
+	static void setConfirm(treeIterator it, uchar c); //è®¾ç½®ç»“ç‚¹ç¡®è®¤çŠ¶æ€
+	static uchar getConfirm(treeIterator it); //è·å–ç»“ç‚¹ç¡®è®¤çŠ¶æ€
+	static void setChildConfirm(treeIterator it, uchar c, Direction dir); //è®¾ç½®å­©å­èŠ‚ç‚¹ç¡®è®¤çŠ¶æ€
 	static void deleteChildNode(treeIterator it, Direction dir);
-	static void LevelOrder(vector<char>& Q, treeIterator it); //²ã´Î±éÀú
+	static void LevelOrder(vector<char>& Q, treeIterator it); //å±‚æ¬¡éå†
 private:
-	treeNode* root = nullptr; //¸ù½áµãµØÖ·
+	treeNode* root = nullptr; //æ ¹ç»“ç‚¹åœ°å€
 
-	static void InitialNode(treeNode*& node); //³õÊ¼»¯Ê÷½áµã
+	static void InitialNode(treeNode*& node); //åˆå§‹åŒ–æ ‘ç»“ç‚¹
 	void deleteTree(treeNode* root);
 
 };

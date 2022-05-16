@@ -11,12 +11,12 @@
 bool DPAlgo::DP(String fileDir, String imgDir, double margin, double ratio)
 {
 	Mat img;
-	img = imread(fileDir, 0); //½«Ô´²ÊÉ«Í¼Ïñimg×ª»¯³ÉÄ¿±ê»ÒÉ«Í¼Ïñ¶ÁÈë
+	img = imread(fileDir, 0); //å°†æºå½©è‰²å›¾åƒimgè½¬åŒ–æˆç›®æ ‡ç°è‰²å›¾åƒè¯»å…¥
 	if (!img.empty())
 	{
-		//±£´æÍ¼Æ¬
-		imwrite(imgDir + "Ô­Ê¼»Ò¶ÈÍ¼Ïñ.bmp", img);
-		/*Ò»£¬·Ö¸îÍ¬Àà¿é¼°±àÂë*/
+		//ä¿å­˜å›¾ç‰‡
+		imwrite(imgDir + "åŸå§‹ç°åº¦å›¾åƒ.bmp", img);
+		/*ä¸€ï¼Œåˆ†å‰²åŒç±»å—åŠç¼–ç */
 		Size size = img.size();
 		int height = size.height;
 		int width = size.width;
@@ -27,14 +27,14 @@ bool DPAlgo::DP(String fileDir, String imgDir, double margin, double ratio)
 		vector<DoubleDots> locList;
 		time_t begin, end;
 		begin = clock();
-		/*·Ö¿é*/
+		/*åˆ†å—*/
 		Algo::StartNamCut(img, markMatrix, R, colorList, locList, size, margin, num, ratio);
-		/*¾ØÕó±àÂë*/
+		/*çŸ©é˜µç¼–ç */
 		vector<char> Q;
 		Algo::EnCode(R, size, Q);
 		end = clock();
 		encodeTime = end - begin;
-		/*¶ş£¬»¹Ô­Í¼Ïñ¾ØÕó¼°Í¼Ïñ*/
+		/*äºŒï¼Œè¿˜åŸå›¾åƒçŸ©é˜µåŠå›¾åƒ*/
 		Mat T = Mat::zeros(img.size(), img.type());
 		begin = clock();
 		Algo::Decode(T, size, Q);
@@ -46,10 +46,10 @@ bool DPAlgo::DP(String fileDir, String imgDir, double margin, double ratio)
 		psnr = PSNR(img, newImg);
 		bpp = Calculate::BPP(colorList, width, height, Q);
 		cr = 8.0 / bpp;
-		//±£´æÍ¼Æ¬
-		imwrite(imgDir + "Ñ¹ËõÍ¼»Ò¶ÈÍ¼ÏñnewImg.bmp", newImg);
-		//imwrite(imgDir + "Ñ¹ËõÍ¼»Ò¶ÈÍ¼Ïñimg.bmp", img);
-		/*Èı£¬»­·Ö¸îÍ¼*/
+		//ä¿å­˜å›¾ç‰‡
+		imwrite(imgDir + "å‹ç¼©å›¾ç°åº¦å›¾åƒnewImg.bmp", newImg);
+		//imwrite(imgDir + "å‹ç¼©å›¾ç°åº¦å›¾åƒimg.bmp", img);
+		/*ä¸‰ï¼Œç”»åˆ†å‰²å›¾*/
 		Mat sketch;
 		int xr, yr;
 		int sketchXn, sketchYn;
@@ -84,8 +84,8 @@ bool DPAlgo::DP(String fileDir, String imgDir, double margin, double ratio)
 			else   if (locList[i].dot1.first != 0 && locList[i].dot1.second != 0)
 				rectangle(sketch, Point(locList[i].dot1.first - 1, locList[i].dot1.second - 1), Point(locList[i].dot2.first, locList[i].dot2.second), Scalar(0x00, 0x00, 0x00));
 		}
-		//±£´æÍ¼Æ¬
-		imwrite(imgDir + "·Ö¸îÊ¾ÒâÍ¼.bmp", sketch);
+		//ä¿å­˜å›¾ç‰‡
+		imwrite(imgDir + "åˆ†å‰²ç¤ºæ„å›¾.bmp", sketch);
 	}
 	return false;
 }
