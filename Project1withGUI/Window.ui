@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Project1Class</class>
- <widget class="QMainWindow" name="Project1Class">
+ <class>WindowClass</class>
+ <widget class="QMainWindow" name="WindowClass">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -27,10 +27,8 @@
     <property name="title">
      <string>文件</string>
     </property>
-    <addaction name="separator"/>
     <addaction name="openFile"/>
     <addaction name="saveFile"/>
-    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="aboutMenu">
     <property name="title">
