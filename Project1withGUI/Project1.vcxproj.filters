@@ -26,13 +26,13 @@
     <QtRcc Include="Project1.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="Project1.ui">
+    <QtUic Include="Window.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="Project1.h">
+    <QtMoc Include="Window.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="Project1.cpp">
+    <ClCompile Include="Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
