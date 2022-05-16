@@ -100,8 +100,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <QtRcc Include="Project1.qrc" />
-    <QtUic Include="Project1.ui" />
-    <QtMoc Include="Project1.h" />
+    <QtUic Include="Window.ui" />
+    <QtMoc Include="Window.h" />
     <ClCompile Include="..\Project1\Project1\Algo.cpp" />
     <ClCompile Include="..\Project1\Project1\Calculate.cpp" />
     <ClCompile Include="..\Project1\Project1\demo.cpp">
@@ -113,7 +113,7 @@
     <ClCompile Include="..\Project1\Project1\Segment.cpp" />
     <ClCompile Include="..\Project1\Project1\STCInterface.cpp" />
     <ClCompile Include="..\Project1\Project1\Tree.cpp" />
-    <ClCompile Include="Project1.cpp" />
+    <ClCompile Include="Window.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
