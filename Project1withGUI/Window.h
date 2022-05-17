@@ -31,4 +31,5 @@ public:
 private:
     Ui::WindowClass ui;
     QString fileName;
+    friend class AlgoThread;
 };

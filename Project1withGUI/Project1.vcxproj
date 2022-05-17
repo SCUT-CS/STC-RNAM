@@ -113,6 +113,7 @@
     <ClCompile Include="..\Project1\Project1\Segment.cpp" />
     <ClCompile Include="..\Project1\Project1\STCInterface.cpp" />
     <ClCompile Include="..\Project1\Project1\Tree.cpp" />
+    <ClCompile Include="AlgoThread.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -126,6 +127,7 @@
     <ClInclude Include="..\Project1\Project1\STCInterface.h" />
     <ClInclude Include="..\Project1\Project1\Tree.h" />
     <ClInclude Include="..\Project1\Project1\Variables.h" />
+    <QtMoc Include="AlgoThread.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
