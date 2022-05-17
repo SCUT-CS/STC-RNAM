@@ -31,5 +31,6 @@ public:
 private:
     Ui::WindowClass ui;
     QString fileName;
+    // TODO 根据Interface添加其他输入信息
     friend class AlgoThread;
 };

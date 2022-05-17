@@ -7,9 +7,9 @@ class AlgoThread : public QThread
 
 signals:
     //sent STC results
-    void sentSTCRes(Tuple res);
+    void sentSTCRes(); // TODO 添加参数
     //sent RANM results
-    void sentDPRes(Tuple res);
+    void sentDPRes(); // TODO 添加参数
 public:
 	AlgoThread(QObject *parent);
 	~AlgoThread();

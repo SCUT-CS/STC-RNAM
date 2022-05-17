@@ -3,14 +3,15 @@
 /** STC algorithm
   * @author CuiYuxin
   * @param String fileDir
-  * @param String imgDir
   * @param double margin
   * @param double ratio
   * @param double variance
   * @param int cutMethod
   * @return if success */
-bool STCAlgo::STC(String fileDir, String imgDir, double margin, double ratio, double variance, int cutMethod)
+bool STCAlgo::STC(String fileDir, double margin, double ratio, double variance, int cutMethod)
 {
+	String imgDir = "./STC";
+	// TODO 创建文件夹
 	Varialbes vars;
 	int nmb = 0;
 	Mat img;

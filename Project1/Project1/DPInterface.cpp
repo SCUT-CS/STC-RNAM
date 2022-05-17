@@ -4,12 +4,13 @@
 /** STC algorithm
   * @author CuiYuxin
   * @param String fileDir
-  * @param String imgDir
   * @param int margin
   * @param int ratio
   * @return if success */
-bool DPAlgo::DP(String fileDir, String imgDir, double margin, double ratio)
+bool DPAlgo::DP(String fileDir,  double margin, double ratio)
 {
+	String imgDir = "./RNAM";
+	//TODO 创建文件夹
 	Mat img;
 	img = imread(fileDir, 0); //将源彩色图像img转化成目标灰色图像读入
 	if (!img.empty())
