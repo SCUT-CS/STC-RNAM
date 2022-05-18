@@ -11,7 +11,7 @@
 bool STCAlgo::STC(String fileDir, double margin, double ratio, double variance, int cutMethod)
 {
 	String imgDir = "./STC";
-	// TODO 创建文件夹
+	_mkdir(imgDir);
 	Varialbes vars;
 	int nmb = 0;
 	Mat img;

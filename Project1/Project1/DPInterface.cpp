@@ -10,7 +10,7 @@
 bool DPAlgo::DP(String fileDir,  double margin, double ratio)
 {
 	String imgDir = "./RNAM";
-	//TODO 创建文件夹
+	_mkdir(imgDir);
 	Mat img;
 	img = imread(fileDir, 0); //将源彩色图像img转化成目标灰色图像读入
 	if (!img.empty())
