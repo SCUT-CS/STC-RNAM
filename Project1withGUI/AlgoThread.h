@@ -1,17 +1,21 @@
 #pragma once
 #include <QThread>
+#include <cassert>
+#include "../Project1/Project1/STCInterface.h"
+#include "Window.h"
+#include "../Project1/Project1/DPInterface.h"
 
 class AlgoThread : public QThread
 {
-	Q_OBJECT
+    Q_OBJECT
 
 signals:
     //sent STC results
-    void sentSTCRes(); // TODO 添加参数
+    void sentSTCRes(time_t codeTime, int blockNum, double bpp, double cr, time_t cverTime, int blockNum_2, double psnr, int areaNum);
     //sent RANM results
-    void sentDPRes(); // TODO 添加参数
+    void sentDPRes(time_t encodeTime, time_t decodeTime, int blockNum, double psnr, double bpp, double cr);
 public:
-	AlgoThread(QObject *parent);
-	~AlgoThread();
+    AlgoThread(QObject* parent);
+    ~AlgoThread();
     void run()override;
 };

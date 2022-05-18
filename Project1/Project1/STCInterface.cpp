@@ -10,8 +10,7 @@
   * @return if success */
 bool STCAlgo::STC(String fileDir, double margin, double ratio, double variance, int cutMethod)
 {
-	String imgDir = "./STC";
-	_mkdir(imgDir);
+	String imgDir = "./STC/";
 	Varialbes vars;
 	int nmb = 0;
 	Mat img;

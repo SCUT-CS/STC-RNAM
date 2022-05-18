@@ -26,11 +26,15 @@ public slots:
     void about();
 
 public:
-    Window(QWidget *parent = Q_NULLPTR);
+    Window(QWidget* parent = Q_NULLPTR);
 
 private:
-    Ui::WindowClass ui;
-    QString fileName;
-    // TODO 根据Interface添加其他输入信息
     friend class AlgoThread;
+    Ui::WindowClass ui;
+    //输入信息
+    QString fileDir;
+    double margin;
+    double ratio;
+    double variance;
+    int cutMethod;
 };

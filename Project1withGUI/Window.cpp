@@ -6,6 +6,7 @@ Window::Window(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
+    // TODO 创建文件夹 "./RNAM/" "./STC/"
     connect(ui.openFile, SIGNAL(triggered()), this, SLOT(openFile()));
     connect(ui.saveFile, SIGNAL(triggered()), this, SLOT(saveFile()));
     connect(ui.about, SIGNAL(triggered()), this, SLOT(about()));
@@ -15,7 +16,7 @@ Window::Window(QWidget *parent)
   * @author CuiYuxin YangYaocheng */
 void Window::openFile()
 {
-    fileName = QFileDialog::getOpenFileName(this, QString("打开图片"), QDir::homePath(), QString("Images (*.jpg *.bmp *.png *.jpeg *.gif)"));
+    fileDir = QFileDialog::getOpenFileName(this, QString("打开图片"), QDir::homePath(), QString("Images (*.jpg *.bmp *.png *.jpeg *.gif)"));
 }
 
 /** Save a image file.
