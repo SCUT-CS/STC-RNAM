@@ -37,4 +37,5 @@ private:
     double ratio;
     double variance;
     int cutMethod;
+    void openImg(QString fileName);
 };

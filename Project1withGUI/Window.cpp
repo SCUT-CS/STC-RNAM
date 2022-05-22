@@ -18,7 +18,30 @@ void Window::openFile()
 {
     fileDir = QFileDialog::getOpenFileName(this, QString("打开图片"), QDir::homePath(), QString("Images (*.jpg *.bmp *.png *.jpeg *.gif)"));
 }
+/** Open a image file.
+  * @author YangYaocheng */
+void Window::openImg(QString fileName)
+{
+    
+    if (fileName.isEmpty())
+    {
+        return;
+    }
+    else
+    {
+        QImage* img = new QImage;
 
+        if (!(img->load(fileName))) //加载图像
+        {
+            QMessageBox::information(this,
+                tr("打开图像失败"),
+                tr("打开图像失败!"));
+            delete img;
+            return;
+        }
+        //ui->label->setPixmap(QPixmap::fromImage(*img));
+    }
+}
 /** Save a image file.
   * @author CuiYuxin YangYaocheng */
 void Window::saveFile()
