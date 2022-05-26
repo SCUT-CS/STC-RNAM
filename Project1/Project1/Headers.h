@@ -29,7 +29,7 @@ struct DoubleDots //左上角及右下角坐标
 
 /** Segment int Params
   * @author CuiYuxin */
-struct SegmentParamI //左上角及右下角坐标
+struct SegmentParamI 
 {
     SegmentParamI(int x, int y, int l, int h);
     int xLeft;

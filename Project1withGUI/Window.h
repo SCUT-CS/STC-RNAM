@@ -12,6 +12,7 @@
 #include <QtWidgets/QWidget>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QLabel>
 #include "ui_Window.h"
 
 class Window : public QMainWindow
@@ -24,6 +25,10 @@ public slots:
     void openFile();
     void saveFile();
     void about();
+    void setMargin(double m);
+    void setRatio(double r);
+    void setVariance(double v);
+    void setCutMethod(QString c);
 
 public:
     Window(QWidget* parent = Q_NULLPTR);
