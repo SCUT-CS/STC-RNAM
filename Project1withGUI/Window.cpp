@@ -7,7 +7,7 @@ Window::Window(QWidget *parent)
 {
     ui.setupUi(this);
     QLabel* statusLabel = new QLabel;
-    statusLabel->setText("V1.00");
+    statusLabel->setText("Version 1.0.1 MIT License ©SCUT-CS/team-11 https://github.com/SCUT-CS/Project-1/");
     ui.statusBar->addWidget(statusLabel);
     // TODO 创建文件夹 "./RNAM/" "./STC/"
     connect(ui.openFile, SIGNAL(triggered()), this, SLOT(openFile()));
@@ -92,7 +92,7 @@ void Window::saveFile()
   * @author CuiYuxin YangYaocheng */
 void Window::about()
 {
-    QString content = "// TODO";
+    QString content = "\t灰度图像表示STC和RNAM算法。STC算法是一种基于S-树的空间数据结构的灰度图像表示方法。\n\t作者：崔钰薪、杨曜诚、周通宇、罗智豪\n\t本程序遵循MIT开源协议，项目地址：https://github.com/SCUT-CS/Project-1";
     QMessageBox aboutWindow(QMessageBox::NoIcon, QString("关于"), content);
     //aboutWindow.setIconPixmap("xxxxxxxxxxxxxxxxxxxxxxx.png");
     aboutWindow.exec();

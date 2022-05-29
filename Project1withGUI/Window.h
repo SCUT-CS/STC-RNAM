@@ -36,11 +36,13 @@ public:
 private:
     friend class AlgoThread;
     Ui::WindowClass ui;
+
+    void openImg(QString fileName);
+
     //输入信息
     QString fileDir;
     double margin;
     double ratio;
     double variance;
     int cutMethod;
-    void openImg(QString fileName);
 };
