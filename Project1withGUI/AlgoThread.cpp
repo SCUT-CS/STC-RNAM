@@ -9,16 +9,14 @@ AlgoThread::~AlgoThread()
 {
 }
 
-/** Emit STC & BP in a new thread
-  * @author YangYaocheng */
+/** Run STC & RNAM algorithm in a new thread
+  * @author YangYaocheng ZhouTongyv  */
 void AlgoThread::run()
 {
-	assert(this->parent() != nullptr); //断言父类指针非空
 	STCAlgo stc;
-	Window* p = (Window*)this->parent();
-	stc.STC(p->fileDir.toStdString(), p->margin, p->ratio, p->variance, p->cutMethod);
+	stc.STC(fileDir.toStdString(),margin, ratio, variance, cutMethod);
 	emit sentSTCRes(stc.codeTime, stc.blockNum, stc.bpp, stc.cr, stc.cverTime, stc.blockNum_2, stc.psnr, stc.areaNum);
 	DPAlgo dp;
-	dp.DP(p->fileDir.toStdString(), p->margin, p->ratio);
+	dp.DP(fileDir.toStdString(), margin, 0);
 	emit sentDPRes(dp.encodeTime, dp.decodeTime, dp.blockNum, dp.psnr, dp.bpp, dp.cr);
 }

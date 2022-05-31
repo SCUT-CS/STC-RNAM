@@ -10,7 +10,7 @@
   * @return if success */
 bool STCAlgo::STC(String fileDir, double margin, double ratio, double variance, int cutMethod)
 {
-	String imgDir = "./STC/";
+	String imgDir = "/STC/";
 	Varialbes vars;
 	int nmb = 0;
 	Mat img;
@@ -103,10 +103,10 @@ bool STCAlgo::STC(String fileDir, double margin, double ratio, double variance, 
 		psnr = PSNR(img, imggest);
 
 		//保存图像
-		imwrite(imgDir + "原始灰度图像.bmp", img);
+		imwrite(imgDir + "original.bmp", img);
 		//imwrite(imgDir + "区域分割后的图像.bmp", imggest);
-		imwrite(imgDir + "区域合并示意图1.bmp", seg);
-		imwrite(imgDir + "区域合并示意图2.bmp", segLine);
+		imwrite(imgDir + "region1.bmp", seg);
+		imwrite(imgDir + "region2.bmp", segLine);
 
 		//画示意图
 		if (N >= 256 || M >= 256)
@@ -179,7 +179,7 @@ bool STCAlgo::STC(String fileDir, double margin, double ratio, double variance, 
 			}
 		}
 		//保存图像
-		imwrite(imgDir + "二元树分割示意图.bmp", img);
+		imwrite(imgDir + "2split.bmp", img);
 		//imwrite(imgDir + "二元树区域分割后的图像.bmp", imggest);
 		//imwrite(imgDir + "二元树区域合并示意图1.bmp", seg);
 		//imwrite(imgDir + "二元树区域合并示意图2.bmp", segLine);
