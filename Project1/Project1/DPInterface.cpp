@@ -9,13 +9,13 @@
   * @return if success */
 bool DPAlgo::DP(String fileDir,  double margin, double ratio)
 {
-	String imgDir = "./RNAM/";
+	String imgDir = "/RNAM/";
 	Mat img;
 	img = imread(fileDir, 0); //将源彩色图像img转化成目标灰色图像读入
 	if (!img.empty())
 	{
 		//保存图片
-		imwrite(imgDir + "原始灰度图像.bmp", img);
+		imwrite(imgDir + "original.bmp", img);
 		/*一，分割同类块及编码*/
 		Size size = img.size();
 		int height = size.height;
@@ -47,7 +47,7 @@ bool DPAlgo::DP(String fileDir,  double margin, double ratio)
 		bpp = Calculate::BPP(colorList, width, height, Q);
 		cr = 8.0 / bpp;
 		//保存图片
-		imwrite(imgDir + "压缩图灰度图像newImg.bmp", newImg);
+		imwrite(imgDir + "zipImg.bmp", newImg);
 		//imwrite(imgDir + "压缩图灰度图像img.bmp", img);
 		/*三，画分割图*/
 		Mat sketch;
@@ -85,7 +85,7 @@ bool DPAlgo::DP(String fileDir,  double margin, double ratio)
 				rectangle(sketch, Point(locList[i].dot1.first - 1, locList[i].dot1.second - 1), Point(locList[i].dot2.first, locList[i].dot2.second), Scalar(0x00, 0x00, 0x00));
 		}
 		//保存图片
-		imwrite(imgDir + "分割示意图.bmp", sketch);
+		imwrite(imgDir + "split.bmp", sketch);
 	}
 	return false;
 }
