@@ -17,6 +17,6 @@ void AlgoThread::run()
 	stc.STC(fileDir.toStdString(),margin, ratio, variance, cutMethod);
 	emit sentSTCRes(stc.codeTime, stc.blockNum, stc.bpp, stc.cr, stc.cverTime, stc.blockNum_2, stc.psnr, stc.areaNum);
 	DPAlgo dp;
-	dp.DP(fileDir.toStdString(), margin, 0);
+	dp.DP(fileDir.toStdString(), margin, ratio);
 	emit sentDPRes(dp.encodeTime, dp.decodeTime, dp.blockNum, dp.psnr, dp.bpp, dp.cr);
 }

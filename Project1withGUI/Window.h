@@ -14,6 +14,8 @@
 #include <QFileDialog>
 #include <QScreen>
 #include <QLabel>
+#include <QSize>
+#include <QGraphicsScene>
 #include "AlgoThread.h"
 #include "ui_Window.h"
 
@@ -46,10 +48,10 @@ private:
 
     //输入信息
     QString fileDir;
-    double margin;
-    double ratio;
-    double variance;
-    int cutMethod;
+    double margin = 30;
+    double ratio = 10;
+    double variance = 225;
+    int cutMethod = 0;
 
     QImage* openImg(QString fileName);
 
