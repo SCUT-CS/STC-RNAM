@@ -60,7 +60,7 @@
 
 - 程序流程：
 
-  
+  ![程序流程图](https://github.com/SCUT-CS/Project-1/blob/main/Image/%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B.png?raw=true)
 
 ## 维护者
 
@@ -75,7 +75,7 @@
 
 ## 使用许可
 
-[MIT License](LICENSE) © SCUT-CS/team-11
+[MIT License](license) © SCUT-CS/team-11
 
 ## 参考文献
 
