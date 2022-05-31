@@ -12,7 +12,9 @@
 #include <QtWidgets/QWidget>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QScreen>
 #include <QLabel>
+#include "AlgoThread.h"
 #include "ui_Window.h"
 
 class Window : public QMainWindow
@@ -29,6 +31,9 @@ public slots:
     void setRatio(double r);
     void setVariance(double v);
     void setCutMethod(QString c);
+    void startRun();
+    void showSTC(time_t codeTime, int blockNum, double bpp, double cr, time_t cverTime, int blockNum_2, double psnr, int areaNum);
+    void showRNAM(time_t encodeTime, time_t decodeTime, int blockNum, double psnr, double bpp, double cr);
 
 public:
     Window(QWidget* parent = Q_NULLPTR);
@@ -37,7 +42,7 @@ private:
     friend class AlgoThread;
     Ui::WindowClass ui;
 
-    void openImg(QString fileName);
+    AlgoThread *algo;
 
     //输入信息
     QString fileDir;
@@ -45,4 +50,7 @@ private:
     double ratio;
     double variance;
     int cutMethod;
+
+    QImage* openImg(QString fileName);
+
 };
