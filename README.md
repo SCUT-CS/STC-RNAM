@@ -8,6 +8,7 @@
 - [使用说明](#使用说明)
 - [项目结构](#项目结构)
 - [维护者](#维护者)
+- [贡献者](#贡献者)
 - [如何贡献](#如何贡献)
 - [使用许可](#使用许可)
 - [参考文献](#参考文献)
@@ -65,6 +66,16 @@
 ## 维护者
 
 [@liukanshan1](https://github.com/liukanshan1)
+
+## 贡献者
+
+感谢以下参与项目的人：
+
+[@Palettone](https://github.com/Palettone)
+
+[@kkxx0v0](https://github.com/kkxx0v0)
+
+[@haohao1103](https://github.com/haohao1103)
 
 ## 如何贡献
 
