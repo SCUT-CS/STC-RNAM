@@ -75,7 +75,7 @@
 
 ## 使用许可
 
-[MIT License](license) © SCUT-CS/team-11
+[MIT License](licence) © SCUT-CS/team-11
 
 ## 参考文献
 
