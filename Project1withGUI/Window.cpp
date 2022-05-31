@@ -2,7 +2,7 @@
 
 /** Main window.
   * @author CuiYuxin YangYaocheng */
-Window::Window(QWidget *parent)
+Window::Window(QWidget* parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
@@ -13,7 +13,7 @@ Window::Window(QWidget *parent)
     setWindowIcon(QPixmap::fromImage(*openImg(":/Project1/icon.jpg")));
     QDir RNAMDir("/RNAM");
     QDir STCDir("/STC");
-    if(!RNAMDir.exists())
+    if (!RNAMDir.exists())
     {
         RNAMDir.mkdir("/RNAM");
     }
@@ -25,7 +25,7 @@ Window::Window(QWidget *parent)
     connect(ui.saveFile, SIGNAL(triggered()), this, SLOT(saveFile()));
     connect(ui.openFile2, SIGNAL(clicked()), this, SLOT(openFile()));
     connect(ui.about, SIGNAL(triggered()), this, SLOT(about()));
-    connect(ui.margin, SIGNAL(valueChanged(double)), this,SLOT(setMargin(double)));
+    connect(ui.margin, SIGNAL(valueChanged(double)), this, SLOT(setMargin(double)));
     connect(ui.ratio, SIGNAL(valueChanged(double)), this, SLOT(setRatio(double)));
     connect(ui.variance, SIGNAL(valueChanged(double)), this, SLOT(setVariance(double)));
     connect(ui.cutMethod, SIGNAL(currentTextChanged(QString)), this, SLOT(setCutMethod(QString)));
@@ -44,10 +44,24 @@ void Window::showSTC(time_t codeTime, int blockNum, double bpp, double cr, time_
     ui.blockNum_2->setText(QString::number(blockNum_2));
     ui.psnr->setText(QString::number(psnr));
     ui.areaNum->setText(QString::number(areaNum));
-    ui.STC->setPixmap(QPixmap::fromImage(*openImg("/STC/original.bmp")));
-    ui.STC_2->setPixmap(QPixmap::fromImage(*openImg("/STC/2split.bmp")));
-    ui.STC_3->setPixmap(QPixmap::fromImage(*openImg("/STC/region1.bmp")));
-    ui.STC_4->setPixmap(QPixmap::fromImage(*openImg("/STC/region2.bmp")));
+    QSize picSize(600, 400);
+    QPixmap::fromImage(*openImg("/STC/original.bmp")).scaled(picSize, Qt::KeepAspectRatio);
+    QGraphicsScene* STC = new  QGraphicsScene;
+    QGraphicsScene* STC_2 = new  QGraphicsScene;
+    QGraphicsScene* STC_3 = new  QGraphicsScene;
+    QGraphicsScene* STC_4 = new  QGraphicsScene;
+    STC->addPixmap(QPixmap::fromImage(*openImg("/STC/original.bmp")));
+    STC_2->addPixmap(QPixmap::fromImage(*openImg("/STC/2split.bmp")));
+    STC_3->addPixmap(QPixmap::fromImage(*openImg("/STC/region1.bmp")));
+    STC_4->addPixmap(QPixmap::fromImage(*openImg("/STC/region2.bmp")));
+    ui.STC->setScene(STC);
+    ui.STC_2->setScene(STC_2);
+    ui.STC_3->setScene(STC_3);
+    ui.STC_4->setScene(STC_4);
+    ui.STC->show();
+    ui.STC_2->show();
+    ui.STC_3->show();
+    ui.STC_4->show();
 }
 
 void Window::showRNAM(time_t encodeTime, time_t decodeTime, int blockNum, double psnr, double bpp, double cr)
@@ -58,19 +72,28 @@ void Window::showRNAM(time_t encodeTime, time_t decodeTime, int blockNum, double
     ui.psnr_2->setText(QString::number(psnr));
     ui.bpp_2->setText(QString::number(bpp));
     ui.cr_2->setText(QString::number(cr));
-    ui.RNAM->setPixmap(QPixmap::fromImage(*openImg("/RNAM/zipImg.bmp")));
-    ui.RNAM_2->setPixmap(QPixmap::fromImage(*openImg("/RNAM/original.bmp")));
-    ui.RNAM_3->setPixmap(QPixmap::fromImage(*openImg("/RNAM/split.bmp")));
+    QGraphicsScene* RNAM = new  QGraphicsScene;
+    QGraphicsScene* RNAM_2 = new  QGraphicsScene;
+    QGraphicsScene* RNAM_3 = new  QGraphicsScene;
+    RNAM->addPixmap(QPixmap::fromImage(*openImg("/RNAM/split.bmp")));
+    RNAM_2->addPixmap(QPixmap::fromImage(*openImg("/RNAM/original.bmp")));
+    RNAM_3->addPixmap(QPixmap::fromImage(*openImg("/RNAM/zipImg.bmp")));
+    ui.RNAM->setScene(RNAM);
+    ui.RNAM_2->setScene(RNAM_2);
+    ui.RNAM_3->setScene(RNAM_3);
+    ui.RNAM->show();
+    ui.RNAM_2->show();
+    ui.RNAM_3->show();
 }
 
 /** Run STC & RNAM algorithm in a new thread
   * @author YangYaocheng ZhouTongyv  */
 void Window::startRun()
 {
-    algo->fileDir= this->fileDir;
-    algo->margin =this->margin;
+    algo->fileDir = this->fileDir;
+    algo->margin = this->margin;
     algo->ratio = this->ratio;
-    algo->variance =this->variance;
+    algo->variance = this->variance;
     algo->cutMethod = this->cutMethod;
     algo->start();
 }
@@ -93,7 +116,7 @@ void Window::setRatio(double r)
   * @author YangYaocheng */
 void Window::setVariance(double v)
 {
-    this->variance=v;
+    this->variance = v;
 }
 
 /** Set the cutMethod
