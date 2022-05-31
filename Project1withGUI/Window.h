@@ -41,7 +41,9 @@ public:
 private:
     friend class AlgoThread;
     Ui::WindowClass ui;
+
     AlgoThread *algo;
+
     //输入信息
     QString fileDir;
     double margin;
@@ -50,4 +52,5 @@ private:
     int cutMethod;
 
     QImage* openImg(QString fileName);
+
 };

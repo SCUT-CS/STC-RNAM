@@ -9,7 +9,7 @@ AlgoThread::~AlgoThread()
 {
 }
 
-/** Emit STC & BP in a new thread
+/** Run STC & RNAM algorithm in a new thread
   * @author YangYaocheng */
 void AlgoThread::run()
 {
