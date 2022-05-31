@@ -10,8 +10,7 @@ Window::Window(QWidget *parent)
     statusLabel->setText("Version 1.0.1 MIT License ©SCUT-CS/team-11 https://github.com/SCUT-CS/Project-1/");
     ui.statusBar->addWidget(statusLabel);
     algo = new AlgoThread(this);
-    algo->p = this;
-    // 创建文件夹 "./RNAM" "./STC"
+    setWindowIcon(QPixmap::fromImage(*openImg(":/Project1/icon.jpg")));
     QDir RNAMDir("/RNAM");
     QDir STCDir("/STC");
     if(!RNAMDir.exists())
@@ -32,7 +31,6 @@ Window::Window(QWidget *parent)
     connect(ui.cutMethod, SIGNAL(currentTextChanged(QString)), this, SLOT(setCutMethod(QString)));
     connect(algo, SIGNAL(sentSTCRes(time_t, int, double, double, time_t, int, double, int)), this, SLOT(showSTC(time_t, int, double, double, time_t, int, double, int)));
     connect(algo, SIGNAL(sentDPRes(time_t, time_t, int, double, double, double)), this, SLOT(showRNAM(time_t, time_t, int, double, double, double)));
-
     connect(ui.start, SIGNAL(clicked()), this, SLOT(startRun()));
 }
 
@@ -65,6 +63,8 @@ void Window::showRNAM(time_t encodeTime, time_t decodeTime, int blockNum, double
     ui.RNAM_3->setPixmap(QPixmap::fromImage(*openImg("/RNAM/split.bmp")));
 }
 
+/** Run STC & RNAM algorithm in a new thread
+  * @author YangYaocheng ZhouTongyv  */
 void Window::startRun()
 {
     algo->fileDir= this->fileDir;
@@ -114,7 +114,6 @@ void Window::openFile()
   * @author YangYaocheng */
 QImage* Window::openImg(QString fileName)
 {
-    
     if (fileName.isEmpty())
     {
         return nullptr;
@@ -122,7 +121,6 @@ QImage* Window::openImg(QString fileName)
     else
     {
         QImage* img = new QImage;
-
         if (!(img->load(fileName))) //加载图像
         {
             QMessageBox::information(this,
@@ -132,7 +130,6 @@ QImage* Window::openImg(QString fileName)
             return nullptr;
         }
         return img;
-
     }
 }
 
@@ -149,9 +146,9 @@ void Window::saveFile()
   * @author CuiYuxin YangYaocheng */
 void Window::about()
 {
-    QString content = "\t灰度图像表示STC和RNAM算法。STC算法是一种基于S-树的空间数据结构的灰度图像表示方法。\n\t作者：崔钰薪、杨曜诚、周通宇、罗智豪\n\t本程序遵循MIT开源协议，项目地址：https://github.com/SCUT-CS/Project-1";
-    QMessageBox aboutWindow(QMessageBox::NoIcon, QString("关于"), content);
-    //aboutWindow.setIconPixmap("xxxxxxxxxxxxxxxxxxxxxxx.png");
+    QString content = "灰度图像表示STC和RNAM算法。\n作者：崔钰薪、杨曜诚、周通宇、罗智豪\n本程序遵循MIT开源协议，项目地址：https://github.com/SCUT-CS/Project-1";
+    QMessageBox aboutWindow(QMessageBox::NoIcon, QString("关于本程序"), content);
+    aboutWindow.setIcon(QMessageBox::Icon::Information);
     aboutWindow.exec();
 }
 

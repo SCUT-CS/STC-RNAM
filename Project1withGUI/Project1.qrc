@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="Project1">
+    <qresource prefix="/Project1">
+        <file>icon.jpg</file>
     </qresource>
 </RCC>
