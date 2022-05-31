@@ -67,6 +67,11 @@ void Window::showRNAM(time_t encodeTime, time_t decodeTime, int blockNum, double
 
 void Window::startRun()
 {
+    algo->fileDir= this->fileDir;
+    algo->margin =this->margin;
+    algo->ratio = this->ratio;
+    algo->variance =this->variance;
+    algo->cutMethod = this->cutMethod;
     algo->start();
 }
 

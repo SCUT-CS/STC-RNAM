@@ -20,4 +20,10 @@ public:
     AlgoThread(QObject* parent);
     ~AlgoThread();
     void run()override;
+    // 输入信息
+    QString fileDir;
+    double margin;
+    double ratio;
+    double variance;
+    int cutMethod;
 };
