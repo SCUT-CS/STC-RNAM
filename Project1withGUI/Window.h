@@ -55,5 +55,4 @@ private:
     int cutMethod = 0;
 
     QImage* openImg(QString fileName);
-
 };

@@ -36,6 +36,17 @@ Window::Window(QWidget* parent)
 
 }
 
+/** Show STC tab
+  * @param time_t codeTime
+  * @param int blockNum
+  * @param double bpp
+  * @param double cr
+  * @param time_t cverTime
+  * @param int blockNum
+  * @param int blockNum_2
+  * @param double psnr
+  * @param int areaNum
+  * @author ZhouTongyv YangYaocheng */
 void Window::showSTC(time_t codeTime, int blockNum, double bpp, double cr, time_t cverTime, int blockNum_2, double psnr, int areaNum)
 {
     ui.codeTime->setText(QString::number(codeTime));
@@ -66,6 +77,14 @@ void Window::showSTC(time_t codeTime, int blockNum, double bpp, double cr, time_
     ui.STC_4->show();
 }
 
+/** Show RNAM tab
+  * @param time_t encodeTime
+  * @param time_t decodeTime
+  * @param int blockNum
+  * @param double psnr
+  * @param double bpp
+  * @param double cr
+  * @author ZhouTongyv YangYaocheng */
 void Window::showRNAM(time_t encodeTime, time_t decodeTime, int blockNum, double psnr, double bpp, double cr)
 {
     ui.encodeTime->setText(QString::number(encodeTime));
