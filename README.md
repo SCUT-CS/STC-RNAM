@@ -19,7 +19,7 @@
 
 ## 使用说明
 
-// TODO 程序主界面。
+<img src="https://github.com/SCUT-CS/Project-1/blob/main/Image/%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E7%A4%BA%E6%84%8F%E5%9B%BE.png?raw=true" alt="程序运行示意图" style="zoom: 50%;" />
 
 1. 打开图片：菜单栏—打开图片或在点击界面上半部分的打开图像按钮。
 
