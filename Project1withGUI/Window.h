@@ -43,7 +43,6 @@ public:
 private:
     friend class AlgoThread;
     Ui::WindowClass ui;
-
     AlgoThread *algo;
 
     //输入信息
@@ -54,5 +53,4 @@ private:
     int cutMethod = 0;
 
     QImage* openImg(QString fileName);
-
 };
