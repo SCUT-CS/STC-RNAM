@@ -27,7 +27,8 @@ signals:
 
 public slots:
     void openFile();
-    void saveFile();
+    void saveSTC();
+    void saveRNAM();
     void about();
     void setMargin(double m);
     void setRatio(double r);
@@ -39,11 +40,11 @@ public slots:
 
 public:
     Window(QWidget* parent = Q_NULLPTR);
+    QPixmap img[2];
 
 private:
     friend class AlgoThread;
     Ui::WindowClass ui;
-
     AlgoThread *algo;
 
     //输入信息

@@ -22,7 +22,8 @@ Window::Window(QWidget* parent)
         STCDir.mkdir("/STC");
     }
     connect(ui.openFile, SIGNAL(triggered()), this, SLOT(openFile()));
-    connect(ui.saveFile, SIGNAL(triggered()), this, SLOT(saveFile()));
+    connect(ui.saveSTC, SIGNAL(triggered()), this, SLOT(saveSTC()));
+    connect(ui.saveRNAM, SIGNAL(triggered()), this, SLOT(saveRNAM()));
     connect(ui.openFile2, SIGNAL(clicked()), this, SLOT(openFile()));
     connect(ui.about, SIGNAL(triggered()), this, SLOT(about()));
     connect(ui.margin, SIGNAL(valueChanged(double)), this, SLOT(setMargin(double)));
@@ -32,6 +33,7 @@ Window::Window(QWidget* parent)
     connect(algo, SIGNAL(sentSTCRes(time_t, int, double, double, time_t, int, double, int)), this, SLOT(showSTC(time_t, int, double, double, time_t, int, double, int)));
     connect(algo, SIGNAL(sentDPRes(time_t, time_t, int, double, double, double)), this, SLOT(showRNAM(time_t, time_t, int, double, double, double)));
     connect(ui.start, SIGNAL(clicked()), this, SLOT(startRun()));
+
 }
 
 void Window::showSTC(time_t codeTime, int blockNum, double bpp, double cr, time_t cverTime, int blockNum_2, double psnr, int areaNum)
@@ -156,13 +158,20 @@ QImage* Window::openImg(QString fileName)
     }
 }
 
-/** Save a image file.
-  * @author CuiYuxin YangYaocheng */
-void Window::saveFile()
+/** Save STC image file.
+  * @author YangYaocheng */
+void Window::saveSTC()
 {
-    //QString filename1 = QFileDialog::getSaveFileName(this, tr("Save Image"), "", tr("Images (*.png *.bmp *.jpg)")); //选择路径
-    //QScreen* screen = QGuiApplication::primaryScreen();
-    //screen->grabWindow(ui.labelname.winId()).save(filename1);
+    QString file_path = QFileDialog::getSaveFileName(this, "请选择保存路径和文件名...", QDir::homePath()));
+    QPixmap::fromImage(*openImg("/STC/region1.bmp")).save(file_path);
+}
+
+/** Save RNAM image file.
+  * @author YangYaocheng */
+void Window::saveRNAM()
+{
+    QString file_path = QFileDialog::getSaveFileName(this, "请选择保存路径和文件名...", QDir::homePath());
+    QPixmap::fromImage(*openImg("/RNAM/zipImg.bmp")).save(file_path);
 }
 
 /** Open an about Window.
