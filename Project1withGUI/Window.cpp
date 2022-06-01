@@ -33,7 +33,6 @@ Window::Window(QWidget* parent)
     connect(algo, SIGNAL(sentSTCRes(time_t, int, double, double, time_t, int, double, int)), this, SLOT(showSTC(time_t, int, double, double, time_t, int, double, int)));
     connect(algo, SIGNAL(sentDPRes(time_t, time_t, int, double, double, double)), this, SLOT(showRNAM(time_t, time_t, int, double, double, double)));
     connect(ui.start, SIGNAL(clicked()), this, SLOT(startRun()));
-
 }
 
 /** Show STC tab
@@ -181,7 +180,7 @@ QImage* Window::openImg(QString fileName)
   * @author YangYaocheng */
 void Window::saveSTC()
 {
-    QString file_path = QFileDialog::getSaveFileName(this, "请选择保存路径和文件名...", QDir::homePath()));
+    QString file_path = QFileDialog::getSaveFileName(this, "请选择保存路径和文件名...", QDir::homePath());
     QPixmap::fromImage(*openImg("/STC/region1.bmp")).save(file_path);
 }
 

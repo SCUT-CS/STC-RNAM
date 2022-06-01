@@ -122,12 +122,10 @@
               <width>0</width>
               <height>0</height>
              </size>
-
             </property>
             <property name="editable">
              <bool>false</bool>
             </property>
-
             <item>
              <property name="text">
               <string>水平</string>
@@ -868,10 +866,7 @@
      <x>0</x>
      <y>0</y>
      <width>820</width>
-     <height>17</height>
-
-
-
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
@@ -892,14 +887,6 @@
    <addaction name="aboutMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
   <action name="openFile">
    <property name="text">
     <string>打开图片</string>
