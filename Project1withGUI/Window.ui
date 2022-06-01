@@ -122,10 +122,12 @@
               <width>0</width>
               <height>0</height>
              </size>
+
             </property>
             <property name="editable">
              <bool>false</bool>
             </property>
+
             <item>
              <property name="text">
               <string>水平</string>
@@ -866,7 +868,10 @@
      <x>0</x>
      <y>0</y>
      <width>820</width>
-     <height>22</height>
+     <height>17</height>
+
+
+
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
@@ -874,7 +879,8 @@
      <string>文件</string>
     </property>
     <addaction name="openFile"/>
-    <addaction name="saveFile"/>
+    <addaction name="saveRNAM"/>
+    <addaction name="saveSTC"/>
    </widget>
    <widget class="QMenu" name="aboutMenu">
     <property name="title">
@@ -899,14 +905,19 @@
     <string>打开图片</string>
    </property>
   </action>
-  <action name="saveFile">
+  <action name="saveRNAM">
    <property name="text">
-    <string>另存为</string>
+    <string>保存RNAM算法结果</string>
    </property>
   </action>
   <action name="about">
    <property name="text">
     <string>关于</string>
+   </property>
+  </action>
+  <action name="saveSTC">
+   <property name="text">
+    <string>保存STC算法结果</string>
    </property>
   </action>
  </widget>
