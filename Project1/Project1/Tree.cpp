@@ -119,7 +119,8 @@ void Tree::setConfirm(treeIterator it, uchar c)
 
 /** Get confirm
   * @author CuiYuxin
-  * @param treeIterator it */
+  * @param treeIterator it 
+  * @return uchar*/
 uchar Tree::getConfirm(treeIterator it)
 {
 	if (it.p != nullptr)
@@ -272,7 +273,7 @@ treeIterator treeIterator::getNwChild() const
 	return treeIterator(nullptr);
 }
 
-/** Return the iterator point to the NwChild
+/** Return the iterator point to the NeChild
   * @author CuiYuxin
   * @return treeIterator */
 treeIterator treeIterator::getNeChild() const

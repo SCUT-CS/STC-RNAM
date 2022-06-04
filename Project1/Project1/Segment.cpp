@@ -34,7 +34,8 @@ void Segment::split(Segment* upperLeft, int size, int direction)
   * @param SegmentParamI spi
   * @param Region** all_region
   * @param vector<char> Q
-  * @param int& num */
+  * @param int& num 
+  * @param Varialbes& vars*/
 void Segment::regionSegm(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLowerLeft, SegmentParamI spi, Region** all_region, vector<char> Q, int& num, Varialbes& vars)
 {
 	int Xleft = spi.xLeft;

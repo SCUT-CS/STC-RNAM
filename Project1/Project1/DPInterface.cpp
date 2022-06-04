@@ -4,8 +4,8 @@
 /** STC algorithm
   * @author CuiYuxin
   * @param String fileDir
-  * @param int margin
-  * @param int ratio
+  * @param double margin
+  * @param double ratio
   * @return if success */
 bool DPAlgo::DP(String fileDir,  double margin, double ratio)
 {

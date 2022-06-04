@@ -4,7 +4,7 @@
   * @author CuiYuxin
   * @param double epsilon
   * @param Mat img
-  * @param doubleCoordinate dots
+  * @param DoubleDots dots
   * @return bool isSame */
 bool Algo::JudgeSameBlock(double epsilon, Mat img, DoubleDots dots)
 {
@@ -47,10 +47,10 @@ bool Algo::JudgeSameBlock(double epsilon, Mat img, DoubleDots dots)
   * @param Mat img
   * @param treeIterator it
   * @param vector<colorListStandard>& P
-  * @param vector<doubleCoordinate>& C
+  * @param vector<DoubleDots>& C
   * @param int& num
   * @param double epsilon
-  * @param doubleDots dots */
+  * @param DoubleDots dots */
 void Algo::BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vector<DoubleDots>& C, int& num, double epsilon, DoubleDots dots)
 {
 	int x1 = dots.dot1.first;
@@ -168,7 +168,7 @@ void Algo::BuildTree(Mat img, treeIterator it, vector<colorListStandard>& P, vec
   * @author CuiYuxin
   * @param Mat imggest
   * @param vector<colorListStandard>& P
-  * @param vector<doubleCoordinate>& C */
+  * @param vector<DoubleDots>& C */
 void Algo::MakeImggest(Mat imggest, vector<colorListStandard>& P, vector<DoubleDots> C)
 {
 	uchar g1 = 0, g2 = 0, g3 = 0, g4 = 0;
@@ -299,7 +299,7 @@ void Algo::EnCode(Mat R, Size s, vector<char>& Q)
 /** Judge if blocks are the same for DP algorithm
   * @author CuiYuxin
   * @param Mat img
-  * @param doubleCoordinate dots
+  * @param DoubleDots dots
   * @param int margin
   * @return bool isSame */
 bool Algo::IsSameBlock(const Mat img, DoubleDots dots, int margin)
@@ -382,7 +382,7 @@ bool Algo::IsSameBlock(const Mat img, DoubleDots dots, int margin)
   * @param Mat R
   * @param int x1,y1
   * @param double margin,ratio
-  * @return doubleDots */
+  * @return DoubleDots */
 DoubleDots Algo::FindSameBlock(const Mat img, Mat markMatrix, Mat R, int x1, int y1, double margin, double ratio)
 {
 	int x2(x1), y2(y1);
@@ -501,7 +501,7 @@ void Algo::RestoreImage(Mat img, Mat markMatrix, Mat R, vector<ColorNode> cn, Si
 /** Restore Image Value
   * @author CuiYuxin
   * @param Mat img
-  * @param doubleDots */
+  * @param DoubleDots */
 void Algo::RestoreImageValue(Mat img, ColorNode node, DoubleDots dots)
 {
 	int x1 = dots.dot1.first;
@@ -557,7 +557,7 @@ void Algo::RestoreImageValue(Mat img, ColorNode node, DoubleDots dots)
 /** Set Mark Matrix
   * @author CuiYuxin
   * @param Mat markMatrix
-  * @param doubleDots
+  * @param DoubleDots
   * @param int value */
 void Algo::SetMarkMatrix(Mat markMatrix, DoubleDots dots, int value)
 {
@@ -579,8 +579,8 @@ void Algo::SetMarkMatrix(Mat markMatrix, DoubleDots dots, int value)
   * @param const Mat img
   * @param Mat markMatrix
   * @param Mat R
-  * @param vector<doubleDots>& ColorList
-  * @param vector<doubleDots>& LocList
+  * @param vector<DoubleDots>& ColorList
+  * @param vector<DoubleDots>& LocList
   * @param Size size
   * @param double margin
   * @param int& num
