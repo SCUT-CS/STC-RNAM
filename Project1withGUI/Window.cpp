@@ -119,6 +119,7 @@ void Window::startRun()
 }
 
 /** Set the margin
+  * @param double m
   * @author YangYaocheng */
 void Window::setMargin(double m)
 {
@@ -126,6 +127,7 @@ void Window::setMargin(double m)
 }
 
 /** Set the ratio
+  * @param double r
   * @author YangYaocheng */
 void Window::setRatio(double r)
 {
@@ -133,6 +135,7 @@ void Window::setRatio(double r)
 }
 
 /** Set the variance
+  * @param double v
   * @author YangYaocheng */
 void Window::setVariance(double v)
 {
@@ -140,6 +143,7 @@ void Window::setVariance(double v)
 }
 
 /** Set the cutMethod
+  * @param QString c
   * @author YangYaocheng */
 void Window::setCutMethod(QString c)
 {
@@ -154,6 +158,7 @@ void Window::openFile()
 }
 
 /** Open a image file.
+  * @param QString fileName
   * @author YangYaocheng */
 QImage* Window::openImg(QString fileName)
 {
